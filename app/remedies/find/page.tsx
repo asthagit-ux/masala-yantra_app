@@ -115,7 +115,7 @@ export default function MasalaFunnel() {
               href="/yantra-funnel"
               className="text-xs font-bold text-white bg-[#0A2133] hover:bg-[#0A2133]/90 px-3.5 py-2 rounded transition-all"
             >
-              Yantra Funnel
+              Yantra
             </Link>
             <Link
               href="/remedies"
@@ -263,7 +263,7 @@ export default function MasalaFunnel() {
                   onClick={handleReset}
                   className="text-xs text-red-600 hover:underline font-bold"
                 >
-                  Reset Funnel &larr;
+                  Start Over &larr;
                 </button>
               </div>
 

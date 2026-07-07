@@ -27,13 +27,13 @@ export default function Home() {
               href="/remedies/find"
               className="text-xs font-semibold text-black hover:text-[#9A7026]"
             >
-              Remedies Funnel
+              Masala Remedies
             </Link>
             <Link
               href="/yantra-funnel"
               className="text-xs font-semibold text-black hover:text-[#9A7026]"
             >
-              Yantra Funnel
+              Yantra
             </Link>
           </div>
         </header>
@@ -117,7 +117,7 @@ export default function Home() {
                   </span>
                   <div>
                     <h3 className="font-serif text-xl font-bold text-black group-hover:text-[#9A7026] transition-colors">
-                      Masala Remedies Funnel
+                      Masala Remedies
                     </h3>
                     <p className="text-xs text-[#9A7026] font-semibold">
                       Kitchen Spice Formulas
@@ -129,7 +129,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-bold text-[#0A2133] group-hover:text-[#9A7026] transition-colors">
-                <span>Start Masala Funnel &rarr;</span>
+                <span>Find My Remedy &rarr;</span>
                 <span className="text-black/30 font-normal">126+ remedies mapped</span>
               </div>
             </Link>
@@ -146,7 +146,7 @@ export default function Home() {
                   </span>
                   <div>
                     <h3 className="font-serif text-xl font-bold text-black group-hover:text-[#9A7026] transition-colors">
-                      Personalized Yantra Funnel
+                      Personalized Yantra
                     </h3>
                     <p className="text-xs text-[#9A7026] font-semibold">
                       Geometric Talisman Generator
@@ -158,7 +158,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-bold text-[#0A2133] group-hover:text-[#9A7026] transition-colors">
-                <span>Start Yantra Funnel &rarr;</span>
+                <span>Find My Yantra &rarr;</span>
                 <span className="text-black/30 font-normal">56+ geometric grids</span>
               </div>
             </Link>

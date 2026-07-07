@@ -240,7 +240,7 @@ export default function YantraFunnel() {
               href="/remedies/find"
               className="text-xs font-bold text-white bg-[#0A2133] hover:bg-[#0A2133]/90 px-3.5 py-2 rounded transition-all"
             >
-              Remedies Funnel
+              Masala Remedies
             </Link>
             <Link
               href="/remedies"
@@ -262,7 +262,7 @@ export default function YantraFunnel() {
               Vedic Geometry Talismans
             </p>
             <h2 className="text-2xl md:text-3xl font-bold font-serif text-black">
-              Personalized Yantra Funnel
+              Personalized Yantra
             </h2>
             <p className="text-xs text-black/60 max-w-md mx-auto">
               Generate and customize your unique Vedic yantra based on goals and planetary alignment.
@@ -473,7 +473,7 @@ export default function YantraFunnel() {
                   onClick={handleReset}
                   className="text-xs text-red-600 hover:underline font-bold"
                 >
-                  Reset Funnel &larr;
+                  Start Over &larr;
                 </button>
               </div>
 
