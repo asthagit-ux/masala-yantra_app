@@ -1,0 +1,1719 @@
+[
+  {
+    "id": "surya",
+    "number": 1,
+    "name": "Surya Yantra (Sun Yantra)",
+    "category": "planetary",
+    "description": "Used when Sun position in Horoscope is weak (in 6, 8, 12 houses), or to bring glow on the face and vitality.",
+    "benefits": [
+      "To get name and fame in society",
+      "To get respect in society",
+      "To have good relationship with Father",
+      "To get work done in social circle",
+      "To overcome immunity issues",
+      "To bring glow on face"
+    ],
+    "mantras": [
+      "Om Hraam Hreem Hraum Sah Suryay Namah:",
+      "Om Ghrini Suryay Namah"
+    ],
+    "preparation": {
+      "day": "Sunday",
+      "time": "Sun Hora",
+      "materials": "Bhojpatra or Plain paper with red pen/wooden pen of pomegranate tree, ashtagandha ink or red ink."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["6", "1", "8"],
+        ["7", "5", "3"],
+        ["2", "9", "4"]
+      ]
+    }
+  },
+  {
+    "id": "chandra",
+    "number": 2,
+    "name": "Chandra Yantra (Moon Yantra)",
+    "category": "planetary",
+    "description": "Used when Moon position in Horoscope is not good (in 6, 8, 12 houses) or when experiencing mood swings.",
+    "benefits": [
+      "To overcome mood swings",
+      "To overcome depression",
+      "To have good relationship with Mother",
+      "To overcome unwanted fear and restore confidence"
+    ],
+    "mantras": [
+      "Om Shraam Shreem Shraum Sah: Chandray Namah:",
+      "Om Som Somaay Namah"
+    ],
+    "preparation": {
+      "day": "Monday",
+      "time": "Moon Hora",
+      "materials": "Bhojpatra or Plain paper. Once made, keep under new moon light."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["7", "2", "9"],
+        ["8", "6", "4"],
+        ["3", "10", "5"]
+      ]
+    }
+  },
+  {
+    "id": "mangal",
+    "number": 3,
+    "name": "Mangal Yantra (Mars Yantra)",
+    "category": "planetary",
+    "description": "Used when Mars position in Horoscope is not good. Excellent for building courage, strength, and resolving debts.",
+    "benefits": [
+      "To gain self-confidence",
+      "To gain fighting spirit and get courage",
+      "To become debt-free",
+      "Helps those who have blood-related issues",
+      "Helps in finding a suitable match and fulfilling married life"
+    ],
+    "mantras": [
+      "Om Kram Kreem Kraum Sah: Bhaumay Namah:",
+      "Om Am Angarakaay Namah"
+    ],
+    "preparation": {
+      "day": "Tuesday",
+      "time": "Mars Hora",
+      "materials": "Bhojpatra or Plain paper with red ink."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["8", "3", "10"],
+        ["9", "7", "5"],
+        ["4", "11", "6"]
+      ]
+    }
+  },
+  {
+    "id": "budh",
+    "number": 4,
+    "name": "Budh Yantra (Mercury Yantra)",
+    "category": "planetary",
+    "description": "Used when Mercury position in Horoscope is not good. Boosts intelligence, communication, and business.",
+    "benefits": [
+      "Enhances Intelligence Quotient (IQ) and quick-wittedness",
+      "Improves learning abilities and creativity",
+      "Increases multitasking skills",
+      "Good for getting good grades in exams",
+      "Helps in communication, speaking, and resolving skin issues",
+      "Helps sales and marketing professionals achieve targets"
+    ],
+    "mantras": [
+      "Om Braam Breem Braum Sah: Budhay Namah:",
+      "Om Boom Buddhave Namah"
+    ],
+    "preparation": {
+      "day": "Wednesday",
+      "time": "Mercury Hora",
+      "materials": "Bhojpatra or Plain paper with green/red ink."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["9", "4", "11"],
+        ["10", "8", "6"],
+        ["5", "12", "7"]
+      ]
+    }
+  },
+  {
+    "id": "guru",
+    "number": 5,
+    "name": "Guru Yantra (Jupiter Yantra)",
+    "category": "planetary",
+    "description": "Used when Jupiter position is weak. Grants immense wisdom, prosperity, and spiritual growth.",
+    "benefits": [
+      "Enhances knowledge and wisdom",
+      "Improves learning abilities and financial status",
+      "Best for career, profession, and business growth",
+      "Bestows good health and childbirth blessings"
+    ],
+    "mantras": [
+      "Om Graam Greem Graum Sah: Guruve Namah:",
+      "Om Bhrim Bhrihaspataye Namah"
+    ],
+    "preparation": {
+      "day": "Thursday",
+      "time": "Jupiter Hora",
+      "materials": "Bhojpatra or Plain paper with kesar/saffron or yellow ink."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["10", "5", "12"],
+        ["11", "9", "7"],
+        ["6", "13", "8"]
+      ]
+    }
+  },
+  {
+    "id": "shukra",
+    "number": 6,
+    "name": "Shukra Yantra (Venus Yantra)",
+    "category": "planetary",
+    "description": "Used when Venus position is weak. Attracts love, luxury, fine arts, and happy relationships.",
+    "benefits": [
+      "Helps in terms of love, spouse, and relationships",
+      "Attracts riches and luxuries of life",
+      "Creates positive energy and helps bring wealth and good fortune",
+      "Brings prosperity and improves marital life"
+    ],
+    "mantras": [
+      "Om Draam Dreem Draum Sah: Shukray Namah:",
+      "Om Shoom Shukraay Namah"
+    ],
+    "preparation": {
+      "day": "Friday",
+      "time": "Venus Hora",
+      "materials": "Bhojpatra or Plain paper."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["11", "6", "13"],
+        ["12", "10", "8"],
+        ["7", "14", "9"]
+      ]
+    }
+  },
+  {
+    "id": "shani",
+    "number": 7,
+    "name": "Shani Yantra (Saturn Yantra)",
+    "category": "planetary",
+    "description": "Used to pacify Saturn during transit, Sade Sati, or weak placement in horoscope.",
+    "benefits": [
+      "Success in worldly affairs and business",
+      "Useful when one feels depressed or anxious",
+      "Used to please Lord Shani during Sade Sati or transits",
+      "Builds reputation and social honor",
+      "Enhances justice, correct judgment, courage, and physical strength"
+    ],
+    "mantras": [
+      "Om Praam Preem Praum Sah: Shanishcharay Namah",
+      "Om Sham Shanishcharay Namah"
+    ],
+    "preparation": {
+      "day": "Saturday",
+      "time": "Saturn Hora or Evening",
+      "materials": "Bhojpatra or Plain paper with dark blue/black or red ink."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["12", "7", "14"],
+        ["13", "11", "9"],
+        ["8", "15", "10"]
+      ]
+    }
+  },
+  {
+    "id": "rahu",
+    "number": 8,
+    "name": "Rahu Yantra",
+    "category": "planetary",
+    "description": "Negates the malefic effects of Rahu in the horoscope. Shields against accidents and negative habits.",
+    "benefits": [
+      "Negates the malefic effects of Rahu",
+      "Blesses the native with knowledge, deep understanding, and respect",
+      "Acts as a shield against accidents and mishaps (especially if Rahu occupies the 8th house)",
+      "Helps individuals facing addiction problems",
+      "Protects from hidden enemies"
+    ],
+    "mantras": [
+      "Om Bhraam Bhreem Bhraum Sah: Rahve Namah:",
+      "Om Raam Rahve Namah",
+      "Om Namah Shivay"
+    ],
+    "preparation": {
+      "day": "Saturday",
+      "time": "Rahu Hora or Night",
+      "materials": "Bhojpatra or Plain paper. Can be used in combination with Hanuman Yantra."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["13", "8", "15"],
+        ["14", "12", "10"],
+        ["9", "16", "11"]
+      ]
+    }
+  },
+  {
+    "id": "ketu",
+    "number": 9,
+    "name": "Ketu Yantra",
+    "category": "planetary",
+    "description": "Used when Ketu position is weak. Reduces Guru Chandal Yog and Kaal Sarpa Dosh effects.",
+    "benefits": [
+      "Brings success in business and rise in profession",
+      "Victory over enemies and all-round success",
+      "Beneficial during Ketu Dasha and sub-Dasha periods",
+      "Decreases malefic effects of Guru Chandal Yog and Kaal Sarpa Dosh",
+      "Good for health issues related to spine, knees, sensory systems, and wounds",
+      "Provides new career opportunities"
+    ],
+    "mantras": [
+      "Om Straam Streem Strom Sah: Ketave Namah:",
+      "Om Kem Ketave Namah",
+      "Om Namah Shivay"
+    ],
+    "preparation": {
+      "day": "Saturday",
+      "time": "Ketu Hora or Night",
+      "materials": "Bhojpatra or Plain paper."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["14", "9", "16"],
+        ["15", "13", "11"],
+        ["10", "17", "12"]
+      ]
+    }
+  },
+  {
+    "id": "rog-niwarak",
+    "number": 10,
+    "name": "Rog Niwarak Yantra",
+    "category": "health",
+    "description": "Used for getting relief from diseases as well as for overall good health.",
+    "benefits": [
+      "Cures chronic and acute diseases",
+      "Brings overall good physical and mental health",
+      "Protects the body from seasonal ailments"
+    ],
+    "mantras": [
+      "Om Ram Naam",
+      "Om Durgaay Namah"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri, Gupt Navaratri, Akshay Tritiya",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha. Wear in red thread inside amulet."
+    },
+    "layout": {
+      "type": "seed-grid-gap",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["दीं", "श्रीं", "श्रीं", "श्रीं"],
+        ["दीं", "[नाम]", "[नाम]", "दीं"],
+        ["श्रीं", "[नाम]", "[नाम]", "श्रीं"],
+        ["दीं", "दीं", "दीं", "दीं"]
+      ]
+    }
+  },
+  {
+    "id": "house-protection",
+    "number": 11,
+    "name": "House Protection Yantra",
+    "category": "protection",
+    "description": "Very effective for protecting the house from all unwanted negative energies and obstacles.",
+    "benefits": [
+      "Protects home from evil eye, ghosts, and negative vibrations",
+      "Releases obstacles from home growth",
+      "Establishes a shield of positivity"
+    ],
+    "mantras": [
+      "Om Ham Hanumate Namah"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri, Gupt Navaratri, Akshay Tritiya",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha. Frame it on the main door or place on red cloth."
+    },
+    "layout": {
+      "type": "house-protection",
+      "numbers": ["56", "4", "5", "45"],
+      "text1": "RAAM DOOT HANUMAN",
+      "text2": "NAME OF THE OWNER OF THE HOUSE"
+    }
+  },
+  {
+    "id": "vidya-prapti",
+    "number": 12,
+    "name": "Vidya Prapti Yantra (Yantra to Gain Knowledge)",
+    "category": "studies",
+    "description": "Specifically designed for students to increase memory, concentration, and get deeper knowledge.",
+    "benefits": [
+      "Increases concentration and focus in studies",
+      "Improves memory retention",
+      "Helps gain deeper knowledge and understanding"
+    ],
+    "mantras": [
+      "Saraswati Namastubhyam Varade Kaama-Roopini Vidyaarambham Karishyaami Siddhir-Bhavatu Me Sadaa"
+    ],
+    "preparation": {
+      "day": "Next day after new moon",
+      "time": "Morning",
+      "materials": "ON Bhojpatra OR Silver color card paper with red ink or pomegranate twig pen with ink of Kesar. Blow air on it after mantra recitation. Keep on study table."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["73", "61", "2", "8"],
+        ["7", "3", "78", "76"],
+        ["60", "74", "6", "1"],
+        ["4", "6", "85", "71"]
+      ]
+    }
+  },
+  {
+    "id": "vyaapaar-vruddhi",
+    "number": 13,
+    "name": "Vyaapaar Vruddhi Yantra",
+    "category": "wealth",
+    "description": "Helps in enhancing business, attracting customer footfall, and bringing financial prosperity.",
+    "benefits": [
+      "Brings financial prosperity and profits",
+      "Enhances sales and business growth",
+      "Clears career blocks and stagnation"
+    ],
+    "mantras": [
+      "Om Mahalakshmeye Namah"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri, Sharad Purnima",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of Ashtagandha. Stick on wall of business or office."
+    },
+    "layout": {
+      "type": "business-grid",
+      "header": "व्यापारिक प्रतिष्ठान का नाम",
+      "cells": [
+        ["7", "2", "5"],
+        ["4", "9", "8"],
+        ["1", "6", "3"]
+      ]
+    }
+  },
+  {
+    "id": "wish-manifestation",
+    "number": 14,
+    "name": "Wish Manifestation Yantra (Sarva Iccha Purak Yantra)",
+    "category": "success",
+    "description": "Helps to manifest deep desires and fulfill goals. Invoke Lord Shiva for quick results.",
+    "benefits": [
+      "Manifests noble desires and wishes",
+      "Clears paths of pending work and stagnation",
+      "Helps align focus with aspirations"
+    ],
+    "mantras": [
+      "Om Namah Shivay"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri, Shravan Mondays",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of Ashtagandha. Keep for 1 year, then emerge in water."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["VAM", "VAM", "VAM", "VAM"],
+        ["PAM", "PAM", "PAM", "PAM"],
+        ["DAM", "DAM", "DAM", "DAM"],
+        ["LAM", "LAM", "LAM", "LAM"]
+      ]
+    }
+  },
+  {
+    "id": "yash-prapti",
+    "number": 15,
+    "name": "Yash Prapti Yantra (Yantra to Gain Glory)",
+    "category": "success",
+    "description": "Brings name, fame, glory, and helps in restoring lost opportunities and dignity in society.",
+    "benefits": [
+      "Brings respect, name, and fame",
+      "Helps in getting back lost dignity and honor",
+      "Attracts lost career/business opportunities"
+    ],
+    "mantras": [
+      "Om Khleem Shreem Padmavataye Namah:",
+      "Om Padmavati devi Namah"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri, Gupt Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha. Wear in red thread inside amulet."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["4", "5", "58", "61"],
+        ["62", "57", "8", "6"],
+        ["6", "3", "60", "59"],
+        ["56", "63", "2", "7"]
+      ]
+    }
+  },
+  {
+    "id": "success-exam",
+    "number": 16,
+    "name": "Yantra for Success in Exam",
+    "category": "studies",
+    "description": "Helps students overcome examination phobia and stress, bringing intense focus.",
+    "benefits": [
+      "Overcomes examination phobia and nervousness",
+      "Reduces stress during study hours",
+      "Brings focus and calm mindset"
+    ],
+    "mantras": [
+      "OM Khleem Shreem Padmavataye Namah:",
+      "Om Padmavati devi Namah"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink. Look at it before going for exams. Offer curd and sugar to the yantra."
+    },
+    "layout": {
+      "type": "grid-vertical-label",
+      "label": "NAME",
+      "cells": [
+        ["4", "5", "58", "61"],
+        ["62", "57", "8", "6"],
+        ["6", "3", "60", "59"],
+        ["56", "63", "2", "7"]
+      ]
+    }
+  },
+  {
+    "id": "success-court-cases",
+    "number": 17,
+    "name": "Yantra for Success in Court Cases",
+    "category": "success",
+    "description": "Helps the native get quicker relief and favorable decisions from unwanted court litigation.",
+    "benefits": [
+      "Brings positive developments in legal disputes",
+      "Saves from unwanted legal expenses",
+      "Gives mental strength during distress"
+    ],
+    "mantras": [
+      "Hanuman Chalisa"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha. Wear in red thread inside amulet. Disperse in river after victory."
+    },
+    "layout": {
+      "type": "court-yantra",
+      "numbers": ["56", "4", "5", "45"],
+      "text": "RAAM DOOT HANUMAN"
+    }
+  },
+  {
+    "id": "sarva-peeda-nashak",
+    "number": 18,
+    "name": "Sarva Peeda Nashak Yantra",
+    "category": "health",
+    "description": "Effective for all kinds of physical, mental, or emotional pain and suffering.",
+    "benefits": [
+      "Relieves physical pain and ailments",
+      "Reduces emotional and mental suffering",
+      "Pacifies planetary imbalances in the horoscope"
+    ],
+    "mantras": [
+      "Budhi Heen Tanu Janike Sumiro Pawan Kumar Bal Budhi Vidya Dehu mohi Harahu Klesh Vikar",
+      "Nashe rog hare sab peeda japat nirantar hanumat beera !!"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha. Wear in red thread inside amulet."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["41", "34", "4", "5"],
+        ["3", "6", "40", "35"],
+        ["38", "27", "1", "8"],
+        ["2", "7", "39", "36"]
+      ]
+    }
+  },
+  {
+    "id": "bad-dream-removal",
+    "number": 18,
+    "name": "Bad Dream Removal Yantra",
+    "category": "protection",
+    "description": "Helps in getting rid of chronic bad dreams, nightmares, and sleep issues.",
+    "benefits": [
+      "Removes nightmares and fear at night",
+      "Brings deep sleep and peace of mind",
+      "Excellent for young children prone to night frights"
+    ],
+    "mantras": [
+      "Om Suryay Namah",
+      "Om Durgaay Namah"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink. Keep under the pillow at night."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["7", "2", "5"],
+        ["4", "9", "8"],
+        ["1", "6", "3"]
+      ]
+    }
+  },
+  {
+    "id": "yatra-siddhi",
+    "number": 19,
+    "name": "Yatra Siddhi Yantra",
+    "category": "protection",
+    "description": "Kept to ensure a safe journey and success in travels for urgent or important tasks.",
+    "benefits": [
+      "Protects against accidents during travel",
+      "Ensures the purpose of the journey is successfully accomplished",
+      "Keeps the native safe in foreign places"
+    ],
+    "mantras": [
+      "Om Ham Hanumate Namah"
+    ],
+    "preparation": {
+      "day": "Any Tuesday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Emerge in flowing water after journey."
+    },
+    "layout": {
+      "type": "travel-arch",
+      "header": "व्यक्ति का नाम",
+      "seed1": "ल्रूं",
+      "seed2": "जं",
+      "destination": "स्थान का नाम",
+      "number": "124"
+    }
+  },
+  {
+    "id": "happiness-prosperity",
+    "number": 20,
+    "name": "Yantra for Happiness and Prosperity",
+    "category": "wealth",
+    "description": "Brings harmony, wealth, and abundant joy. Good for home and business settings alike.",
+    "benefits": [
+      "Brings peace, prosperity, and happiness",
+      "Harmonizes relationship conflicts at home",
+      "Boosts business revenue when kept at workplace"
+    ],
+    "mantras": [
+      "Om Hreem Shreem Tanno Devi Prachodayat"
+    ],
+    "preparation": {
+      "day": "Any Tuesday or Friday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink. Offer Ghee diya and incense sticks daily."
+    },
+    "layout": {
+      "type": "prosperity-triangle",
+      "left": "Shreem",
+      "right": "Hreem",
+      "center": "AUM",
+      "top_numbers": ["5", "5"],
+      "mantra": "Tanno Devi Prachodayat"
+    }
+  },
+  {
+    "id": "good-luck",
+    "number": 21,
+    "name": "Yantra for Good Luck",
+    "category": "wealth",
+    "description": "Attracts fortune, fills desires, and assists in foreign settlements and travels.",
+    "benefits": [
+      "Fulfills positive desires and brings opportunities",
+      "Attracts fortune and good luck in risky ventures",
+      "Helps in traveling or settling in foreign states"
+    ],
+    "mantras": [
+      "Shree Ganeshay Namah"
+    ],
+    "preparation": {
+      "day": "Any Tuesday or Friday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink."
+    },
+    "layout": {
+      "type": "grid-vertical-label-right",
+      "label": "NAME",
+      "cells": [
+        ["73", "81", "2", "8"],
+        ["7", "3", "78", "76"],
+        ["80", "74", "9", "1"],
+        ["4", "6", "75", "79"]
+      ]
+    }
+  },
+  {
+    "id": "name-fame",
+    "number": 22,
+    "name": "Yantra for Name and Fame",
+    "category": "success",
+    "description": "Helps in obtaining public recognition, honor, fame, and expanding your social circle.",
+    "benefits": [
+      "Attracts social name and fame",
+      "Improves image and standing in society",
+      "Expands professional and social network"
+    ],
+    "mantras": [
+      "Chant values while writing",
+      "Meditate on Lord Krishna"
+    ],
+    "preparation": {
+      "day": "Any Tuesday or Friday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of Ashtagandha."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 5,
+      "cols": 6,
+      "cells": [
+        ["4", "87", "38", "12", "47", "3"],
+        ["99", "65", "18", "35", "78", "83"],
+        ["91", "49", "17", "28", "56", "84"],
+        ["79", "51", "77", "93", "19", "63"],
+        ["1", "97", "66", "14", "85", "2"]
+      ]
+    }
+  },
+  {
+    "id": "happiness-home",
+    "number": 23,
+    "name": "Yantra for Happiness at Home",
+    "category": "protection",
+    "description": "Brings supreme peace, happiness, and a positive environment to the household. Keep in East direction.",
+    "benefits": [
+      "Establishes a peaceful domestic atmosphere",
+      "Reduces arguments and tension between family members",
+      "Protects family from external negative vibes"
+    ],
+    "mantras": [
+      "Chant names of Lord Shiva, Ishta Devta, and Kuldevi"
+    ],
+    "preparation": {
+      "day": "Any Tuesday or Friday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Keep in east facing direction."
+    },
+    "layout": {
+      "type": "grid-vertical-label-right",
+      "label": "NAME",
+      "cells": [
+        ["36", "29", "34"],
+        ["31", "33", "35"],
+        ["32", "37", "30"]
+      ]
+    }
+  },
+  {
+    "id": "money",
+    "number": 24,
+    "name": "Yantra for Money",
+    "category": "wealth",
+    "description": "Mainly used for resolving monetary issues and fulfilling money-related desires.",
+    "benefits": [
+      "Helps in resolving outstanding loans and debt",
+      "Opens up stagnant income channels",
+      "Brings blessings of Goddess Lakshmi"
+    ],
+    "mantras": [
+      "AUM SHRIM SHRIYE NAMAH"
+    ],
+    "preparation": {
+      "day": "Any Tuesday or Friday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Meditate on Mata Lakshmi."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["LAM", "PAM", "DAM", "LAM"],
+        ["LAM", "YAM", "THAM", "DAM"],
+        ["SAM", "PAM", "DAM", "BAM"],
+        ["MAM", "LAM", "MAM", "NAM"]
+      ]
+    }
+  },
+  {
+    "id": "increase-money",
+    "number": 25,
+    "name": "Yantra for Increase Money",
+    "category": "wealth",
+    "description": "Used for gaining abundance of money, food grains, and wealth. Keep in safe/cash box (Tijori).",
+    "benefits": [
+      "Increases savings and cash reserves",
+      "Brings abundance of food grains and materials in the house",
+      "Improves business turnover"
+    ],
+    "mantras": [
+      "OM MAHALAKSHMI NAMAH"
+    ],
+    "preparation": {
+      "day": "Any Tuesday or Friday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink. Keep in Cash box, Vault, or Safe (Tijori)."
+    },
+    "layout": {
+      "type": "pyramid-triangle",
+      "cells": [
+        ["5"],
+        ["4", "6", "7", "3"],
+        ["1", "9", "8", "2"]
+      ]
+    }
+  },
+  {
+    "id": "remove-nazar-dosh",
+    "number": 26,
+    "name": "Yantra for Removing Nazar Dosh",
+    "category": "protection",
+    "description": "Helps in curing sudden health drop and negative blockages caused by evil eye or nazar.",
+    "benefits": [
+      "Removes nazar dosh from children and adults",
+      "Cures sudden physical ailments where medicine fails",
+      "Restores positive energy flow"
+    ],
+    "mantras": [
+      "Hanuman Chalisa"
+    ],
+    "preparation": {
+      "day": "Any Tuesday or Friday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Invoke Hanumanji."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["31", "32", "27"],
+        ["33", "66", "37"],
+        ["38", "46", "67"]
+      ]
+    }
+  },
+  {
+    "id": "remove-evil-eye",
+    "number": 27,
+    "name": "Yantra for Removing Evil Eye",
+    "category": "protection",
+    "description": "Used when an adult suffers severely in health due to evil eye effects. Do not confuse with Nazar Dosh.",
+    "benefits": [
+      "Strong protective layer for adults",
+      "Restores deteriorating health",
+      "Washes off negative envy vibrations"
+    ],
+    "mantras": [
+      "Hanuman Chalisa"
+    ],
+    "preparation": {
+      "day": "Any Tuesday or Friday of Shukla Paksh",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Wear in red thread inside amulet."
+    },
+    "layout": {
+      "type": "grid-vertical-label-right",
+      "label": "NAME",
+      "cells": [
+        ["9", "16", "2", "7"],
+        ["6", "3", "13", "12"],
+        ["15", "10", "8", "1"],
+        ["4", "5", "11", "14"]
+      ]
+    }
+  },
+  {
+    "id": "hanuman-yantra",
+    "number": 28,
+    "name": "Hanuman Yantra",
+    "category": "protection",
+    "description": "Helps in removing severe negative energy, fear of evil spirits, and phobia of darkness.",
+    "benefits": [
+      "Restores lost courage, willpower, and confidence",
+      "Gives high positive energy to complete complex tasks",
+      "Excellent protector against paranormal fear or nightmares"
+    ],
+    "mantras": [
+      "Hanuman Chalisa"
+    ],
+    "preparation": {
+      "day": "Any Tuesday",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Write in Devnagri script if possible."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["नं", "छं", "जं", "चं"],
+        ["दं", "दं", "चं", "चं"],
+        ["जं", "छं", "जं", "वं"],
+        ["छं", "नं", "हं", "जं"]
+      ]
+    }
+  },
+  {
+    "id": "marriage",
+    "number": 29,
+    "name": "Yantra for Marriage",
+    "category": "marriage",
+    "description": "Helps individuals whose marriage is getting delayed due to planetary obstacles.",
+    "benefits": [
+      "Removes blockages delaying holy matrimony",
+      "Helps find a compatible and loving partner",
+      "Girls should prepare on Tuesday, boys on Friday"
+    ],
+    "mantras": [
+      "AUM NAMAH SHIVAY"
+    ],
+    "preparation": {
+      "day": "Tuesday (for girls) / Friday (for boys)",
+      "time": "Diwali Night, Holi Night, Eclipses, Navaratri, Mahashivratri, Shiva Ratri",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Meditate on Lord Shiva & Goddess Parvati."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["7", "31", "34", "क्लीं"],
+        ["33", "1", "6", "32"],
+        ["2", "36", "29", "5"],
+        ["30", "4", "3", "35"]
+      ]
+    }
+  },
+  {
+    "id": "successful-marriage",
+    "number": 30,
+    "name": "Yantra for Successful Marriage",
+    "category": "marriage",
+    "description": "Kept by recently married couples to keep husband-wife relations in happy tandem and understanding.",
+    "benefits": [
+      "Reduces friction between newly-weds",
+      "Enhances emotional and mental bonding",
+      "Establishes lifelong mutual respect"
+    ],
+    "mantras": [
+      "AUM NAMAH SHIVAY"
+    ],
+    "preparation": {
+      "day": "Thursday or Friday",
+      "time": "Morning",
+      "materials": "ON Bhojpatra OR Plain paper with red ink. Meditate on Lord Shiva and Goddess Parvati."
+    },
+    "layout": {
+      "type": "pyramid-triangle",
+      "cells": [
+        ["5"],
+        ["9", "1", "4", "6"],
+        ["2", "8", "7", "3"]
+      ]
+    }
+  },
+  {
+    "id": "dhanwantri",
+    "number": 31,
+    "name": "Dhanwantri Yantra",
+    "category": "health",
+    "description": "Lord Dhanwantari is the lord of Ayurveda. Keep near a sick person or in a medicine box.",
+    "benefits": [
+      "Improves the efficacy of medicines",
+      "Speeds up recovery from critical sickness",
+      "Kept on North wall of patient's room for long-term health benefits"
+    ],
+    "mantras": [
+      "OM dham dhanvantaraye namafi"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Meditate on Dhanvantari Dev."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["17 Haam", "4 Gh", "18 Hreem", "GORAKSHNATH"],
+        ["7 Aim", "11 Nam", "12 Kleem", "KANIFNATH"],
+        ["54 Aim", "14 Tam", "29 Kleem", "GAHININATH"],
+        ["37 Haam", "69 Reem", "92 Hreem", "MACHINDRANATH"]
+      ]
+    }
+  },
+  {
+    "id": "remove-pain",
+    "number": 32,
+    "name": "Yantra to Remove Pain",
+    "category": "health",
+    "description": "Used to remove or overcome muscular and joints pain. Can be used to charge drinking water.",
+    "benefits": [
+      "Reduces muscular pain and inflammation",
+      "Charge water by keeping a glass of water on it for 10 mins, then consume it"
+    ],
+    "mantras": [
+      "Hanuman Chalisa"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Chant Hanuman Chalisa while preparing."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 2,
+      "cols": 2,
+      "cells": [
+        ["53", "42"],
+        ["311", "70"]
+      ]
+    }
+  },
+  {
+    "id": "dhan-prapti",
+    "number": 33,
+    "name": "Dhan Prapti Yantra",
+    "category": "wealth",
+    "description": "Earn money in abundance through hard work. Do not use for gambling, casino, or lottery.",
+    "benefits": [
+      "Brings monetary abundance and professional rewards",
+      "Fills hard work and efforts with success",
+      "Sit facing North East or North while preparing"
+    ],
+    "mantras": [
+      "Om Shreem"
+    ],
+    "preparation": {
+      "day": "Friday",
+      "time": "Morning after invoking Maha Lakshmi",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ashtagandha."
+    },
+    "layout": {
+      "type": "hexagram-star",
+      "cells": [
+        "7", "6", "1", "2", "8", "5", "4", "3", "9", "10"
+      ]
+    }
+  },
+  {
+    "id": "shiv-panchakshar",
+    "number": 34,
+    "name": "Shiv Panchakshar Yantra",
+    "category": "success",
+    "description": "Grants blessings of Lord Shiva. Overcomes fear of death, helps in salvation, and brings self-discipline.",
+    "benefits": [
+      "Bestows divine protection of Lord Shiva",
+      "Brings extreme self-discipline and focus on spiritual journey",
+      "Overcomes fear of sudden death or calamity"
+    ],
+    "mantras": [
+      "OM NAMAH SHIVAY"
+    ],
+    "preparation": {
+      "day": "Any day (highly auspicious on Shravan month Mondays)",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 5,
+      "cols": 5,
+      "cells": [
+        ["NA", "SHI", "YA", "MA", "VA"],
+        ["YA", "MA", "VA", "NA", "SHI"],
+        ["VA", "NA", "SHI", "YA", "MA"],
+        ["SHI", "YA", "MA", "VA", "NA"],
+        ["MA", "VA", "NA", "SHI", "YA"]
+      ]
+    }
+  },
+  {
+    "id": "ganesh-studies",
+    "number": 35,
+    "name": "Shree Ganesh Yantra for Studies",
+    "category": "studies",
+    "description": "Used by students to get good marks, overcome fear of competition, and improve academic scores.",
+    "benefits": [
+      "Helps students score well in examinations",
+      "Overcomes fear of intense competition",
+      "Removes educational obstacles. Keep on study table."
+    ],
+    "mantras": [
+      "SHREE GANESHAAY NAMAH"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha."
+    },
+    "layout": {
+      "type": "ganesha-names",
+      "cells": [
+        ["OM GAJANANAAY NAMAH", "OM VAKRATUNDAAY NAMAH", "OM EKDANTAAY NAMAH", "OM KRISHNAPINGAAKSHAY NAMAH"],
+        ["OM GAJAPATAYE NAMAH", "SHREE GANESHAAY", "OM GAJAVAKAAY NAMAH", "OM LAMBODARAY NAMAH"],
+        ["OM VINAAYKAAY NAMAH", "OM DHUMRAVARNAAY NAMAH", "OM VIGHNARAJAY NAMAH", "OM VIKATAAY NAMAH"],
+        ["OM BHALCHANDRAAY NAMAH", "OM DHUMRAVARNAAY NAMAH", "OM VIGHNARAJAY NAMAH", "OM VIKATAAY NAMAH"]
+      ]
+    }
+  },
+  {
+    "id": "mata-durga",
+    "number": 36,
+    "name": "Mata Durga Yantra",
+    "category": "success",
+    "description": "Used to fulfill incomplete or pending work, remove obstacles in career/job, and stop unwanted thoughts.",
+    "benefits": [
+      "Finishes stalled or incomplete projects",
+      "Overcomes fear of negative or intrusive thoughts",
+      "Removes professional and business blocks"
+    ],
+    "mantras": [
+      "OM DURGAAY NAMAH"
+    ],
+    "preparation": {
+      "day": "Friday",
+      "time": "Morning/Evening",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Give sweets/donations to small girls."
+    },
+    "layout": {
+      "type": "grid-labeled",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["8", "1", "6"],
+        ["3", "5", "7"],
+        ["4", "9", "2"]
+      ],
+      "labels": [
+        ["MAHAGAURI", "SHAILPUTRI", "KATYAANI"],
+        ["CHANDRAGHANTA", "SKANDMAATA", "KAALRATRI"],
+        ["KUSHMANDA", "SIDDHIDAATRI", "BRAHMACHARINI"]
+      ]
+    }
+  },
+  {
+    "id": "vishnu",
+    "number": 37,
+    "name": "Vishnu Yantra",
+    "category": "marriage",
+    "description": "Used to remove deep obstacles in one's married life or professional job life. Keep in temple.",
+    "benefits": [
+      "Resolves long-term marital discord",
+      "Clears career blocks and brings stability",
+      "Offer yellow flowers and sprinkle turmeric powder on the yantra"
+    ],
+    "mantras": [
+      "OM NAMO BHAGVATE VASUDEVAAY"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Morning",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Sprinkle turmeric powder after lamination."
+    },
+    "layout": {
+      "type": "down-triangle",
+      "text": "HREEM"
+    }
+  },
+  {
+    "id": "nav-grah-shanti",
+    "number": 38,
+    "name": "Nav Grah Shanti Yantra",
+    "category": "protection",
+    "description": "Used to pacify the ill effects of all 9 planetary positions in the horoscope. Keep in temple, drawer, or pocket.",
+    "benefits": [
+      "Pacifies negative placements of all 9 planets",
+      "Attracts general luck and positivity",
+      "Can be kept in pocket, temple, or office drawer"
+    ],
+    "mantras": [
+      "Navgrah Mantra"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Offer Ghee diya and incense."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["57", "300", "57"],
+        ["701", "300000", "506"],
+        ["300000", "400", "300000"]
+      ]
+    }
+  },
+  {
+    "id": "shree-ram",
+    "number": 39,
+    "name": "Shree Ram Yantra",
+    "category": "success",
+    "description": "Brings clarity of thoughts, self-esteem, and willpower. Promotes inner goodness and removes vices.",
+    "benefits": [
+      "Brings immense clarity of thoughts",
+      "Enhances self-esteem and willpower",
+      "Relieves the native from vices and negative habits"
+    ],
+    "mantras": [
+      "SHREE RAM"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["9", "16", "5", "4"],
+        ["7", "2", "11", "14"],
+        ["12", "13", "8", "1"],
+        ["6", "3", "10", "15"]
+      ]
+    }
+  },
+  {
+    "id": "kuber",
+    "number": 40,
+    "name": "Kuber Yantra",
+    "category": "wealth",
+    "description": "Attracts massive wealth, opportunities, and abundance of money and food grains. Keep in North direction.",
+    "benefits": [
+      "Brings a bundle of wealth opportunities",
+      "Ensures abundance of money and food in the home",
+      "Should be kept in the North direction of the house/office"
+    ],
+    "mantras": [
+      "OM SHREE KUBERAAY NAMAH"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["27", "20", "25"],
+        ["22", "24", "26"],
+        ["23", "28", "21"]
+      ]
+    }
+  },
+  {
+    "id": "saraswati",
+    "number": 41,
+    "name": "Saraswati Yantra",
+    "category": "studies",
+    "description": "Ideal for students and professionals in arts, music, and academics. Promotes peace of mind.",
+    "benefits": [
+      "Brings required peace of mind to pursue education",
+      "Highly recommended for musicians, painters, and actors",
+      "Can be used alongside Shree Ganesh Yantra for exams"
+    ],
+    "mantras": [
+      "Om Aing Mahasaraswatyai Namah"
+    ],
+    "preparation": {
+      "day": "Any Day (Vasant Panchami is highly preferred)",
+      "time": "Morning",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Offer white flowers during puja."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["8", "91", "7", "13"],
+        ["75", "7", "3", "98"],
+        ["6", "91", "75", "6"],
+        ["75", "13", "8", "3"]
+      ]
+    }
+  },
+  {
+    "id": "sarva-manokamna",
+    "number": 42,
+    "name": "Sarva Manokamna Yantra",
+    "category": "success",
+    "description": "Helps in fulfilling desires. Works extremely well when desiring for someone else's benefit/well-being.",
+    "benefits": [
+      "Fulfills sincere desires",
+      "Works wonders when praying/manifesting for others",
+      "Brings peace of mind and success"
+    ],
+    "mantras": [
+      "OM Namah Shivay"
+    ],
+    "preparation": {
+      "day": "Shukla Paksh Tuesdays",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["16", "6", "8"],
+        ["2", "10", "18"],
+        ["12", "14", "4"]
+      ]
+    }
+  },
+  {
+    "id": "sankat-mochan",
+    "number": 43,
+    "name": "Sankat Mochan Yantra",
+    "category": "protection",
+    "description": "Used only when no other solution is visible to escape severe life problems. Note: Do not use with Hanuman Yantra.",
+    "benefits": [
+      "Ultimate savior during major life crisis",
+      "Dissolves heavy karmic blocks",
+      "Gives strength to fight obstacles"
+    ],
+    "mantras": [
+      "Hanuman Chalisa",
+      "Bajrang Baan"
+    ],
+    "preparation": {
+      "day": "Shukla Paksh Tuesday or any Saturday",
+      "time": "Evening",
+      "materials": "ON Bhojpatra OR Plain paper with red ink. Offer red sweets to Hanumanji."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 6,
+      "cols": 7,
+      "cells": [
+        ["114", "155", "156", "132", "154", "153", "127"],
+        ["138", "116", "151", "131", "152", "126", "137"],
+        ["133", "134", "117", "130", "125", "135", "156"],
+        ["139", "140", "124", "118", "141", "143", "143"],
+        ["144", "123", "145", "129", "119", "146", "147"],
+        ["122", "148", "149", "126", "150", "120", "121"]
+      ]
+    }
+  },
+  {
+    "id": "jyotirling",
+    "number": 44,
+    "name": "Jyotirling Yantra",
+    "category": "success",
+    "description": "Blessings of Mahadev and all 12 Jyotirlingas. Removes deep-seated phobias and high fever.",
+    "benefits": [
+      "Brings blessings of all 12 Jyotirling temples",
+      "Removes phobias, fears, and cures persistent high fever",
+      "Promotes deep spiritual realization and soul peace"
+    ],
+    "mantras": [
+      "OM NAMAH SHIVAY"
+    ],
+    "preparation": {
+      "day": "Shukla Paksh Monday",
+      "time": "Shivratri, Trayodashi, Eclipse, or Shravan Month Mondays",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Meditate on Shiva."
+    },
+    "layout": {
+      "type": "jyotirling-grid",
+      "cells": [
+        ["Somnath", "Mallikarjun", "Baidnath", "Mahakaal"],
+        ["Omkaareshwar", "OMNAMAHSHIVAAY", "Bheemashankar"],
+        ["Kedarnath", "OMNAMAHSHIVAAY", "Vishwanath"],
+        ["Raneshwaram", "Triyambakeshwar", "Nageshwar", "Ghrishneshvar"]
+      ]
+    }
+  },
+  {
+    "id": "mental-peace",
+    "number": 45,
+    "name": "Yantra for Mental Peace",
+    "category": "health",
+    "description": "Brings absolute peace of mind, controls high temper, and eases mood swings. Equal to wearing pearl gemstone.",
+    "benefits": [
+      "Calms down high anger and short temper issues",
+      "Eases mood swings and anxiety",
+      "Makes the mind strong and focused. Keep on North wall."
+    ],
+    "mantras": [
+      "OM NAMAH SHIVAY",
+      "OM SOM SOMAAY NAMAH"
+    ],
+    "preparation": {
+      "day": "Shukla Paksh Monday",
+      "time": "Shivratri, or after Chandra Darshan (2nd day after New Moon)",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Offer white flower during puja."
+    },
+    "layout": {
+      "type": "mental-peace-triangle",
+      "center": "3",
+      "left": "8",
+      "right": "10",
+      "bottom_left": "7",
+      "bottom_right": "7",
+      "outer_numbers": ["2", "1", "5", "4"]
+    }
+  },
+  {
+    "id": "gauri-shankar",
+    "number": 46,
+    "name": "Gauri Shankar Yantra",
+    "category": "marriage",
+    "description": "Blessings of Shiva & Shakti. Strengthens marriage relationship, cures infertility, and sexual dysfunctions.",
+    "benefits": [
+      "Keeps husband-wife relation in deep harmony",
+      "Strengthens family peace, security, and comfort",
+      "Cures infertility and sexual dysfunctions. Do abhishek of Shivling on Mondays."
+    ],
+    "mantras": [
+      "OM NAMAH SHIVAY"
+    ],
+    "preparation": {
+      "day": "Shukla Paksh Monday",
+      "time": "Shivratri, Mahashivratri, or Trayodashi",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen."
+    },
+    "layout": {
+      "type": "star-david",
+      "center": "5",
+      "points": ["9", "6", "8", "7", "3", "2", "4", "9"]
+    }
+  },
+  {
+    "id": "gayatri",
+    "number": 47,
+    "name": "Gayatri Yantra",
+    "category": "studies",
+    "description": "Improves concentration in any field, removes bodily toxins, and relieves stress/anxiety.",
+    "benefits": [
+      "Improves concentration and memory",
+      "Helps in breathing issues and detoxifying body",
+      "Eases stress, anxiety, and develops spiritual path"
+    ],
+    "mantras": [
+      "Gayatri Mantra"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Chant Gayatri Mantra."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 3,
+      "cells": [
+        ["4", "9", "2"],
+        ["3", "5", "7"],
+        ["8", "1", "6"]
+      ]
+    }
+  },
+  {
+    "id": "disease-pregnancy",
+    "number": 48,
+    "name": "Yantra to Get Rid of Diseases - Pregnancy",
+    "category": "health",
+    "description": "Cures physical diseases during pregnancy. Highly recommended for women with a history of past miscarriages.",
+    "benefits": [
+      "Cures diseases and protects health during pregnancy",
+      "Protects the fetus and avoids miscarriages",
+      "Chant Ram Naam or Durga name during preparation"
+    ],
+    "mantras": [
+      "Ram Naam",
+      "Om Durgaay Namah"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Offer Ghee diya and incense."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 6,
+      "cells": [
+        ["AUM", "HREEM", "KLEEM", "STREEM", "HOOM", "FATT"],
+        ["RAKSH", "GARBH", "DEVDATT", "GARBH", "RAKSH", "RAKSH"],
+        ["SWAH", "HA", "SHREEM", "KELLM", "FATT", "HOOM"]
+      ]
+    }
+  },
+  {
+    "id": "occult-powers",
+    "number": 49,
+    "name": "Yantra for Attainment of Occult Powers",
+    "category": "success",
+    "description": "Helps in attainment of high spiritual/occult powers in a pure way. Note: Must not be used for black magic.",
+    "benefits": [
+      "Assists in occult and spiritual research",
+      "Enhances intuition and premonition abilities",
+      "Chant name of Ishta Devta or Kuldevi"
+    ],
+    "mantras": [
+      "OM NAMAH SHIVAY"
+    ],
+    "preparation": {
+      "day": "Thursday or Friday",
+      "time": "Purnima, Panchami, Amavasya, Pushya/Swati/Ardra Nakshatra",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha."
+    },
+    "layout": {
+      "type": "triangle-mantra",
+      "left": "AUM",
+      "right": "HREEM"
+    }
+  },
+  {
+    "id": "vahan-prapti",
+    "number": 50,
+    "name": "Vahan Prapti Yantra",
+    "category": "wealth",
+    "description": "Fulfills the desire of purchasing or getting a vehicle for personal use.",
+    "benefits": [
+      "Assists in acquiring a personal vehicle",
+      "Protects the native's vehicle from accidents/theft",
+      "Chant OM NAMAH SHIVAY 5001 times with yantra in hand"
+    ],
+    "mantras": [
+      "OM NAMAH SHIVAY"
+    ],
+    "preparation": {
+      "day": "Monday",
+      "time": "Morning",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen."
+    },
+    "layout": {
+      "type": "concentric-vehicle",
+      "outer": ["1", "4", "6", "9"],
+      "inner": ["3", "2", "8", "7"],
+      "center": "10"
+    }
+  },
+  {
+    "id": "rog-nashak",
+    "number": 51,
+    "name": "Rog Nashak Yantra",
+    "category": "health",
+    "description": "Used in curing small diseases like fever, cold, flu, etc. when suffering for more than 6 days.",
+    "benefits": [
+      "Cures minor but persistent fever, cold, or flu",
+      "Can do water charging (keep glass of water on yantra and drink it)",
+      "Prepare during evening time after sunset"
+    ],
+    "mantras": [
+      "OM DUM DURGAAY NAMAH"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Evening (after sunset)",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen."
+    },
+    "layout": {
+      "type": "circle-text",
+      "cells": [
+        ["DUM", "THA"],
+        ["DUM", "KSHA"],
+        ["SUM", "SHA"]
+      ]
+    }
+  },
+  {
+    "id": "ganesh-blessings",
+    "number": 52,
+    "name": "Ganesh Yantra (Blessings)",
+    "category": "success",
+    "description": "Used to get all-round blessings of Lord Ganesha, granting success in all walks of life.",
+    "benefits": [
+      "Grants overall success and happiness",
+      "Removes minor obstacles and delays",
+      "Offer red flowers, Modaks, or Laddoos to the Yantra"
+    ],
+    "mantras": [
+      "OM EKDANTAAY VIDMAHE, VAKRA TUNDAAY DHIMAHI, TANNO DANTIH PRACHODAYAT"
+    ],
+    "preparation": {
+      "day": "Tuesday or Wednesday",
+      "time": "Morning",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen. Recite Ganesh Gayatri."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 2,
+      "cols": 3,
+      "cells": [
+        ["148", "184", "418"],
+        ["814", "841", "481"]
+      ]
+    }
+  },
+  {
+    "id": "shatru-nashak",
+    "number": 53,
+    "name": "Shatru Nashak Yantra",
+    "category": "protection",
+    "description": "Used to get rid of enemies, weaken their negative influence, and gain extra strength to face them.",
+    "benefits": [
+      "Protects from court and personal enemies",
+      "Makes the enemy's plans weak and ineffective",
+      "Chant Hanuman Chalisa during preparation"
+    ],
+    "mantras": [
+      "Hanuman Chalisa"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 3,
+      "cols": 4,
+      "cells": [
+        ["1", "8", "2", "7"],
+        ["6", "2", "6", "4"],
+        ["5", "9", "3", "4"]
+      ]
+    }
+  },
+  {
+    "id": "success",
+    "number": 54,
+    "name": "Success Yantra",
+    "category": "success",
+    "description": "Comprehensive success yantra for all walks of life. Used to secure jobs and professional promotions.",
+    "benefits": [
+      "Secures professional jobs and promotions",
+      "Acts as a powerful complement to other specific success yantras",
+      "Chant Hanuman Chalisa during preparation"
+    ],
+    "mantras": [
+      "Hanuman Chalisa"
+    ],
+    "preparation": {
+      "day": "Shukla Paksh Sunday",
+      "time": "Morning/Afternoon",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["86", "80", "83", "21"],
+        ["82", "20", "75", "81"],
+        ["71", "85", "78", "72"],
+        ["79", "73", "72", "84"]
+      ]
+    }
+  },
+  {
+    "id": "success-karya",
+    "number": 55,
+    "name": "Success Karya Yantra",
+    "category": "success",
+    "description": "Ensures your desires are done and assists in convincing clients or conveying thoughts to others.",
+    "benefits": [
+      "Ensures client conversions and commercial success",
+      "Helps convince others of your thoughts and arguments",
+      "Brings peace and fulfills desires"
+    ],
+    "mantras": [
+      "Om Namah Shivay"
+    ],
+    "preparation": {
+      "day": "Any Day",
+      "time": "Any Time",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen with ink of ashtagandha."
+    },
+    "layout": {
+      "type": "pentagram-star",
+      "center": "KLEEM",
+      "points": ["HREEM", "SHREEM", "HREEM", "SHREEM", "HREEM", "SHREEM", "HREEM", "SHREEM", "HREEM"]
+    }
+  },
+  {
+    "id": "business-increase",
+    "number": 56,
+    "name": "Work and Business Increase Yantra for Income",
+    "category": "wealth",
+    "description": "Used when business is experiencing losses for continuous 6 months. Combines with Vyapaar Vruddhi.",
+    "benefits": [
+      "Saves business from long-term financial loss",
+      "Brings success in newly initiated commercial projects",
+      "Attracts higher customer ticket size and cash inflow"
+    ],
+    "mantras": [
+      "OM SHREEM"
+    ],
+    "preparation": {
+      "day": "Wednesday or Friday",
+      "time": "Morning/Afternoon",
+      "materials": "ON Bhojpatra OR Plain paper with red ink or pomegranate twig pen."
+    },
+    "layout": {
+      "type": "grid",
+      "rows": 4,
+      "cols": 4,
+      "cells": [
+        ["90", "72", "8", "8"],
+        ["8", "9", "7", "60"],
+        ["77", "27", "8", "1"],
+        ["7", "5", "79", "74"]
+      ]
+    }
+  }
+]

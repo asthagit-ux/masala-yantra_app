@@ -1,0 +1,15 @@
+{
+  "id": "guru",
+  "name": "Guru",
+  "en": "Jupiter",
+  "day": "Thursday",
+  "governs": "Wisdom, wealth, marriage, higher learning",
+  "doshaTriggers": ["weak jupiter", "jupiter in 6th 8th 12th house", "guru chandal yoga"],
+  "remedies": [
+    "Donate turmeric, chana dal, or bananas to those in need on Thursdays.",
+    "Avoid non-vegetarian food and alcohol on Thursdays.",
+    "Supporting a teacher, mentor, or place of learning is a commonly cited practice."
+  ],
+  "yantra": "guru",
+  "yantraName": "Guru Yantra"
+}

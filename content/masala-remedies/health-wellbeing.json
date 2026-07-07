@@ -1,0 +1,146 @@
+{
+  "category": "health-wellbeing",
+  "label": "Health & Wellbeing",
+  "icon": "🌿",
+  "description": "Remedies for physical health, mental clarity, sleep, and general wellbeing",
+  "remedies": [
+    {
+      "title": "Cinnamon for Clarity, Health & Positivity",
+      "purpose": "Clarity, Health & Positivity",
+      "ingredients": ["4-5 sticks of cinnamon"],
+      "process": ["Grind them into fine powder.", "Store in a glass jar or salt/herb shaker.", "Energize it with your intention.", "Keep it with you.", "Sprinkle it in tea, coffee and milk."],
+      "benefits": ["Use it for your entire family", "Will give you clarity in thought & vision", "Will cleanse your aura", "Removes negativity", "Boosts immunity", "Rejuvenates senses"]
+    },
+    {
+      "title": "Cinnamon for Morning Sickness During Pregnancy",
+      "purpose": "For Morning Sickness During Pregnancy",
+      "ingredients": ["Powdered Cinnamon", "A glass jar"],
+      "process": ["Store the cinnamon powder in the glass jar.", "Keep it on the bedside.", "Have a little cinnamon with your tea/coffee/water everyday as soon as one wakes up by sprinkling it on top.", "Smell cinnamon."],
+      "benefits": "Will help in controlling nausea and morning sickness to a great extent."
+    },
+    {
+      "title": "Nutmeg Pendant for Physical Strength",
+      "purpose": "For Physical Strength",
+      "ingredients": ["1 whole nutmeg", "1 ring of wood, silver or platinum", "Black thread"],
+      "process": ["Fix the nutmeg in the ring.", "Attach it like a pendant to the black thread.", "Make a man wear it around their neck.", "To be replaced when it gets spoilt/cracked or broken."],
+      "benefits": "Will help in enhancing the strength and energy of the wearer."
+    },
+    {
+      "title": "Garlic for Physical Illness and Disease",
+      "purpose": "For Physical Illness and Disease",
+      "ingredients": ["2-3 cloves of garlic"],
+      "process": ["Peel the cloves.", "Rub them on the area where the disease is located (area of pain).", "Throw this into running water.", "If there is no running water, then burn it and throw its ashes into a public dustbin.", "Repeat it as per requirement."],
+      "benefits": "Will help pull out the disease in one's body."
+    },
+    {
+      "title": "Garlic to Energize and Protect Food",
+      "purpose": "Energize and Protect Food",
+      "ingredients": ["3-4 cloves of peeled garlic"],
+      "process": ["Rub them on all your pots and pans before starting to cook.", "Then throw the cloves in a public dustbin outside your home."],
+      "benefits": "Doing this will help remove negative energies and vibrations which will otherwise contaminate the food causing illness."
+    },
+    {
+      "title": "Rock Salt Bedside for Long Illness",
+      "purpose": "Get Rid of Long Illness",
+      "ingredients": ["A glass bowl", "Rock salt"],
+      "process": ["Keep the salt in the bowl.", "Keep it on the bedside of the patient.", "Change it as it becomes black and changes colour and texture."]
+    },
+    {
+      "title": "Star Anise for Sexual Desire",
+      "purpose": "Enhance Sexual Desire",
+      "timing": "Every night before sleeping",
+      "ingredients": ["1 glass of water", "2-3 star anise"],
+      "process": ["Soak the star anise in water for 5-6 hours.", "Strain the water.", "Drink it before sleeping."],
+      "note": "The same star anise can be used for 2-3 days."
+    },
+    {
+      "title": "Star Anise Under Pillow for Nightmares",
+      "purpose": "Ward Off Nightmares",
+      "ingredients": ["7 star anise"],
+      "process": ["Keep 7 star anise under your pillow.", "If needed wrap them in a cotton hanky.", "Set your prayer/intention.", "Sleep.", "Change it weekly/fortnightly/monthly."],
+      "benefits": ["Will induce peaceful sleep", "Ward off nightmares", "Dreams that will come, will be more of a guidance"],
+      "sampleIntention": "Night of fright flee from my life; Star Anise protect me till morning light."
+    },
+    {
+      "title": "When Someone is Ill (Rotation Ritual)",
+      "purpose": "Works Extremely Well for Kids When Someone is Ill",
+      "ingredients": ["1 boondi ka laddoo", "5 rose flowers", "1 betel leaf"],
+      "process": ["Keep the laddoo and 5 roses on the betel leaf.", "Rotate this 7 times over the patient from head to toe.", "Without talking or telling anyone, take this out of the house and leave it in a temple."],
+      "benefits": "Will give instant results."
+    },
+    {
+      "title": "Nutmeg in Milk for Good Health",
+      "purpose": "For Good Health",
+      "ingredients": ["Grated or powdered nutmeg"],
+      "process": ["Add a pinch of nutmeg consumed in milk/tea/coffee/green tea before going to sleep."],
+      "benefits": ["Promotes peaceful sleep", "Better immunity", "Enhances healing"]
+    },
+    {
+      "title": "Cayenne Pepper Seeds for Depression",
+      "purpose": "Remove Depression",
+      "timing": "Every day for 4-6 months or longer if the problem still persists. Within 1 hour of the sunrise. By the person suffering from depression.",
+      "ingredients": ["Seeds of the red cayenne pepper", "Water", "Small glass"],
+      "process": ["Take water in a glass.", "Add some seeds of the red cayenne pepper.", "Ask the patient to offer it to the sun."]
+    },
+    {
+      "title": "Turmeric De-addiction Ritual",
+      "purpose": "Alcohol De-addiction",
+      "timing": "8 Saturdays starting from 1st Saturday of the Shukla Paksha",
+      "ingredients": ["11 bale/ganth of raw turmeric (preferably unbroken)", "A string of mouli"],
+      "process": ["Hold 11 bales together and wrap the roli around it, covering it well.", "Tie it together so that the bundle holds well.", "Take this bundle to the person who is suffering from addiction.", "Let him touch it or hold it (1-2 seconds is also enough).", "Rotate it on his head 7 times in any direction (can be done while the person is sleeping).", "Immerse it into running water.", "In case there is no running water body, bury it outside the boundary of your home."],
+      "note": "This remedy works for other forms of addiction as well."
+    },
+    {
+      "title": "Star Anise Tea for Psychic Ability & Mental Clarity",
+      "purpose": "Enhance Psychic Ability and Mental Clarity",
+      "ingredients": ["Ground star anise", "Water", "Jaggery (optional, to sweeten)"],
+      "process": ["Boil the water and add star anise powder to it.", "Let it boil for 1-2 minutes.", "Then steep it.", "Strain it.", "Add jaggery to sweeten if needed.", "Consume it as green tea."],
+      "note": "Use regularly."
+    },
+    {
+      "title": "Star Anise for Clarity of Mind & Vision",
+      "purpose": "Clarity of Mind and Vision",
+      "ingredients": ["Powdered star anise"],
+      "process": ["Process 01: Add it to any drink or food.", "Process 02: Keep it in a jar near you and smell its fragrance to awaken your senses."],
+      "benefits": ["Clarity of mind", "Removes confusion", "Awakens psychic senses"]
+    },
+    {
+      "title": "Nutmeg Before Meditation for Clairvoyance",
+      "purpose": "Enhance Clairvoyance & Vision During Meditation",
+      "timing": "Everyday",
+      "ingredients": ["1 nutmeg"],
+      "process": ["Grate and store the nutmeg in a glass jar.", "Consume it in your tea/coffee/milk/food before you sit for meditation."],
+      "benefits": ["Enhances clairvoyance", "Gives clarity of vision", "Helps in letting go of limiting beliefs"]
+    },
+    {
+      "title": "Turmeric Tilak for Concentration",
+      "purpose": "Concentration, Effort & Motivation",
+      "ingredients": ["Turmeric powder", "Water"],
+      "process": ["Make a paste and store it.", "Apply the paste on the forehead like a tilak everyday.", "One can also mix a little coconut oil to avoid leaving turmeric stains on the skin."],
+      "benefits": ["Helps a person stay cool", "Calm", "Focused", "Concentrated"]
+    },
+    {
+      "title": "Daily Bathing Ritual for Unmarried",
+      "purpose": "Good Luck, Protection & Strength for Unmarried Individuals",
+      "timing": "Use as last rinse while bathing every day. Stop once engaged/married.",
+      "ingredients": ["1 pinch turmeric powder", "½ teaspoon Himalayan salt", "½ teaspoon alum (phitkari)"],
+      "process": ["Mix all three in half a bucket of bathing water.", "Use as last rinse while bathing every day."],
+      "note": "Turmeric - strengthens Jupiter. Salt - removes negativity. Alum - gives protection. Healers and practitioners can make this in bulk and sell it."
+    },
+    {
+      "title": "Attraction Essence Bath",
+      "purpose": "Enhance Personal Charm and Attraction",
+      "ingredients": ["2 almond oil", "Petals of 3 red Indian roses", "1 liter water", "Ground nutmeg (¼ tsp)"],
+      "process": ["Put water in vessel, add rose petals.", "Boil and simmer for 5-10 minutes.", "Cool, squeeze petals to extract essence.", "Add almond oil and nutmeg.", "Boil for 5-10 minutes, cool and store.", "Mix with daily bathing water."],
+      "benefits": ["Enhances personal charm and attraction", "Boosts confidence and self-esteem", "Creates magnetic aura for positive connections"]
+    },
+    {
+      "title": "Good Luck Bath (Rock Salt + Turmeric + Camphor)",
+      "purpose": "Attract Good Luck",
+      "timing": "Mix ½ teaspoon in bathing water daily",
+      "ingredients": ["Rock salt (1 cup)", "Turmeric (1 cup)", "Camphor (1 cup)"],
+      "process": ["Mix all ingredients together.", "Grind them well.", "Store in an airtight container.", "Mix ½ teaspoon in bathing water daily."],
+      "benefits": ["Brings good luck and fortune", "Wards off negativity", "Strengthens Jupiter energy", "Enhances married life"]
+    }
+  ]
+}

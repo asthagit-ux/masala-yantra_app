@@ -1,0 +1,15 @@
+{
+  "id": "surya",
+  "name": "Surya",
+  "en": "Sun",
+  "day": "Sunday",
+  "governs": "Confidence, father, authority, vitality",
+  "doshaTriggers": ["weak sun", "debilitated sun", "sun in 6th 8th 12th house"],
+  "remedies": [
+    "Offer water mixed with a little red sandalwood to the rising sun each morning.",
+    "Donate wheat, jaggery, or copper items to those in need on Sundays.",
+    "Keep a small copper vessel of water on your desk and change it daily."
+  ],
+  "yantra": "surya",
+  "yantraName": "Surya Yantra"
+}

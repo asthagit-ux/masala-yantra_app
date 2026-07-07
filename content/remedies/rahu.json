@@ -1,0 +1,15 @@
+{
+  "id": "rahu",
+  "name": "Rahu",
+  "en": "Rahu",
+  "day": "Saturday",
+  "governs": "Ambition, illusion, foreign matters, sudden change",
+  "doshaTriggers": ["rahu ketu axis afflicted", "kaal sarp dosh", "rahu in 1st 7th house"],
+  "remedies": [
+    "Donate multi-grain lentils or a blue-black cloth.",
+    "Some traditions suggest flowing a coconut down a river on an auspicious day.",
+    "Avoiding shortcuts and being transparent in dealings is considered a practical Rahu remedy."
+  ],
+  "yantra": "rahu",
+  "yantraName": "Rahu Yantra"
+}

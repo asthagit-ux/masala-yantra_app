@@ -1,0 +1,99 @@
+{
+  "category": "spiritual-luck",
+  "label": "Spiritual & Good Luck",
+  "icon": "✨",
+  "description": "Remedies for good fortune, wish fulfillment, spiritual growth, and opening new roads",
+  "remedies": [
+    {
+      "title": "Wish Fulfillment Coconut Ritual",
+      "purpose": "Wish Fulfillment",
+      "ingredients": ["1 coconut with hair (jata)", "Sindoor (kumkum)", "Sesame oil"],
+      "process": ["Mix the sindoor and sesame oil together to make a thick paste.", "Colour the entire coconut with this paste using your fingers.", "Let it dry.", "Holding the coconut in 1 hand, invoke Devi Amba.", "Set your intention.", "Chant the mantra given under your breath for 15 minutes.", "It should be chanted in such a low voice that no one should be able to hear it.", "Keep this coconut in your home temple.", "For the next 7 days chant the mantra for 15 minutes daily.", "On the 8th day immerse it into running water."],
+      "mantra": "Om Eem Hreem Kan Hreem Eem Om (ॐ ईं ह्रीं कं ह्रीं ईं ॐ)",
+      "note": "If there is no running water body nearby, keep the coconut in your temple and plan a trip to a nearby town/city to do the needful."
+    },
+    {
+      "title": "Good Luck for Gamblers (Nutmeg Shoes)",
+      "purpose": "Good Luck for Gamblers and Winning Situations",
+      "ingredients": ["Grated nutmeg or nutmeg powder"],
+      "process": ["Sprinkle some nutmeg powder in your shoes while going out for gambling."],
+      "benefits": ["Helps in winning gambling", "Court cases", "Tender events", "Job interviews", "Share market", "Important business meetings"]
+    },
+    {
+      "title": "Charm & Beauty — Pink Roses",
+      "purpose": "Enhance Charm and Beauty",
+      "ingredients": ["Fresh pink roses", "Vase"],
+      "process": ["Keep vases full of fresh pink roses near all mirrors and consoles."]
+    },
+    {
+      "title": "Good Fortune — Grow a Garlic Plant",
+      "purpose": "Increase Good Fortune",
+      "ingredients": ["Garlic bulb or a whole garlic"],
+      "process": ["Grow a garlic plant in your own home."]
+    },
+    {
+      "title": "Good Luck & Fortune — Star Anise Powder",
+      "purpose": "Good Luck and Fortune",
+      "ingredients": ["4-5 star anise"],
+      "process": ["Grind into a fine powder.", "Sprinkle it outside the doorstep of your office, home, shop etc.", "It can also be kept in a bowl or in a bag and stuck to the wall to invite good luck."]
+    },
+    {
+      "title": "Enhance Good Luck — Rose Water Bath",
+      "purpose": "Enhance Good Luck",
+      "ingredients": ["Rose petals (fresh is better, though dried can also be used) or rose water", "½ bucket of water"],
+      "process": ["Mix the rose petals or rose water in the bucket of water.", "Use it as a last rinse."],
+      "benefits": ["Love", "Self-love", "Health", "Good luck", "Attracts Customers"]
+    },
+    {
+      "title": "Road Opener — Orange Candle",
+      "purpose": "Open Roads & Opportunities",
+      "timing": "Any day; best on full or new moon",
+      "ingredients": ["Orange log candle", "Coarsely ground red cayenne pepper", "Olive oil"],
+      "process": ["Write your name and date of birth on the candle.", "Mix olive oil with ground pepper.", "Rub the candle all over with the oil mix.", "Set the intention.", "Light the candle.", "Meditate for 3-5 minutes while visualizing that all roads and opportunities leading to your desire are open and coming to you.", "Let the candle burn out.", "Throw the residue in the dustbin."]
+    },
+    {
+      "title": "Courage — Orange Candle & Cayenne Pepper",
+      "purpose": "Build Courage",
+      "timing": "Can be done on any day. Best done on full moon or new moon.",
+      "ingredients": ["Orange log candle", "Coarsely ground red cayenne pepper", "Olive oil"],
+      "process": ["Write your name and date of birth on the candle.", "Mix olive oil with ground pepper.", "Rub the candle all over with the oil mix.", "Set the intention.", "Light the candle.", "Meditate for 3-5 minutes while visualizing that all roads and opportunities leading to your desire are open and coming to you.", "Let the candle burn out.", "Throw the residue in the dustbin."]
+    },
+    {
+      "title": "Banishing Spell (Black Candle)",
+      "purpose": "Clear Obstacles and Negativity",
+      "timing": "Any day; best on full or new moon",
+      "ingredients": ["Black log candle", "Coarsely ground red cayenne pepper", "Olive oil"],
+      "process": ["Write name and date on the candle.", "Mix olive oil with ground pepper.", "Rub the candle with the oil mix.", "Set your intention.", "Light the candle.", "Meditate 3–5 min, visualizing obstacles clearing.", "Let the candle burn out.", "Throw residue in the dustbin."],
+      "benefits": "Clears obstacles and negativity."
+    },
+    {
+      "title": "Remove Jinx (Badkismati)",
+      "purpose": "Remove Jinx",
+      "timing": "Any day; best on full or new moon. Change peppercorns monthly.",
+      "ingredients": ["Black pouch", "Black peppercorns", "Family photograph or collage"],
+      "process": ["Put the peppercorns in the black pouch.", "Energize with your intention.", "Change the peppercorns monthly."],
+      "benefits": "Absorbs all negativity and evil eye surrounding the family."
+    },
+    {
+      "title": "Star Anise Pendulum for Divine Guidance",
+      "purpose": "Divine Guidance & Decision Making",
+      "ingredients": ["Purple or black thread", "1 star anise (unbroken)"],
+      "process": ["Tie 1 end of the thread to the center or to one of the petals of the star anise.", "This will create a pendulum."],
+      "benefits": ["Divine guidance through pendulum movement", "Enhances intuition and decision making", "Connects with spiritual energies"]
+    },
+    {
+      "title": "Find Missing Person",
+      "purpose": "Find a Missing Person or Return of a Lost Person",
+      "timing": "By the head of family (male or female). Repeat until the problem is resolved.",
+      "ingredients": ["Bright green thread", "Green paper", "2–3 unbroken knots/bales of turmeric", "Small piece of peepal tree root"],
+      "process": ["Mix all items with the intention to find the lost person.", "Tie the root and turmeric with the green string.", "Submerge in stagnant water or bury.", "Repeat until the problem is resolved."]
+    },
+    {
+      "title": "Theft Prevention — Cumin Seeds",
+      "purpose": "Prevent Theft",
+      "timing": "When traveling out",
+      "ingredients": ["Cumin seeds"],
+      "process": ["Sprinkle cumin seeds in all your rooms, balconies, main entrance.", "This will protect you from theft.", "Get it cleaned after you come back."]
+    }
+  ]
+}

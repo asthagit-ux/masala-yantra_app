@@ -1,0 +1,15 @@
+{
+  "id": "ketu",
+  "name": "Ketu",
+  "en": "Ketu",
+  "day": "Tuesday",
+  "governs": "Detachment, spirituality, past patterns",
+  "doshaTriggers": ["kaal sarp dosh", "ketu in 1st 7th house", "ketu afflicted"],
+  "remedies": [
+    "Donate a multi-coloured blanket or sesame seeds.",
+    "Feeding stray dogs is a commonly cited practice.",
+    "A short daily meditation practice is considered supportive for Ketu placements."
+  ],
+  "yantra": "ketu",
+  "yantraName": "Ketu Yantra"
+}

@@ -1,0 +1,55 @@
+{
+  "categories": [
+    {
+      "id": "protection",
+      "label": "Protection & Cleansing",
+      "icon": "🛡️",
+      "description": "Protect your home, ward off evil eye, and remove negative energies",
+      "file": "protection.json",
+      "count": 33
+    },
+    {
+      "id": "wealth",
+      "label": "Wealth & Abundance",
+      "icon": "💰",
+      "description": "Attract money, abundance, remove debt, and grow wealth",
+      "file": "wealth.json",
+      "count": 35
+    },
+    {
+      "id": "love-relationships",
+      "label": "Love & Relationships",
+      "icon": "❤️",
+      "description": "Attract love, strengthen relationships, improve marriage, and resolve disputes",
+      "file": "love-relationships.json",
+      "count": 17
+    },
+    {
+      "id": "health-wellbeing",
+      "label": "Health & Wellbeing",
+      "icon": "🌿",
+      "description": "Physical health, mental clarity, sleep, and general wellbeing",
+      "file": "health-wellbeing.json",
+      "count": 19
+    },
+    {
+      "id": "planetary",
+      "label": "Planetary Remedies",
+      "icon": "🪐",
+      "description": "Specific masala remedies to strengthen or balance planets",
+      "file": "planetary.json",
+      "count": 9
+    },
+    {
+      "id": "spiritual-luck",
+      "label": "Spiritual & Good Luck",
+      "icon": "✨",
+      "description": "Good fortune, wish fulfillment, spiritual growth, and opening new roads",
+      "file": "spiritual-luck.json",
+      "count": 13
+    }
+  ],
+  "totalRemedies": 126,
+  "source": "Lal Kitab Masala Remedies (Day 1–10)",
+  "disclaimer": "Traditional and cultural content. Not medical or financial advice."
+}

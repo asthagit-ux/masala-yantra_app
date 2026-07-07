@@ -1,0 +1,15 @@
+{
+  "id": "budh",
+  "name": "Budh",
+  "en": "Mercury",
+  "day": "Wednesday",
+  "governs": "Communication, intellect, business, humor",
+  "doshaTriggers": ["weak mercury", "mercury combust", "mercury with malefics"],
+  "remedies": [
+    "Donate green moong dal or green vegetables on Wednesdays.",
+    "Keep a small pot of holy basil (tulsi) at home and water it each morning.",
+    "Writing or journaling daily is considered a supportive Mercury practice."
+  ],
+  "yantra": "budh",
+  "yantraName": "Budh Yantra"
+}

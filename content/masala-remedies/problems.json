@@ -1,0 +1,222 @@
+{
+  "protection": {
+    "title": "Protection & Cleansing",
+    "problems": [
+      {
+        "id": "cleanse-home",
+        "label": "Dispel negative energies and cleanse my living space",
+        "remedyTitles": ["Cinnamon Smudging", "Space Cleansing with Camphor & Spices", "Space Cleansing Spray (Amethyst & Rose)", "Atmospheric Cleansing (Camphor)"]
+      },
+      {
+        "id": "evil-eye",
+        "label": "Remove or protect against Nazar / Evil Eye",
+        "remedyTitles": ["Cinnamon Protection Charm", "Remove Evil Eye (Nazar)", "Protect Infants from Evil Eye", "Protection from Nightmares (Garlic & Camphor)", "Aura Cleansing Pouch"]
+      },
+      {
+        "id": "shield-doorway",
+        "label": "Stop negative blockages from entering through the entrance",
+        "remedyTitles": ["Entryway Shield", "Prosperity Steps", "Lifetime Home Protection", "Peace and Harmony Paste", "Boundary Protection", "Protection Toran (Bandanwar)", "Cinnamon Bundle Home Shield"]
+      },
+      {
+        "id": "reverse-negativity",
+        "label": "Reverse general curses, bad luck, or negative vibes",
+        "remedyTitles": ["Curse Removal", "Reversing Negative Energy", "Fortune Restoration (Family Curse)", "Heavy Energy Removal", "Cinnamon Shielding Spray", "Star Anise Protection Spray"]
+      },
+      {
+        "id": "vastu-defects",
+        "label": "Neutralize Vastu defects in my home or bathroom",
+        "remedyTitles": ["Vastu Defect Neutralizer"]
+      },
+      {
+        "id": "nightmares-fear",
+        "label": "Ward off nightmares and paranormal fears",
+        "remedyTitles": ["Dream Catcher Hanging", "Protect from Accidents (Camphor & Hanuman Chalisa)"]
+      }
+    ]
+  },
+  "wealth": {
+    "title": "Wealth & Abundance",
+    "problems": [
+      {
+        "id": "money-draining",
+        "label": "Money keeps draining out rapidly / high unexpected expenses",
+        "remedyTitles": ["Garlic & Cloves Money Pocket Remedy", "Growth, Success & Abundance Bundle", "Coriander Seeds Savings Ritual"]
+      },
+      {
+        "id": "debts-loans",
+        "label": "Struggling to pay off old debts and loans",
+        "remedyTitles": ["Tuesday Debt Payment Ritual", "Saturday Coconut Debt Removal", "Monday Relief from Multiple Debts", "5 Red Roses Debt Release", "Coriander Seeds Debt Remedy"]
+      },
+      {
+        "id": "attract-wealth",
+        "label": "Want to attract general abundance, money flow, and wealth",
+        "remedyTitles": ["Cinnamon Abundance Blow", "Cinnamon Stick Abundance Charm", "Cinnamon Oil Money Spell", "Wealth Spell (Cinnamon & Sugar)", "Magical Money Spell (Cinnamon Paste)", "Star Anise Wallet Remedy", "Goddess Lakshmi Rose Offering", "Lakshmi Chalisa Money Flow Ritual", "Kitchen Diya for Wealth", "Maha Lakshmi 5 Diya Ritual", "Coriander Seeds Diwali Remedy", "Abundance Floor Wash", "Cinnamon Bath for Money", "Abundance Salt", "Prosperity Hanging (Cinnamon Bundles)"]
+      },
+      {
+        "id": "recover-money",
+        "label": "Recovering stuck or blocked money from someone",
+        "remedyTitles": ["Cloves & Camphor Burn for Stuck Money", "Coriander Seeds Recover Stuck Money"]
+      },
+      {
+        "id": "business-sales",
+        "label": "Want to attract more customers and improve sales at work",
+        "remedyTitles": ["Cinnamon Oil Business Card Remedy", "Cinnamon Doorstep for Attracting Customers", "Vishnu Temple Business Recovery"]
+      },
+      {
+        "id": "career-job",
+        "label": "Need success in a job interview or to get a promotion",
+        "remedyTitles": ["Betel Nut for Right Career Path", "Salt Rotation for Job or Business", "High Position Job Ritual", "Cloves in Mouth for Interview", "Nutmeg Job/Business Meeting Bath"]
+      }
+    ]
+  },
+  "love-relationships": {
+    "title": "Love & Relationships",
+    "problems": [
+      {
+        "id": "marriage-delays",
+        "label": "Experiencing delay, blocks, or obstacles in marriage",
+        "remedyTitles": ["Delay in Marriage Remedy", "Release Blocks for Marriage (42-Day Ritual)"]
+      },
+      {
+        "id": "spouse-disputes",
+        "label": "Frequent disputes, fights, or coldness with my partner",
+        "remedyTitles": ["Rock Salt for Marital Disputes", "Coconut, Datura & Camphor Love Tilak", "Burning Cloves to Improve Relationships", "Gomti Chakra Shivling Offering for Couples", "Camphor & Sindoor Relationship Healing"]
+      },
+      {
+        "id": "inlaw-respect",
+        "label": "Not getting love, respect, or acceptance from in-laws",
+        "remedyTitles": ["Love & Respect in Joint Family", "Improve In-Law Relationships"]
+      },
+      {
+        "id": "attract-partner-love",
+        "label": "Want to deepen love, attraction, or romance with partner",
+        "remedyTitles": ["Turmeric & Mantra to Get Love from Partner", "Nutmeg Love Healing", "Clove Candle Love Ritual", "Clove in Milk for Romance", "Cumin Seeds for Faithfulness"]
+      },
+      {
+        "id": "family-peace",
+        "label": "Lack of peace and harmony at home",
+        "remedyTitles": ["Coriander Seeds for Peace at Home"]
+      },
+      {
+        "id": "friendship-conflicts",
+        "label": "Want to resolve conflicts with friends, siblings, or colleagues",
+        "remedyTitles": ["Friendship Charm (Cloves in Red Pouches)", "Legal Matters Support (Nutmeg)", "Purple Rose for Domination"]
+      }
+    ]
+  },
+  "health-wellbeing": {
+    "title": "Health & Wellbeing",
+    "problems": [
+      {
+        "id": "physical-strength",
+        "label": "Feeling physically weak / want to boost strength and immunity",
+        "remedyTitles": ["Cinnamon for Clarity, Health & Positivity", "Nutmeg Pendant for Physical Strength", "Nutmeg in Milk for Good Health"]
+      },
+      {
+        "id": "pregnancy-nausea",
+        "label": "Suffering from morning sickness or nausea during pregnancy",
+        "remedyTitles": ["Cinnamon for Morning Sickness During Pregnancy"]
+      },
+      {
+        "id": "long-illness",
+        "label": "Struggling with a long-term chronic illness or pain",
+        "remedyTitles": ["Garlic for Physical Illness and Disease", "Garlic to Energize and Protect Food", "Rock Salt Bedside for Long Illness", "When Someone is Ill (Rotation Ritual)"]
+      },
+      {
+        "id": "sex-drive",
+        "label": "Want to enhance sexual desire or intimacy",
+        "remedyTitles": ["Star Anise for Sexual Desire"]
+      },
+      {
+        "id": "depression-sleep",
+        "label": "Suffer from depression, nightmares, or sleeplessness",
+        "remedyTitles": ["Star Anise Under Pillow for Nightmares", "Cayenne Pepper Seeds for Depression", "Star Anise Tea for Psychic Ability & Mental Clarity", "Star Anise for Clarity of Mind & Vision", "Nutmeg Before Meditation for Clairvoyance", "Turmeric Tilak for Concentration", "Daily Bathing Ritual for Unmarried", "Attraction Essence Bath", "Good Luck Bath (Rock Salt + Turmeric + Camphor)"]
+      },
+      {
+        "id": "addiction-recovery",
+        "label": "Help someone with alcohol or substance de-addiction",
+        "remedyTitles": ["Turmeric De-addiction Ritual"]
+      }
+    ]
+  },
+  "planetary": {
+    "title": "Planetary Doshas",
+    "problems": [
+      {
+        "id": "shani-dosha",
+        "label": "Remove Shani Dosha / pacify Saturn",
+        "remedyTitles": ["Remove Shani Dosh — Coconut in Running Water", "Remove Shani Dosh — Coriander & Peepal"]
+      },
+      {
+        "id": "venus-weak",
+        "label": "Strengthen Venus (for relationships, charm, luxury)",
+        "remedyTitles": ["Balance and Enhance Venus — Fennel Seeds"]
+      },
+      {
+        "id": "mars-dosha",
+        "label": "Support Mars / resolve delayed or incomplete works",
+        "remedyTitles": ["Support Mars — Fennel Seeds & Jaggery"]
+      },
+      {
+        "id": "mercury-weak",
+        "label": "Boost Mercury (for intellect, speech, business)",
+        "remedyTitles": ["Boost Mercury — Barley"]
+      },
+      {
+        "id": "rahu-ketu-dosha",
+        "label": "Balance Rahu & Ketu (ward off confusion & sudden setbacks)",
+        "remedyTitles": ["Balance Rahu & Ketu — Green Cardamom Milk"]
+      },
+      {
+        "id": "pitra-dosha",
+        "label": "Remove Pitra Dosha / satisfy ancestors for family blessings",
+        "remedyTitles": ["Pitra Dosh — Cinnamon Diya for Ancestors"]
+      },
+      {
+        "id": "hard-work-no-results",
+        "label": "Not getting results despite immense hard work (Mars/Hanuman)",
+        "remedyTitles": ["Results Despite Hard Work — Jasmine Diya Ritual"]
+      }
+    ]
+  },
+  "spiritual-luck": {
+    "title": "Spiritual & Good Luck",
+    "problems": [
+      {
+        "id": "wish-fulfillment",
+        "label": "Manifest a specific wish or deep desire",
+        "remedyTitles": ["Wish Fulfillment Coconut Ritual", "Road Opener — Orange Candle"]
+      },
+      {
+        "id": "gambling-meetings",
+        "label": "Attract luck for gambling, court cases, share market, or meetings",
+        "remedyTitles": ["Good Luck for Gamblers (Nutmeg Shoes)"]
+      },
+      {
+        "id": "beauty-charm",
+        "label": "Enhance personal charm, attractiveness, and beauty",
+        "remedyTitles": ["Charm & Beauty — Pink Roses"]
+      },
+      {
+        "id": "good-fortune",
+        "label": "General road opening, good luck, and fortune",
+        "remedyTitles": ["Good Fortune — Grow a Garlic Plant", "Good Luck & Fortune — Star Anise Powder", "Enhance Good Luck — Rose Water Bath", "Courage — Orange Candle & Cayenne Pepper"]
+      },
+      {
+        "id": "negativity-banish",
+        "label": "Banish persistent bad luck (Badkismati) or blockages",
+        "remedyTitles": ["Banishing Spell (Black Candle)", "Remove Jinx (Badkismati)", "Star Anise Pendulum for Divine Guidance"]
+      },
+      {
+        "id": "missing-person",
+        "label": "Find a missing person or bring home a lost family member",
+        "remedyTitles": ["Find Missing Person"]
+      },
+      {
+        "id": "theft-prevention",
+        "label": "Protect house from theft while traveling",
+        "remedyTitles": ["Theft Prevention — Cumin Seeds"]
+      }
+    ]
+  }
+}

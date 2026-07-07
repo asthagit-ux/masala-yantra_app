@@ -1,0 +1,93 @@
+{
+  "category": "planetary",
+  "label": "Planetary Remedies",
+  "icon": "🪐",
+  "description": "Specific masala remedies to strengthen, balance or remove doshas of planets",
+  "remedies": [
+    {
+      "planet": "shani",
+      "planetName": "Saturn (Shani)",
+      "title": "Remove Shani Dosh — Coconut in Running Water",
+      "purpose": "Remove Shani Dosh",
+      "timing": "7 Saturdays consecutively",
+      "ingredients": ["1 coconut"],
+      "process": ["Go to a running water body.", "Chant the mantra given.", "As you're chanting immerse the coconut in the running water."],
+      "mantra": "Om Ramdutaaya Namaha (ॐ रामदूताय नमः)",
+      "note": "In case there is no body of running water, then collect the coconut in a bag/box outside your home. After all 7 coconuts are ready to be immersed, then plan a trip where there is a river and immerse all 7 coconuts together."
+    },
+    {
+      "planet": "shani",
+      "planetName": "Saturn (Shani)",
+      "title": "Remove Shani Dosh — Coriander & Peepal",
+      "purpose": "Remove Shani Dosh",
+      "timing": "Every Saturday",
+      "ingredients": ["Coriander seeds", "Water", "Small glass"],
+      "process": ["Fill water in the glass.", "Add coriander seeds.", "Offer this water to the roots of peepal tree."]
+    },
+    {
+      "planet": "shukra",
+      "planetName": "Venus (Shukra)",
+      "title": "Balance and Enhance Venus — Fennel Seeds",
+      "purpose": "Balance and Enhance Venus",
+      "timing": "Every single day",
+      "ingredients": ["Fennel Seeds"],
+      "process": ["Consume Fennel Seeds in any form to balance and enhance Venus."]
+    },
+    {
+      "planet": "mangal",
+      "planetName": "Mars (Mangal)",
+      "title": "Support Mars — Fennel Seeds & Jaggery",
+      "purpose": "Support Mars — to Finish Incomplete Work",
+      "timing": "Everyday",
+      "ingredients": ["Fennel Seeds", "Jaggery"],
+      "process": ["When going outside eat Fennel Seeds mixed with Jaggery."]
+    },
+    {
+      "planet": "budh",
+      "planetName": "Mercury (Budh)",
+      "title": "Boost Mercury — Barley",
+      "purpose": "Boost Mercury",
+      "timing": "Every day",
+      "ingredients": ["Barley (in any form like flour)"],
+      "process": ["Consume barley to enhance and support Mercury."]
+    },
+    {
+      "planet": "rahu",
+      "planetName": "Rahu",
+      "title": "Balance Rahu & Ketu — Green Cardamom Milk",
+      "purpose": "Balance Rahu & Ketu",
+      "timing": "Every day for 6 weeks",
+      "ingredients": ["Green cardamom", "Milk"],
+      "process": ["Boil 1 green cardamom in milk.", "Drink this milk everyday."]
+    },
+    {
+      "planet": "ketu",
+      "planetName": "Ketu",
+      "title": "Balance Rahu & Ketu — Green Cardamom Milk",
+      "purpose": "Balance Rahu & Ketu",
+      "timing": "Every day for 6 weeks",
+      "ingredients": ["Green cardamom", "Milk"],
+      "process": ["Boil 1 green cardamom in milk.", "Drink this milk everyday."]
+    },
+    {
+      "planet": "surya",
+      "planetName": "Sun (Surya)",
+      "title": "Pitra Dosh — Cinnamon Diya for Ancestors",
+      "purpose": "Make Ancestors Happy and Remove Pitra Dosh",
+      "timing": "Do every day for as long as possible; if possible, throughout one's life",
+      "ingredients": ["A ghee diya or a candle", "Cinnamon essential oil or cinnamon powder"],
+      "process": ["Put a few drops of cinnamon essential oil in the diya or anoint your candle with the essential oil or powder.", "Set the intention to thank your ancestors for their presence in your life, also ask them for forgiveness and blessings.", "Light this diya in the south west zone of your house."],
+      "benefits": ["Makes our pitra/ancestors happy", "Helps in removing pitra dosh or ancestral issue", "Helps in improving situations where everything seems to be ok and yet nothing seems to work", "Creates a strong sense of contentment"],
+      "note": "The south west is the direction of ancestors. One can also keep this diya in the south or the west in case south west direction is not possible."
+    },
+    {
+      "planet": "mangal",
+      "planetName": "Mars (Mangal)",
+      "title": "Results Despite Hard Work — Jasmine Diya Ritual",
+      "purpose": "Get Results When Hard Work Isn't Yielding Outcomes",
+      "timing": "21 consecutive Tuesdays",
+      "ingredients": ["Jasmine oil", "Cotton wick", "Lamp/diya", "2 cloves", "Hanuman Chalisa"],
+      "process": ["Make a diya using jasmine oil and cotton wick.", "Add 2 cloves in it.", "Light the diya in front of Hanuman ji.", "Sit in front of Hanuman ji and tell him your problems and ask for help.", "Do 7 recitations of Hanuman Chalisa."]
+    }
+  ]
+}

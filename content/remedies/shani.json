@@ -1,0 +1,15 @@
+{
+  "id": "shani",
+  "name": "Shani",
+  "en": "Saturn",
+  "day": "Saturday",
+  "governs": "Discipline, karma, delays, longevity",
+  "doshaTriggers": ["sade sati", "shani dosh", "saturn transit over moon sign"],
+  "remedies": [
+    "Donate black sesame, mustard oil, or black urad dal to the poor on Saturdays.",
+    "Light a mustard-oil lamp under a peepal tree in the evening.",
+    "Treating laborers and the underprivileged with fairness is considered central to Saturn's remedies."
+  ],
+  "yantra": "shani",
+  "yantraName": "Shani Yantra"
+}

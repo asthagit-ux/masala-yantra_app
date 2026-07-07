@@ -1,0 +1,15 @@
+{
+  "id": "chandra",
+  "name": "Chandra",
+  "en": "Moon",
+  "day": "Monday",
+  "governs": "Mind, mother, emotions, intuition",
+  "doshaTriggers": ["weak moon", "waning moon afflicted", "moon with rahu ketu"],
+  "remedies": [
+    "Donate rice, milk, or white sweets on Mondays.",
+    "Keep a small silver bowl of water near the bed overnight and discard it at sunrise.",
+    "Spend a few quiet minutes near water or under moonlight on full moon nights."
+  ],
+  "yantra": "chandra",
+  "yantraName": "Chandra Yantra"
+}
