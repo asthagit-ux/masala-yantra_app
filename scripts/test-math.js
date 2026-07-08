@@ -11,7 +11,7 @@ function dateToJD(date) {
 
 function getLahiriAyanamsha(jd) {
   const JD_1956_MAR21 = 2435553.5;
-  const AYANAMSHA_1956 = 23.25018278; // 23° 15' 00.658"
+  const AYANAMSHA_1956 = 23.25018278;
   const RATE_DEG_PER_DAY = 50.2388475 / 3600 / 365.25;
   return AYANAMSHA_1956 + (jd - JD_1956_MAR21) * RATE_DEG_PER_DAY;
 }
@@ -22,6 +22,16 @@ function getGeocentricLongitude(body, date) {
   return normLng(ecl.elon);
 }
 
+function isRetrograde(body, date) {
+  const msDay = 86400000;
+  const lng1 = getGeocentricLongitude(body, new Date(date.getTime() - msDay));
+  const lng2 = getGeocentricLongitude(body, new Date(date.getTime() + msDay));
+  let diff = lng2 - lng1;
+  if (diff > 180) diff -= 360;
+  if (diff < -180) diff += 360;
+  return diff < 0;
+}
+
 function getRahuMeanTropicalLng(jd) {
   const J2000 = 2451545.0;
   return normLng(125.04455501 - (jd - J2000) * 0.052953922);
@@ -29,9 +39,9 @@ function getRahuMeanTropicalLng(jd) {
 
 function calculateAscendantTropical(date, lat, lng) {
   const time = Astronomy.MakeTime(date);
-  const gstHours = Astronomy.SiderealTime(time); // GMST in hours
-  const gstDegrees = gstHours * 15; // Convert hours to degrees
-  const lst = normLng(gstDegrees + lng); // Local Sidereal Time in degrees
+  const gstHours = Astronomy.SiderealTime(time);
+  const gstDegrees = gstHours * 15;
+  const lst = normLng(gstDegrees + lng);
   const ramc = lst * (Math.PI / 180);
 
   const jd = dateToJD(date);
@@ -41,53 +51,68 @@ function calculateAscendantTropical(date, lat, lng) {
 
   const num = Math.cos(ramc);
   const den = -Math.sin(ramc) * Math.cos(eps) - Math.tan(phi) * Math.sin(eps);
-  
-  let asc = Math.atan2(num, den) * (180 / Math.PI);
+  const asc = Math.atan2(num, den) * (180 / Math.PI);
   return normLng(asc);
 }
-
-// Test Gandhi's birth: 1869-10-02, 07:11 AM LMT
-const tzOffset = 69.6293 / 15;
-const date = new Date(Date.UTC(1869, 9, 2, 0, 0, 0));
-date.setUTCMinutes(Math.round((7 * 60 + 11) - tzOffset * 60));
-
-const jd = dateToJD(date);
-const ayan = getLahiriAyanamsha(jd);
-const ascTrop = calculateAscendantTropical(date, 21.6417, 69.6293);
-const ascSid = normLng(ascTrop - ayan);
 
 const signs = [
   "Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo",
   "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"
 ];
 
-console.log("=== Gandhi Birth Chart (Sidereal Lahiri Ayanamsha) ===");
-console.log("Lagna Sign:", signs[Math.floor(ascSid / 30)], `(${Math.floor(ascSid % 30)}°${Math.floor(((ascSid % 30) % 1) * 60)}')`);
+function runTest(label, year, month0, day, hour, minute, lat, lng) {
+  const tzOffset = 5.5; // IST
+  const date = new Date(Date.UTC(year, month0, day, 0, 0, 0));
+  date.setUTCMinutes(Math.round((hour * 60 + minute) - tzOffset * 60));
 
-const bodies = [
-  { id: "surya", body: Astronomy.Body.Sun },
-  { id: "chandra", body: Astronomy.Body.Moon },
-  { id: "mangal", body: Astronomy.Body.Mars },
-  { id: "budh", body: Astronomy.Body.Mercury },
-  { id: "guru", body: Astronomy.Body.Jupiter },
-  { id: "shukra", body: Astronomy.Body.Venus },
-  { id: "shani", body: Astronomy.Body.Saturn },
-];
+  const jd = dateToJD(date);
+  const ayan = getLahiriAyanamsha(jd);
+  const ascTrop = calculateAscendantTropical(date, lat, lng);
+  const ascSid = normLng(ascTrop - ayan);
 
-for (const b of bodies) {
-  const trop = getGeocentricLongitude(b.body, date);
-  const sid = normLng(trop - ayan);
-  console.log(
-    b.id.padEnd(8),
-    "Tropical:", trop.toFixed(2).padStart(6),
-    "Sidereal:", sid.toFixed(2).padStart(6),
-    signs[Math.floor(sid / 30)]
-  );
+  console.log(`\n=== ${label} ===`);
+  console.log("UTC:", date.toUTCString());
+  console.log(`Lagna: ${signs[Math.floor(ascSid / 30)]} — ${Math.floor(ascSid % 30)}°${Math.floor(((ascSid % 30) % 1) * 60)}'`);
+
+  const bodies = [
+    { id: "Surya", body: Astronomy.Body.Sun },
+    { id: "Chandra", body: Astronomy.Body.Moon },
+    { id: "Mangal", body: Astronomy.Body.Mars },
+    { id: "Budh", body: Astronomy.Body.Mercury },
+    { id: "Guru", body: Astronomy.Body.Jupiter },
+    { id: "Shukra", body: Astronomy.Body.Venus },
+    { id: "Shani", body: Astronomy.Body.Saturn },
+  ];
+
+  for (const b of bodies) {
+    const trop = getGeocentricLongitude(b.body, date);
+    const sid = normLng(trop - ayan);
+    const retro = isRetrograde(b.body, date);
+    console.log(
+      `  ${b.id.padEnd(8)} ${signs[Math.floor(sid / 30)].padEnd(13)} ${Math.floor(sid % 30)}°${Math.floor(((sid % 30) % 1) * 60)}'${retro ? " (R)" : ""}`
+    );
+  }
+
+  // Rahu/Ketu
+  const rahuTrop = getRahuMeanTropicalLng(jd);
+  const rahuSid = normLng(rahuTrop - ayan);
+  const ketuSid = normLng(rahuSid + 180);
+  console.log(`  Rahu    ${signs[Math.floor(rahuSid / 30)].padEnd(13)} ${Math.floor(rahuSid % 30)}°${Math.floor(((rahuSid % 30) % 1) * 60)}'`);
+  console.log(`  Ketu    ${signs[Math.floor(ketuSid / 30)].padEnd(13)} ${Math.floor(ketuSid % 30)}°${Math.floor(((ketuSid % 30) % 1) * 60)}'`);
 }
 
-const rahuTrop = getRahuMeanTropicalLng(jd);
-const rahuSid = normLng(rahuTrop - ayan);
-console.log("rahu".padEnd(8), "Tropical:", rahuTrop.toFixed(2).padStart(6), "Sidereal:", rahuSid.toFixed(2).padStart(6), signs[Math.floor(rahuSid / 30)]);
+// Test 1: User's own birth details
+runTest(
+  "Your Chart: Gwalior, 26 Feb 2004, 10:15 PM IST",
+  2004, 1, 26,   // month0 = 1 for February
+  22, 15,         // 10:15 PM = 22:15
+  26.2183, 78.1828 // Gwalior lat/lng
+);
 
-const ketuSid = normLng(rahuSid + 180);
-console.log("ketu".padEnd(8), " ".repeat(18), "Sidereal:", ketuSid.toFixed(2).padStart(6), signs[Math.floor(ketuSid / 30)]);
+// Test 2: Reference case that is reported as "correct"
+runTest(
+  "Reference Chart: 04 Feb 2001, 10:45 AM IST",
+  2001, 1, 4,    // month0 = 1 for February
+  10, 45,
+  26.2183, 78.1828 // assuming same city, adjust if different
+);

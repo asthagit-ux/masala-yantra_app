@@ -958,7 +958,7 @@ export default function YantraPage() {
                   <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                     
                     {/* Left Column: Planetary tables, chart, switcher */}
-                    <div className="lg:col-span-7 space-y-6">
+                    <div className="lg:col-span-5 space-y-6">
                       
                       {/* Lagna & Birth Info Card */}
                       <div className="bg-black text-white rounded-xl p-5 space-y-4 border border-[#FFD700]/30 shadow-md">
@@ -1013,9 +1013,25 @@ export default function YantraPage() {
                         </div>
                       </div>
 
-                      {/* Weak Planets Summary */}
+                      {/* Left Column (Planetary positions sidebar) */}
+                    </div>
+
+                    {/* Right Column: Yantra Recommendations & Consecration Report */}
+                    <div className="lg:col-span-7 space-y-8">
+                      <div>
+                        <p className="text-[10px] font-bold tracking-[0.2em] text-[#9A7026] uppercase">
+                          ✦ {language === "en" ? "Vedic Remedies" : "वैदिक उपाय"} ✦
+                        </p>
+                        <h3 className="text-lg font-bold text-black font-serif mt-0.5">
+                          {kundliResult.weakPlanets.length === 0 
+                            ? t.noWeakPlanets
+                            : (language === "en" ? "Recommended Yantras for Afflictions" : "दोषों के लिए अनुशंसित यंत्र")}
+                        </h3>
+                      </div>
+
+                      {/* Weak Planets Summary & Yantra Cards */}
                       {kundliResult.weakPlanets.length === 0 ? (
-                        <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center space-y-2">
+                        <div className="bg-green-50 border border-green-200 rounded-xl p-6 text-center space-y-2">
                           <p className="text-2xl">✅</p>
                           <p className="text-sm font-bold text-green-800">
                             {t.noWeakPlanets}
@@ -1025,89 +1041,193 @@ export default function YantraPage() {
                           </p>
                         </div>
                       ) : (
-                        <div className="space-y-4">
-                          <div className="space-y-2">
-                            <p className="text-xs font-bold uppercase text-black/50 tracking-wider">
-                              {kundliResult.weakPlanets.length}{" "}
-                              {kundliResult.weakPlanets.length > 1 ? t.afflictedPlanetsDetectedPlural : t.afflictedPlanetsDetected}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                              {kundliRecs.map(rec => (
-                                <button key={rec.planet} onClick={() => setKundliActiveRec(rec.planet)}
-                                  className={`px-3 py-2 rounded-xl border text-xs font-bold transition-all flex items-center gap-1.5 ${
-                                    kundliActiveRec === rec.planet
-                                      ? "bg-black text-white border-black"
-                                      : rec.severity === "high"
-                                        ? "bg-red-50 border-red-200 text-red-800 hover:bg-red-100"
-                                        : "bg-white border-black/10 text-black hover:border-[#FFD700]"
-                                  }`}
+                        <div className="space-y-6">
+                          {/* Dark Card Grid */}
+                          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            {kundliRecs.map(rec => {
+                              const isActive = kundliActiveRec === rec.planet;
+                              const targetYantra = yantras.find(y => y.id === rec.planet);
+                              const sanskritNames: Record<string, string> = {
+                                surya: "सूर्य यंत्र",
+                                chandra: "चन्द्र यंत्र",
+                                mangal: "मंगल यंत्र",
+                                budh: "बुध यंत्र",
+                                guru: "गुरु यंत्र",
+                                shukra: "शुक्र यंत्र",
+                                shani: "शनि यंत्र",
+                                rahu: "राहु यंत्र",
+                                ketu: "केतु यंत्र"
+                              };
+                              const glyphColors: Record<string, string> = {
+                                high: "#ef4444",
+                                medium: "#eab308"
+                              };
+                              const color = glyphColors[rec.severity] || "#FFD700";
+
+                              return (
+                                <div key={rec.planet} 
+                                  onClick={() => setKundliActiveRec(rec.planet)}
+                                  className={`cursor-pointer flex flex-col rounded-2xl overflow-hidden border transition-all duration-300 ${
+                                    isActive 
+                                      ? "border-[#FFD700] shadow-[0_0_24px_rgba(255,215,0,0.15)] scale-[1.01]" 
+                                      : "border-[#FFD700]/10 hover:border-[#FFD700]/40"
+                                  }`} 
+                                  style={{ background: "linear-gradient(160deg, #0d0d0d 0%, #111008 100%)" }}
                                 >
-                                  <span>{rec.symbol}</span>
-                                  <span>{rec.planetName.split(" ")[0]}</span>
-                                  {rec.severity === "high" && kundliActiveRec !== rec.planet && (
-                                    <span className="text-red-500 text-[10px]">⚠</span>
-                                  )}
-                                </button>
-                              ))}
-                            </div>
+                                  {/* Top meta bar */}
+                                  <div className="flex items-center justify-between px-4 pt-4 pb-2">
+                                    <div className="flex items-center gap-1.5">
+                                      <span className="text-[9px] font-bold tracking-wider uppercase text-white/30">
+                                        RULER:
+                                      </span>
+                                      <span className="text-[9px] font-bold tracking-wider uppercase text-white/60">
+                                        {rec.planetName.split(" ")[0]}
+                                      </span>
+                                    </div>
+                                    <span className="text-[9px] font-black tracking-widest px-2 py-0.5 rounded-full uppercase"
+                                      style={{ 
+                                        background: rec.severity === "high" ? "rgba(239,68,68,0.15)" : "rgba(234,179,8,0.15)", 
+                                        color: color,
+                                        border: `1px solid ${color}30`
+                                      }}
+                                    >
+                                      {rec.severity === "high" ? "CRITICAL" : "WEAK"}
+                                    </span>
+                                  </div>
+
+                                  {/* Circular glyph background */}
+                                  <div className="relative flex items-center justify-center py-5 mx-4 overflow-hidden rounded-xl bg-white/5">
+                                    <div className="absolute w-20 h-20 rounded-full" style={{ background: `radial-gradient(circle, ${color}15 0%, transparent 70%)` }} />
+                                    <span className="relative text-4xl select-none leading-none" style={{ color: color, textShadow: `0 0 20px ${color}50` }}>
+                                      {rec.symbol}
+                                    </span>
+                                  </div>
+
+                                  {/* Title & info */}
+                                  <div className="px-4 pt-3 pb-4">
+                                    <h4 className="text-xs font-black uppercase tracking-wide text-white flex justify-between items-center">
+                                      <span>{targetYantra?.name.split(" (")[0] || rec.planetName}</span>
+                                      {sanskritNames[rec.planet] && (
+                                        <span className="text-[10px] text-[#FFD700]/70 font-normal font-serif">{sanskritNames[rec.planet]}</span>
+                                      )}
+                                    </h4>
+                                    <p className="text-[10px] text-white/60 mt-1.5 leading-relaxed line-clamp-2">
+                                      {rec.reason}
+                                    </p>
+                                  </div>
+                                </div>
+                              );
+                            })}
                           </div>
 
-                          {/* Active recommendation reason */}
-                          {kundliRecs.find(r => r.planet === kundliActiveRec) && (() => {
+                          {/* Selected Yantra: Detailed Consecration Report */}
+                          {activeKundliYantra && (() => {
                             const activeRecObj = kundliRecs.find(r => r.planet === kundliActiveRec);
+                            const sanskritNames: Record<string, string> = {
+                              surya: "सूर्य यंत्र",
+                              chandra: "चन्द्र यंत्र",
+                              mangal: "मंगल यंत्र",
+                              budh: "बुध यंत्र",
+                              guru: "गुरु यंत्र",
+                              shukra: "शुक्र यंत्र",
+                              shani: "शनि यंत्र",
+                              rahu: "राहु यंत्र",
+                              ketu: "केतु यंत्र"
+                            };
+
                             return (
-                              <div className={`border rounded-xl p-4 text-xs space-y-1 ${
-                                activeRecObj?.severity === "high" ? "bg-red-50 border-red-200" : "bg-[#F9F9FB] border-black/10"
-                              }`}>
-                                <p className="font-bold text-black">
-                                  {activeRecObj?.symbol} {t.whyPlanetQuestion} {activeRecObj?.planetName}?
-                                </p>
-                                <p className="text-black/70 leading-relaxed">
-                                  {activeRecObj?.reason}
-                                </p>
-                                <p className="text-[#9A7026] font-semibold">
-                                  {t.remedyStrongLabel} <strong>{t.remedyText}</strong>
-                                </p>
+                              <div className="border border-[#FFD700]/30 rounded-2xl overflow-hidden p-6 md:p-8 space-y-8 bg-[#0d0d0d] text-white">
+                                
+                                {/* Detail Title Banner */}
+                                <div className="border-b border-[#FFD700]/20 pb-6 flex flex-wrap justify-between items-start gap-4">
+                                  <div>
+                                    <div className="flex items-center gap-2">
+                                      <h3 className="text-xl font-bold font-serif text-[#FFD700] uppercase tracking-wide">
+                                        {activeKundliYantra.name}
+                                      </h3>
+                                      {sanskritNames[kundliActiveRec] && (
+                                        <span className="bg-[#FFD700]/10 text-[#FFD700] border border-[#FFD700]/20 text-[10px] px-2.5 py-0.5 rounded-full font-serif font-medium">
+                                          {sanskritNames[kundliActiveRec]}
+                                        </span>
+                                      )}
+                                    </div>
+                                    <p className="text-[10px] font-bold tracking-[0.2em] text-white/40 uppercase mt-1">
+                                      ✦ Vedic Remedial Geometry ✦
+                                    </p>
+                                  </div>
+                                  <span className="inline-block bg-[#FFD700] text-black text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-md">
+                                    RECOMMENDED REMEDY
+                                  </span>
+                                </div>
+
+                                {/* Section 1: Problem Analysis */}
+                                <div className="space-y-3">
+                                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFD700]/80 flex items-center gap-2">
+                                    <span className="text-red-500">🛑</span> 1. PROBLEM & CHALLENGE ANALYSIS
+                                  </h4>
+                                  <div className="border border-[#FFD700]/20 rounded-xl p-5 bg-[#141414] space-y-3">
+                                    <div>
+                                      <p className="text-[9px] font-black tracking-wider text-[#FFD700] uppercase">Identified Energetic Blockage:</p>
+                                      <p className="text-xs text-white/95 font-semibold mt-1 leading-relaxed">
+                                        {activeRecObj?.reason}
+                                      </p>
+                                    </div>
+                                    <p className="text-[11px] text-white/60 leading-relaxed pt-2 border-t border-white/5">
+                                      Your chart shows an affliction on {activeRecObj?.planetName}. According to ancient Vedic wisdom, planetary weaknesses manifest as persistent life hurdles. The sacred mathematical arrangement of the {activeKundliYantra.name} is calculated to offset these energetic deficits, restoring harmony to your aura.
+                                    </p>
+                                  </div>
+                                </div>
+
+                                {/* Section 2: Drawing Grid */}
+                                <div className="space-y-4">
+                                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFD700]/80 flex items-center gap-2">
+                                    <span className="text-yellow-500">✨</span> 2. SACRED BHOJPATRA YANTRA DRAWING
+                                  </h4>
+                                  <div className="flex flex-col items-center justify-center p-6 bg-white border border-black/10 rounded-2xl max-w-sm mx-auto shadow-xl">
+                                    <YantraRenderer yantra={activeKundliYantra} userName={name} destinationName="" businessName="" />
+                                  </div>
+                                </div>
+
+                                {/* Section 3: Consecration details */}
+                                <div className="space-y-4">
+                                  <h4 className="text-xs font-bold uppercase tracking-wider text-[#FFD700]/80 flex items-center gap-2">
+                                    <span className="text-green-500">🧘</span> 3. CONSECRATION & ACTIVATION DETAILS
+                                  </h4>
+                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                    {/* Preparation details */}
+                                    <div className="border border-[#FFD700]/15 rounded-xl p-4 bg-[#141414] text-[11px] space-y-2">
+                                      <p className="text-[9px] font-black tracking-wider text-[#FFD700] uppercase">Ritual Instructions:</p>
+                                      <p><span className="font-bold text-white/70">{t.preparationDay}</span> {activeKundliYantra.preparation.day}</p>
+                                      <p><span className="font-bold text-white/70">{t.preparationTime}</span> {activeKundliYantra.preparation.time}</p>
+                                      <p className="leading-relaxed"><span className="font-bold text-white/70">{t.preparationMaterials}</span> {activeKundliYantra.preparation.materials}</p>
+                                    </div>
+
+                                    {/* Mantras */}
+                                    <div className="border border-[#FFD700]/15 rounded-xl p-4 bg-[#141414] text-[11px] space-y-3">
+                                      <p className="text-[9px] font-black tracking-wider text-[#FFD700] uppercase">Activation Mantras:</p>
+                                      {activeKundliYantra.mantras.map((m, i) => (
+                                        <p key={i} className="italic text-xs font-serif text-white/90 bg-white/5 border border-white/10 px-3 py-2 rounded font-semibold text-center">
+                                          &quot;{m}&quot;
+                                        </p>
+                                      ))}
+                                    </div>
+                                  </div>
+
+                                  {/* Benefits */}
+                                  <div className="border border-[#FFD700]/15 rounded-xl p-4 bg-[#141414] text-[11px] space-y-2">
+                                    <p className="text-[9px] font-black tracking-wider text-[#FFD700] uppercase">Expected Benefits & Protections:</p>
+                                    <ul className="list-disc pl-4 text-white/80 space-y-1">
+                                      {activeKundliYantra.benefits.map((b, i) => <li key={i}>{b}</li>)}
+                                    </ul>
+                                  </div>
+                                </div>
+
                               </div>
                             );
                           })()}
+
                         </div>
                       )}
-
-                    </div>
-
-                    {/* Right Column: Rendered Yantra (Sticky) */}
-                    <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
-                      
-                      {activeKundliYantra && (
-                        <>
-                          <div className="border border-black/10 rounded-xl p-6 bg-white flex flex-col items-center shadow-md">
-                            <YantraRenderer yantra={activeKundliYantra} userName={name} destinationName="" businessName="" />
-                          </div>
-
-                          <div className="bg-yellow-50/15 border border-[#FFD700]/30 rounded-xl p-5 space-y-4 text-left">
-                            <div>
-                              <h4 className="font-bold text-black font-serif text-lg">{activeKundliYantra.name}</h4>
-                              <p className="text-xs text-black/70 mt-1 leading-relaxed">{activeKundliYantra.description}</p>
-                            </div>
-                            <div>
-                              <p className="text-[10px] uppercase font-bold text-black/50 tracking-wider">Benefits:</p>
-                              <ul className="list-disc pl-4 text-xs text-black/80 space-y-0.5 mt-1">
-                                {activeKundliYantra.benefits.map((b, i) => <li key={i}>{b}</li>)}
-                              </ul>
-                            </div>
-                            {activeKundliYantra.mantras.map((m, i) => (
-                              <p key={i} className="text-xs italic font-serif text-black text-center bg-white px-3 py-2 rounded border border-black/5 font-semibold">&quot;{m}&quot;</p>
-                            ))}
-                            <div className="text-xs text-black/75 space-y-0.5 pt-2 border-t border-black/5">
-                              <p><span className="font-bold">{t.preparationDay}</span> {activeKundliYantra.preparation.day}</p>
-                              <p><span className="font-bold">{t.preparationTime}</span> {activeKundliYantra.preparation.time}</p>
-                              <p className="leading-relaxed"><span className="font-bold">{t.preparationMaterials}</span> {activeKundliYantra.preparation.materials}</p>
-                            </div>
-                          </div>
-                        </>
-                      )}
-
                     </div>
 
                   </div>

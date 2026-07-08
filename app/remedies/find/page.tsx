@@ -354,151 +354,196 @@ export default function MasalaFunnel() {
           )}
 
           {/* Step 4: Results */}
-          {step === 4 && (
-            <div className="space-y-8">
-              
-              {/* Results Header */}
-              <div className="flex justify-between items-center pb-2 border-b border-black/10">
-                <div className="text-left">
-                  <span className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">
-                    {t.recommendedRemedies}
-                  </span>
-                  <h3 className="text-base font-bold text-black">
-                    {t.multipleOptionsSubtitle}
-                  </h3>
+          {step === 4 && (() => {
+            const categoryMeta: Record<string, { label: string; color: string; bg: string; symbol: string; rulerPlanet: string }> = {
+              "protection":      { label: "PROTECTION",  color: "#60a5fa", bg: "rgba(37,99,235,0.15)",  symbol: "हं",  rulerPlanet: "SHANI (SATURN)" },
+              "wealth":          { label: "WEALTH",      color: "#FFD700", bg: "rgba(234,179,8,0.15)",  symbol: "श्रीं", rulerPlanet: "GURU (JUPITER)" },
+              "love-relationships": { label: "LOVE",     color: "#f472b6", bg: "rgba(236,72,153,0.15)", symbol: "ह्रीं", rulerPlanet: "SHUKRA (VENUS)" },
+              "health-wellbeing":{ label: "HEALTH",      color: "#4ade80", bg: "rgba(34,197,94,0.15)",  symbol: "ऐं",  rulerPlanet: "SURYA (SUN)" },
+              "planetary":       { label: "PLANETARY",   color: "#c084fc", bg: "rgba(168,85,247,0.15)", symbol: "ॐ",   rulerPlanet: "NAVAGRAHA" },
+              "spiritual-luck":  { label: "SPIRITUAL",   color: "#fb923c", bg: "rgba(249,115,22,0.15)", symbol: "गं",  rulerPlanet: "GURU (JUPITER)" },
+            };
+            const meta = categoryMeta[category] || categoryMeta["wealth"];
+            const [expandedIdx, setExpandedIdx] = React.useState<number | null>(null);
+
+            return (
+              <div className="space-y-6">
+                {/* Results Header */}
+                <div className="flex justify-between items-center">
+                  <div>
+                    <p className="text-[10px] font-bold tracking-[0.2em] text-[#9A7026] uppercase">
+                      ✦ Vedic Kitchen Science ✦
+                    </p>
+                    <h3 className="text-lg font-bold text-black font-serif mt-0.5">
+                      {matchingRemedies.length} Prescribed Remedies Found
+                    </h3>
+                  </div>
+                  <button onClick={handleReset} className="text-xs text-red-600 hover:underline font-bold">
+                    ← Start Over
+                  </button>
                 </div>
-                <button
-                  onClick={handleReset}
-                  className="text-xs text-red-600 hover:underline font-bold"
-                >
-                  {t.startOver}
-                </button>
-              </div>
 
-              {/* Remedies Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {matchingRemedies.map((remedy, remIdx) => (
-                  <div
-                    key={remIdx}
-                    className="border border-black/10 hover:border-[#FFD700] bg-white rounded-xl p-5 md:p-6 space-y-4 shadow-sm transition-all"
-                  >
-                    
-                    {/* Title */}
-                    <div className="pb-3 border-b border-black/5 flex flex-wrap justify-between items-start gap-2">
-                      <div>
-                        <h4 className="font-bold text-base md:text-lg text-black">
-                          {remedy.title}
-                        </h4>
-                        <p className="text-xs text-[#9A7026] font-medium mt-0.5">
-                          🎯 {remedy.purpose}
-                        </p>
-                      </div>
-                      {remedy.timing && (
-                        <span className="inline-block bg-black text-[#FFD700] text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
-                          ⏱ {remedy.timing}
-                        </span>
-                      )}
-                    </div>
+                {/* Dark Cosmic Card Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+                  {matchingRemedies.map((remedy, remIdx) => {
+                    const isExpanded = expandedIdx === remIdx;
+                    const maxIngTags = 3;
+                    const extraIng = remedy.ingredients.length - maxIngTags;
 
-                    {/* Ingredients Checklist */}
-                    <div className="space-y-2">
-                      <p className="text-[10px] uppercase font-bold text-black/50 tracking-wider">
-                        {t.checkIngredients}
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {remedy.ingredients.map((ing, ingIdx) => {
-                          const isChecked = checkedIngredients[`${remIdx}-${ingIdx}`];
-                          return (
-                            <button
-                              key={ingIdx}
-                              onClick={() => handleToggleIngredient(remIdx, ingIdx)}
-                              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all ${
-                                isChecked
-                                  ? "bg-green-50 border-green-300 text-green-800 line-through"
-                                  : "bg-[#F9F9FB] border-black/10 text-black/80 hover:border-black/30"
-                              }`}
-                            >
-                              <span>{isChecked ? "✓" : "☐"}</span>
-                              <span>{ing}</span>
-                            </button>
-                          );
-                        })}
-                      </div>
-                    </div>
+                    return (
+                      <div key={remIdx} className="flex flex-col rounded-2xl overflow-hidden border border-[#FFD700]/20 shadow-lg transition-all duration-300 hover:border-[#FFD700]/50 hover:shadow-[0_0_24px_rgba(255,215,0,0.1)]" style={{ background: "linear-gradient(160deg, #0d0d0d 0%, #111008 100%)" }}>
 
-                    {/* Step-by-Step Instructions */}
-                    <div className="space-y-2 pt-2">
-                      <p className="text-[10px] uppercase font-bold text-black/50 tracking-wider">
-                        {t.processSteps}
-                      </p>
-                      <ol className="space-y-2 pl-1.5">
-                        {remedy.process.map((stepStr, stepIdx) => (
-                          <li
-                            key={stepIdx}
-                            className="text-xs leading-relaxed flex items-start gap-2 text-black/80"
-                          >
-                            <span className="font-mono text-[#9A7026] font-bold min-w-[14px]">
-                              0{stepIdx + 1}.
+                        {/* Top meta bar */}
+                        <div className="flex items-center justify-between px-4 pt-4 pb-2">
+                          <div className="flex items-center gap-1.5">
+                            <span className="text-[9px] font-bold tracking-wider uppercase" style={{ color: "rgba(255,255,255,0.35)" }}>
+                              RULER:
                             </span>
-                            <span>{stepStr}</span>
-                          </li>
-                        ))}
-                      </ol>
-                    </div>
+                            <span className="text-[9px] font-bold tracking-wider uppercase text-white/50">
+                              {remedy.planetName || meta.rulerPlanet}
+                            </span>
+                          </div>
+                          <button
+                            onClick={() => setExpandedIdx(isExpanded ? null : remIdx)}
+                            className="w-7 h-7 rounded-full flex items-center justify-center font-bold text-xs transition-all"
+                            style={{ background: isExpanded ? "#FFD700" : "rgba(255,215,0,0.15)", color: isExpanded ? "#000" : "#FFD700" }}
+                          >
+                            {isExpanded ? "✕" : "→"}
+                          </button>
+                        </div>
 
-                    {/* Optional Intention Chants */}
-                    {remedy.sampleIntention && (
-                      <div className="bg-[#F9F9FB] border-l-4 border-[#FFD700] p-3 rounded-r-lg">
-                        <p className="text-[9px] uppercase font-bold text-[#9A7026] tracking-wider mb-1">
-                          {t.intentionTitle}
-                        </p>
-                        <p className="text-xs italic text-black/80 font-serif leading-relaxed">
-                          &quot;{remedy.sampleIntention.replace("Rahul Sharma", name || (language === "en" ? "Native" : "जातक"))}&quot;
-                        </p>
-                      </div>
-                    )}
+                        {/* Category badge */}
+                        <div className="px-4 pb-1">
+                          <span className="inline-block text-[9px] font-black tracking-[0.15em] px-2.5 py-0.5 rounded-full"
+                            style={{ background: meta.bg, color: meta.color, border: `1px solid ${meta.color}40` }}>
+                            {meta.label}
+                          </span>
+                        </div>
 
-                    {/* Mantra */}
-                    {remedy.mantra && (
-                      <div className="bg-yellow-50/30 border border-[#FFD700]/30 p-3 rounded-lg text-center">
-                        <p className="text-[9px] uppercase font-bold text-[#9A7026] tracking-wider mb-1">
-                          {t.mantraChanting}
-                        </p>
-                        <p className="text-sm font-semibold text-black leading-relaxed font-serif">
-                          {remedy.mantra}
-                        </p>
-                      </div>
-                    )}
+                        {/* Central decorative Sanskrit symbol */}
+                        <div className="relative flex items-center justify-center py-6 mx-4 overflow-hidden rounded-xl" style={{ background: "rgba(255,215,0,0.03)" }}>
+                          {/* Circular glow ring */}
+                          <div className="absolute w-28 h-28 rounded-full" style={{ background: `radial-gradient(circle, ${meta.color}18 0%, transparent 70%)` }} />
+                          <span className="relative text-5xl font-serif select-none" style={{ color: meta.color, textShadow: `0 0 30px ${meta.color}60, 0 0 60px ${meta.color}30` }}>
+                            {meta.symbol}
+                          </span>
+                        </div>
 
-                    {/* Benefits */}
-                    {remedy.benefits && (
-                      <div className="pt-2 border-t border-black/5 text-xs">
-                        <span className="font-bold text-green-700">{t.benefitsLabel} </span>
-                        <span className="text-black/75">
-                          {Array.isArray(remedy.benefits) ? remedy.benefits.join(", ") : remedy.benefits}
-                        </span>
-                      </div>
-                    )}
+                        {/* Title */}
+                        <div className="px-4 pt-3">
+                          <h4 className="text-sm font-black uppercase tracking-wide leading-snug text-white">
+                            {remedy.title}
+                          </h4>
+                          {remedy.timing && (
+                            <p className="text-[10px] mt-1.5 flex items-center gap-1.5" style={{ color: "#FFD700" }}>
+                              <span>⏱</span>
+                              <span className="font-medium">{remedy.timing}</span>
+                            </p>
+                          )}
+                        </div>
 
-                    {/* Warnings/Notes */}
-                    {(remedy.note || (remedy.notes && remedy.notes.length > 0)) && (
-                      <div className="bg-red-50/50 p-3 rounded-lg border border-red-200/40 text-[10px] text-red-900 leading-relaxed">
-                        <p className="font-bold uppercase tracking-wider mb-1">{t.importantGuidance}</p>
-                        {remedy.note && <p>{remedy.note}</p>}
-                        {remedy.notes && (
-                          <ul className="list-disc pl-4 space-y-0.5">
-                            {remedy.notes.map((noteText, idx) => (
-                              <li key={idx}>{noteText}</li>
-                            ))}
-                          </ul>
+                        {/* Ingredient chips */}
+                        <div className="px-4 pt-3 pb-4 flex flex-wrap gap-1.5 mt-auto">
+                          {remedy.ingredients.slice(0, maxIngTags).map((ing, i) => (
+                            <span key={i} className="text-[9px] font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(255,255,255,0.06)", color: "rgba(255,255,255,0.55)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                              {ing}
+                            </span>
+                          ))}
+                          {extraIng > 0 && (
+                            <span className="text-[9px] font-semibold px-2.5 py-1 rounded-full" style={{ background: "rgba(255,215,0,0.1)", color: "#FFD700", border: "1px solid rgba(255,215,0,0.2)" }}>
+                              +{extraIng} more
+                            </span>
+                          )}
+                        </div>
+
+                        {/* Expanded Detail Panel */}
+                        {isExpanded && (
+                          <div className="border-t border-[#FFD700]/15 px-4 py-5 space-y-5" style={{ background: "rgba(255,215,0,0.03)" }}>
+
+                            {/* All Ingredients */}
+                            <div className="space-y-2">
+                              <p className="text-[9px] font-black tracking-[0.18em] uppercase" style={{ color: meta.color }}>
+                                ✦ Ingredients Required
+                              </p>
+                              <div className="flex flex-wrap gap-1.5">
+                                {remedy.ingredients.map((ing, ingIdx) => {
+                                  const isChecked = checkedIngredients[`${remIdx}-${ingIdx}`];
+                                  return (
+                                    <button
+                                      key={ingIdx}
+                                      onClick={() => handleToggleIngredient(remIdx, ingIdx)}
+                                      className="text-[10px] font-semibold px-2.5 py-1 rounded-full transition-all"
+                                      style={{
+                                        background: isChecked ? "rgba(74,222,128,0.15)" : "rgba(255,255,255,0.06)",
+                                        color: isChecked ? "#4ade80" : "rgba(255,255,255,0.6)",
+                                        border: isChecked ? "1px solid rgba(74,222,128,0.3)" : "1px solid rgba(255,255,255,0.08)",
+                                        textDecoration: isChecked ? "line-through" : "none"
+                                      }}
+                                    >
+                                      {isChecked ? "✓ " : ""}{ing}
+                                    </button>
+                                  );
+                                })}
+                              </div>
+                            </div>
+
+                            {/* Step-by-step process */}
+                            <div className="space-y-2">
+                              <p className="text-[9px] font-black tracking-[0.18em] uppercase" style={{ color: meta.color }}>
+                                ✦ Sacred Process
+                              </p>
+                              <ol className="space-y-2">
+                                {remedy.process.map((step, i) => (
+                                  <li key={i} className="flex gap-2.5 text-[11px] leading-relaxed text-white/70">
+                                    <span className="shrink-0 font-black text-[10px] mt-0.5" style={{ color: meta.color }}>0{i + 1}.</span>
+                                    <span>{step}</span>
+                                  </li>
+                                ))}
+                              </ol>
+                            </div>
+
+                            {/* Intention / Mantra */}
+                            {(remedy.sampleIntention || remedy.mantra) && (
+                              <div className="rounded-xl p-3 space-y-1" style={{ background: `${meta.bg}`, border: `1px solid ${meta.color}25` }}>
+                                {remedy.mantra && (
+                                  <>
+                                    <p className="text-[9px] font-black tracking-[0.18em] uppercase" style={{ color: meta.color }}>✦ Mantra</p>
+                                    <p className="text-sm font-serif font-semibold text-white leading-relaxed">{remedy.mantra}</p>
+                                  </>
+                                )}
+                                {remedy.sampleIntention && (
+                                  <p className="text-[10px] italic text-white/60 leading-relaxed pt-1">
+                                    "{remedy.sampleIntention.replace("Rahul Sharma", name || "Native")}"
+                                  </p>
+                                )}
+                              </div>
+                            )}
+
+                            {/* Benefits */}
+                            {remedy.benefits && (
+                              <div className="text-[10px] text-white/60 leading-relaxed">
+                                <span className="font-bold text-green-400">Benefits: </span>
+                                {Array.isArray(remedy.benefits) ? remedy.benefits.join(" · ") : remedy.benefits}
+                              </div>
+                            )}
+
+                            {/* Warning */}
+                            {(remedy.note || (remedy.notes && remedy.notes.length > 0)) && (
+                              <div className="rounded-xl p-3 space-y-1" style={{ background: "rgba(239,68,68,0.08)", border: "1px solid rgba(239,68,68,0.2)" }}>
+                                <p className="text-[9px] font-black tracking-[0.18em] uppercase text-red-400">⚠ Important Guidance</p>
+                                {remedy.note && <p className="text-[10px] text-red-300/80 leading-relaxed">{remedy.note}</p>}
+                                {remedy.notes && remedy.notes.map((n, i) => <p key={i} className="text-[10px] text-red-300/80 leading-relaxed">• {n}</p>)}
+                              </div>
+                            )}
+                          </div>
                         )}
                       </div>
-                    )}
-                  </div>
-                ))}
+                    );
+                  })}
+                </div>
               </div>
-            </div>
-          )}
+            );
+          })()}
         </div>
       </div>
       
