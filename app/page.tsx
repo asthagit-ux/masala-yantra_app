@@ -2,8 +2,11 @@
 
 import React from "react";
 import Link from "next/link";
+import { useLanguage } from "../lib/LanguageContext";
 
 export default function Home() {
+  const { language, setLanguage, t } = useLanguage();
+
   return (
     <div className="min-h-screen bg-[#EEEBE6] text-black font-sans flex flex-col justify-between select-none">
       
@@ -19,22 +22,42 @@ export default function Home() {
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
             </svg>
             <h1 className="text-black font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1">
-              AstroLearn
+              {t.logoName}
             </h1>
           </Link>
           <div className="flex gap-4 items-center">
             <Link
               href="/remedies/find"
-              className="text-xs font-semibold text-black hover:text-[#9A7026]"
+              className="text-xs font-semibold text-black hover:text-[#9A7026] hidden sm:block"
             >
-              Masala Remedies
+              {t.masalaRemedies}
             </Link>
             <Link
               href="/yantra-funnel"
-              className="text-xs font-semibold text-black hover:text-[#9A7026]"
+              className="text-xs font-semibold text-black hover:text-[#9A7026] hidden sm:block"
             >
-              Yantra
+              {t.yantra}
             </Link>
+
+            {/* Language Toggle Switcher */}
+            <div className="flex bg-[#EEEBE6] rounded-lg p-0.5 border border-black/5 ml-2">
+              <button
+                onClick={() => setLanguage("en")}
+                className={`text-[10px] font-bold px-2.5 py-1 rounded-md transition-all ${
+                  language === "en" ? "bg-white text-black shadow-sm" : "text-black/50 hover:text-black"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLanguage("hi")}
+                className={`text-[10px] font-bold px-2.5 py-1 rounded-md transition-all ${
+                  language === "hi" ? "bg-[#9A7026] text-white shadow-sm" : "text-black/50 hover:text-black"
+                }`}
+              >
+                हिन्दी
+              </button>
+            </div>
           </div>
         </header>
       </div>
@@ -83,29 +106,29 @@ export default function Home() {
           <div className="w-full md:w-[50%] text-center md:text-left space-y-4 max-md:mt-6">
             <div className="flex justify-center md:justify-start items-center gap-2">
               <span className="bg-[#FFD700] rounded-full text-black text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
-                Free Vedic Wisdom
+                {t.freeBadge}
               </span>
             </div>
             <h2 className="font-serif text-3xl md:text-4xl lg:text-5xl font-bold leading-tight text-black">
-              India’s Largest <br /> Online <br /> Astro-Learning Platform
+              {t.heroTitleLine1} <br /> {t.heroTitleLine2} <br /> {t.heroTitleLine3}
             </h2>
             <p className="text-sm md:text-base text-black/60 leading-relaxed max-w-md">
-              Unlock personalized astrological yantras and kitchen masala remedies derived from ancient scriptures. 100% self-hosted, no subscriptions.
+              {t.heroSubtitle}
             </p>
           </div>
         </section>
 
-        {/* Funnels Entry Section */}
+        {/* Engines Entry Section */}
         <section className="space-y-6">
           <div className="flex items-center justify-center gap-2 text-center pb-2 border-b border-black/5">
             <span className="text-sm font-bold uppercase tracking-wider text-black/60 font-mono">
-              Select Your Vedic Engine
+              {t.selectEngine}
             </span>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
-            {/* Masala Funnel Entry */}
+            {/* Masala Remedies Entry */}
             <Link
               href="/remedies/find"
               className="bg-white border border-black/10 hover:border-[#9A7026]/40 p-6 md:p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:shadow-lg group text-left"
@@ -117,24 +140,24 @@ export default function Home() {
                   </span>
                   <div>
                     <h3 className="font-serif text-xl font-bold text-black group-hover:text-[#9A7026] transition-colors">
-                      Masala Remedies
+                      {t.masalaRemedies}
                     </h3>
                     <p className="text-xs text-[#9A7026] font-semibold">
-                      Kitchen Spice Formulas
+                      {t.masalaCardTagline}
                     </p>
                   </div>
                 </div>
                 <p className="text-xs text-black/60 leading-relaxed">
-                  Got money drain, relationship disputes, vastu defects, or poor health? Answer simple concern questions and get convenient spice remedies you can do straight from home.
+                  {t.masalaCardDesc}
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-bold text-[#0A2133] group-hover:text-[#9A7026] transition-colors">
-                <span>Find My Remedy &rarr;</span>
-                <span className="text-black/30 font-normal">126+ remedies mapped</span>
+                <span dangerouslySetInnerHTML={{ __html: t.masalaCardCTA }} />
+                <span className="text-black/30 font-normal">{t.masalaCountText}</span>
               </div>
             </Link>
 
-            {/* Yantra Funnel Entry */}
+            {/* Yantra Entry */}
             <Link
               href="/yantra-funnel"
               className="bg-white border border-black/10 hover:border-[#9A7026]/40 p-6 md:p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:shadow-lg group text-left"
@@ -146,20 +169,20 @@ export default function Home() {
                   </span>
                   <div>
                     <h3 className="font-serif text-xl font-bold text-black group-hover:text-[#9A7026] transition-colors">
-                      Personalized Yantra
+                      {t.yantraCardTitle}
                     </h3>
                     <p className="text-xs text-[#9A7026] font-semibold">
-                      Geometric Talisman Generator
+                      {t.yantraCardTagline}
                     </p>
                   </div>
                 </div>
                 <p className="text-xs text-black/60 leading-relaxed">
-                  Determine your custom geometrical Vedic talismans. Supports DOB-based Numeroscope grid analysis to spot missing numbers, plus manual planet selections. Render and print.
+                  {t.yantraCardDesc}
                 </p>
               </div>
               <div className="pt-6 flex items-center justify-between text-xs font-bold text-[#0A2133] group-hover:text-[#9A7026] transition-colors">
-                <span>Find My Yantra &rarr;</span>
-                <span className="text-black/30 font-normal">56+ geometric grids</span>
+                <span dangerouslySetInnerHTML={{ __html: t.yantraCardCTA }} />
+                <span className="text-black/30 font-normal">{t.yantraCountText}</span>
               </div>
             </Link>
           </div>
@@ -168,26 +191,26 @@ export default function Home() {
         {/* Categories Quick Browse list */}
         <section className="space-y-4 text-center">
           <h4 className="text-xs font-bold uppercase tracking-wider text-black/50">
-            Or Browse Reference Libraries
+            {t.browseLibraries}
           </h4>
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               href="/remedies"
               className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#9A7026]/40 transition-all shadow-sm"
             >
-              🪐 Graha Remedies Index
+              {t.grahaRemediesLink}
             </Link>
             <Link
               href="/masala-remedies"
               className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#9A7026]/40 transition-all shadow-sm"
             >
-              🌿 Masala Categories List
+              {t.masalaCategoriesLink}
             </Link>
             <Link
               href="/horoscope"
               className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#9A7026]/40 transition-all shadow-sm"
             >
-              🔮 Daily Horoscope Outlook
+              {t.dailyHoroscopeLink}
             </Link>
           </div>
         </section>
@@ -196,7 +219,7 @@ export default function Home() {
       {/* Disclaimer */}
       <footer className="w-full text-center max-w-4xl mx-auto px-4 mt-auto">
         <p className="text-[10px] text-black/40">
-          Disclaimer: AstroLearn remedies and talismans are traditional Vedic practices, provided for educational and cultural purposes. Not medical or financial advice.
+          {t.disclaimer}
         </p>
       </footer>
     </div>

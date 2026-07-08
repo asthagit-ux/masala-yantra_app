@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import { useLanguage } from "../../lib/LanguageContext";
 import YantraRenderer from "@/components/YantraRenderer";
 import yantrasData from "../../content/yantras.json";
 import {
@@ -35,16 +36,6 @@ interface Yantra {
 }
 
 const yantras = yantrasData as Yantra[];
-
-// ─── Data ─────────────────────────────────────────────────────────────────────
-const categories = [
-  { id: "wealth",     title: "Wealth & Prosperity",      desc: "Business expansion, wealth accumulation, good luck.",              icon: "💰" },
-  { id: "health",     title: "Health & Healing",          desc: "Chronic illness recovery, pain relief, mental calm.",              icon: "🌿" },
-  { id: "studies",    title: "Studies & Knowledge",       desc: "Exam success, memory power, concentration, focus.",               icon: "🎓" },
-  { id: "protection", title: "Protection & Ward Evil",    desc: "House protection, evil eye removal, travel safety, nightmares.",  icon: "🛡️" },
-  { id: "marriage",   title: "Marriage & Love Harmony",   desc: "Delayed marriage, couple bonding, marital peace.",                icon: "❤️" },
-  { id: "success",    title: "Success & Manifestation",   desc: "Court cases, fame, manifesting wishes, spiritual occult power.", icon: "✨" },
-];
 
 const issueList: Record<string, { id: string; label: string; recommendedId: string }[]> = {
   wealth: [
@@ -122,15 +113,12 @@ const numerologyMap: Record<number, { name: string; yantraId: string }> = {
   9: { name: "Mangal Yantra (Mars)", yantraId: "mangal" },
 };
 
-// ─── Component ───────────────────────────────────────────────────────────────
-
 type AppMode = "goal" | "kundli";
 
 export default function YantraPage() {
-  // Mode: which flow
-  const [appMode, setAppMode] = useState<AppMode>("goal");
+  const { language, setLanguage, t } = useLanguage();
 
-  // Common
+  const [appMode, setAppMode] = useState<AppMode>("goal");
   const [name, setName] = useState("");
 
   // ── Goal-based flow state ──────────────────────────────────────────────────
@@ -150,12 +138,83 @@ export default function YantraPage() {
   const [birthDob, setBirthDob] = useState("");
   const [birthTime, setBirthTime] = useState("");
   const [birthCity, setBirthCity] = useState("");
-  const [geocoding, setGeocoding] = useState(false);
   const [geocodeError, setGeocodeError] = useState("");
   const [kundliResult, setKundliResult] = useState<KundliResult | null>(null);
   const [kundliRecs, setKundliRecs] = useState<YantraRecommendation[]>([]);
   const [kundliActiveRec, setKundliActiveRec] = useState<string>("");
   const [kundliLoading, setKundliLoading] = useState(false);
+
+  const categoryTitles: Record<string, Record<string, string>> = {
+    wealth: { en: "Wealth & Prosperity", hi: "धन और समृद्धि" },
+    health: { en: "Health & Healing", hi: "स्वास्थ्य और कल्याण" },
+    studies: { en: "Studies & Knowledge", hi: "शिक्षा और ज्ञान" },
+    protection: { en: "Protection & Ward Evil", hi: "रक्षा और बुरी नजर बचाव" },
+    marriage: { en: "Marriage & Love Harmony", hi: "विवाह और प्रेम सामंजस्य" },
+    success: { en: "Success & Manifestation", hi: "सफलता और मनोकामना" }
+  };
+
+  const categoryDescs: Record<string, Record<string, string>> = {
+    wealth: { en: "For business expansion, wealth accumulation, and good luck.", hi: "व्यापार विस्तार, धन संचय और अच्छे भाग्य के लिए।" },
+    health: { en: "For chronic illness recovery, pain relief, and mental calm.", hi: "पुरानी बीमारी से उबरने, दर्द से राहत और मानसिक शांति के लिए।" },
+    studies: { en: "For exam success, memory power, concentration, and focus.", hi: "परीक्षा में सफलता, स्मरण शक्ति, एकाग्रता और ध्यान के लिए।" },
+    protection: { en: "For house protection, evil eye removal, travel safety, and nightmares.", hi: "घर की सुरक्षा, बुरी नजर हटाने, यात्रा सुरक्षा और बुरे सपनों से बचाव के लिए।" },
+    marriage: { en: "For delayed marriage, couple bonding, and marital peace.", hi: "विवाह में देरी, आपसी जुड़ाव और वैवाहिक शांति के लिए।" },
+    success: { en: "For court cases, fame, manifesting wishes, and spiritual occult power.", hi: "अदालत के मामलों, प्रसिद्धि, मनोकामना पूरी करने और गुप्त शक्ति के लिए।" }
+  };
+
+  const yantraIssueLabels: Record<string, Record<string, string>> = {
+    "w-1": { en: "I want to clear debt and expand my store/business.", hi: "मैं कर्ज चुकाना चाहता हूँ और अपनी दुकान/व्यवसाय बढ़ाना चाहता हूँ।" },
+    "w-2": { en: "I want to attract wealth through hard work and efforts.", hi: "मैं कड़ी मेहनत और प्रयासों से धन आकर्षित करना चाहता हूँ।" },
+    "w-3": { en: "I want to accumulate money and secure savings in my vault/safe.", hi: "मैं धन का संचय करना चाहता हूँ और अपनी तिजोरी में बचत सुरक्षित रखना चाहता हूँ।" },
+    "w-4": { en: "I need overall good fortune and luck in new projects.", hi: "मुझे नई परियोजनाओं में समग्र सौभाग्य और सफलता चाहिए।" },
+    "w-5": { en: "I am trying to acquire a personal vehicle.", hi: "मैं एक नया वाहन खरीदने की कोशिश कर रहा हूँ।" },
+    "w-6": { en: "I want general household abundance and business growth.", hi: "मुझे सामान्य घरेलू समृद्धि और व्यावसायिक विकास चाहिए।" },
+
+    "h-1": { en: "I want relief from chronic or acute diseases.", hi: "मुझे पुरानी या गंभीर बीमारियों से राहत चाहिए।" },
+    "h-2": { en: "I want to cure minor but persistent fever, cold, or flu.", hi: "मैं छोटे लेकिन लगातार होने वाले बुखार या सर्दी-जुकाम को ठीक करना चाहता हूँ।" },
+    "h-3": { en: "I suffer from muscular, joint, or physical pains.", hi: "मैं मांसपेशियों, जोड़ों या शारीरिक दर्द से पीड़ित हूँ।" },
+    "h-4": { en: "I want to protect a pregnancy or prevent miscarriages.", hi: "मैं गर्भावस्था की रक्षा करना या गर्भपात को रोकना चाहती हूँ।" },
+    "h-5": { en: "I want to speed recovery of a family member.", hi: "मैं परिवार के किसी सदस्य के शीघ्र स्वस्थ होने की कामना करता हूँ।" },
+    "h-6": { en: "I want absolute mental peace and temper control.", hi: "मुझे पूर्ण मानसिक शांति और क्रोध पर नियंत्रण चाहिए।" },
+    "h-7": { en: "I suffer from continuous physical/emotional grief.", hi: "मैं लगातार शारीरिक या मानसिक कष्ट से पीड़ित हूँ।" },
+
+    "s-1": { en: "I want to overcome exam phobia and score well.", hi: "मैं परीक्षा के डर को दूर करना और अच्छे अंक प्राप्त करना चाहता हूँ।" },
+    "s-2": { en: "I want to improve memory, concentration, and deep learning.", hi: "मैं याददाश्त, एकाग्रता और गहरी समझ में सुधार करना चाहता हूँ।" },
+    "s-3": { en: "I want academic success under competitive pressure.", hi: "मुझे प्रतियोगी दबाव में शैक्षणिक सफलता चाहिए।" },
+    "s-4": { en: "I want to learn arts, music, or pursue high research.", hi: "मैं कला, संगीत सीखना चाहता हूँ या उच्च शोध करना चाहता हूँ।" },
+    "s-5": { en: "I need concentration, focus, and body toxin cleaning.", hi: "मुझे एकाग्रता, ध्यान और शरीर की शुद्धि चाहिए।" },
+
+    "p-1": { en: "I want to shield my home from negative blockages.", hi: "मैं अपने घर को नकारात्मक बाधाओं से बचाना चाहता हूँ।" },
+    "p-2": { en: "My child/family is suffering from sudden Nazar (Evil Eye).", hi: "मेरा बच्चा/परिवार अचानक लगी बुरी नजर (नजर दोष) से पीड़ित है।" },
+    "p-3": { en: "I need strong protection from negative vibes (for adults).", hi: "मुझे नकारात्मक तरंगों से मजबूत सुरक्षा चाहिए (वयस्कों के लिए)।" },
+    "p-4": { en: "I experience paranormal fears or nightmares.", hi: "मुझे बुरे सपने या अज्ञात भय महसूस होते हैं।" },
+    "p-5": { en: "I am going on an important or urgent journey.", hi: "मैं एक महत्वपूर्ण या आवश्यक यात्रा पर जा रहा हूँ।" },
+    "p-6": { en: "I have persistent nightmares and want peaceful sleep.", hi: "मुझे बार-बार बुरे सपने आते हैं और मैं शांति से सोना चाहता हूँ।" },
+    "p-7": { en: "I need protection from hidden enemies.", hi: "मुझे गुप्त शत्रुओं से सुरक्षा चाहिए।" },
+
+    "m-1": { en: "My marriage is experiencing delays or obstacles.", hi: "मेरे विवाह में देरी या बाधाएं आ रही हैं।" },
+    "m-2": { en: "We are recently married and want to build understanding.", hi: "हमारा हाल ही में विवाह हुआ है और हम आपसी समझ बढ़ाना चाहते हैं।" },
+    "m-3": { en: "I want to resolve family discord and ensure love life success.", hi: "मैं पारिवारिक कलह को दूर करना और प्रेम जीवन में सफलता चाहता हूँ।" },
+    "m-4": { en: "I want to remove obstacles in my married life.", hi: "मैं अपने वैवाहिक जीवन की बाधाओं को दूर करना चाहता हूँ।" },
+
+    "c-1": { en: "I want public recognition, name, and fame in my circle.", hi: "मुझे सार्वजनिक पहचान, नाम और प्रसिद्धि चाहिए।" },
+    "c-2": { en: "I want commercial success and client conversion skills.", hi: "मुझे व्यावसायिक सफलता और ग्राहक आकर्षित करने का कौशल चाहिए।" },
+    "c-3": { en: "I want a new job, promotion, and success in all areas.", hi: "मुझे नई नौकरी, पदोन्नति और सभी क्षेत्रों में सफलता चाहिए।" },
+    "c-4": { en: "I am involved in legal disputes or court cases.", hi: "मैं कानूनी विवादों या अदालती मामलों में उलझा हुआ हूँ।" },
+    "c-5": { en: "I want to manifest my goals and wishes.", hi: "मैं अपने लक्ष्यों और इच्छाओं को पूरा करना चाहता हूँ।" },
+    "c-6": { en: "I want to attain pure occult and intuitive powers.", hi: "मैं शुद्ध गुप्त विज्ञान और अंतर्ज्ञान शक्तियां प्राप्त करना चाहता हूँ।" },
+    "c-7": { en: "I want to get general planetary protection.", hi: "मुझे सामान्य ग्रहों की शांति और सुरक्षा चाहिए।" },
+    "c-8": { en: "I want the blessings of Lord Shiva.", hi: "मुझे भगवान शिव का आशीर्वाद चाहिए।" }
+  };
+
+  const categoriesList = [
+    { id: "wealth", title: categoryTitles.wealth[language], desc: categoryDescs.wealth[language], icon: "💰" },
+    { id: "health", title: categoryTitles.health[language], desc: categoryDescs.health[language], icon: "🌿" },
+    { id: "studies", title: categoryTitles.studies[language], desc: categoryDescs.studies[language], icon: "🎓" },
+    { id: "protection", title: categoryTitles.protection[language], desc: categoryDescs.protection[language], icon: "🛡️" },
+    { id: "marriage", title: categoryTitles.marriage[language], desc: categoryDescs.marriage[language], icon: "❤️" },
+    { id: "success", title: categoryTitles.success[language], desc: categoryDescs.success[language], icon: "✨" }
+  ];
 
   // ─── Handlers: Goal flow ──────────────────────────────────────────────────
 
@@ -205,7 +264,9 @@ export default function YantraPage() {
 
     const location = await geocodeCity(birthCity);
     if (!location) {
-      setGeocodeError("Could not find this city. Try a more specific name (e.g. 'Mumbai, India').");
+      setGeocodeError(language === "en" 
+        ? "Could not find this city. Try a more specific name (e.g. 'Mumbai, India')." 
+        : "यह शहर नहीं मिल सका। कृपया अधिक विशिष्ट नाम (जैसे 'मुंबई, भारत') आज़माएं।");
       setKundliLoading(false);
       return;
     }
@@ -218,7 +279,9 @@ export default function YantraPage() {
       if (recs.length > 0) setKundliActiveRec(recs[0].planet);
       setKundliStep(2);
     } catch (err) {
-      setGeocodeError("Calculation error. Please check birth details and try again.");
+      setGeocodeError(language === "en" 
+        ? "Calculation error. Please check birth details and try again." 
+        : "गणना त्रुटि। कृपया जन्म के विवरण की जांच करें और पुनः प्रयास करें।");
     }
     setKundliLoading(false);
   };
@@ -233,8 +296,6 @@ export default function YantraPage() {
     ? yantras.find(y => y.id === kundliActiveRec) ?? null
     : null;
 
-  // ─── Shared header ────────────────────────────────────────────────────────
-
   return (
     <div className="min-h-screen bg-[#EEEBE6] text-black font-sans flex flex-col justify-between pb-10">
 
@@ -245,15 +306,32 @@ export default function YantraPage() {
             <svg className="w-9 h-9 text-[#9A7026] fill-current animate-[spin_30s_linear_infinite]" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
             </svg>
-            <h1 className="text-black font-semibold font-serif text-2xl tracking-wide">AstroLearn</h1>
+            <h1 className="text-black font-semibold font-serif text-2xl tracking-wide">{t.logoName}</h1>
           </Link>
           <div className="flex gap-4 items-center">
             <Link href="/remedies/find" className="text-xs font-bold text-white bg-[#0A2133] hover:bg-[#0A2133]/90 px-3.5 py-2 rounded transition-all">
-              Masala Remedies
+              {t.masalaRemedies}
             </Link>
-            <Link href="/remedies" className="text-xs font-semibold text-black hover:text-[#9A7026] hidden md:block">
-              Graha Remedies
-            </Link>
+            
+            {/* Language Toggle Switcher */}
+            <div className="flex bg-[#EEEBE6] rounded-lg p-0.5 border border-black/5 ml-2">
+              <button
+                onClick={() => setLanguage("en")}
+                className={`text-[10px] font-bold px-2.5 py-1 rounded-md transition-all ${
+                  language === "en" ? "bg-white text-black shadow-sm" : "text-black/50 hover:text-black"
+                }`}
+              >
+                EN
+              </button>
+              <button
+                onClick={() => setLanguage("hi")}
+                className={`text-[10px] font-bold px-2.5 py-1 rounded-md transition-all ${
+                  language === "hi" ? "bg-[#9A7026] text-white shadow-sm" : "text-black/50 hover:text-black"
+                }`}
+              >
+                हिन्दी
+              </button>
+            </div>
           </div>
         </header>
       </div>
@@ -264,10 +342,12 @@ export default function YantraPage() {
 
           {/* Title */}
           <div className="text-center space-y-2">
-            <p className="text-[#9A7026] font-bold uppercase tracking-wider text-xs font-mono">Vedic Geometry Talismans</p>
-            <h2 className="text-2xl md:text-3xl font-bold font-serif text-black">Personalized Yantra</h2>
+            <p className="text-[#9A7026] font-bold uppercase tracking-wider text-xs font-mono">
+              {language === "en" ? "Vedic Geometry Talismans" : "वैदिक ज्यामितीय तावीज"}
+            </p>
+            <h2 className="text-2xl md:text-3xl font-bold font-serif text-black">{t.yantraTitle}</h2>
             <p className="text-xs text-black/60 max-w-md mx-auto">
-              Generate Vedic yantras based on your life goals — or get precise recommendations from your Kundli birth chart.
+              {t.yantraDesc}
             </p>
           </div>
 
@@ -283,9 +363,9 @@ export default function YantraPage() {
                 }`}
               >
                 <div className="text-base">🎯</div>
-                <div>By Goal / Concern</div>
+                <div>{t.byGoalBtn}</div>
                 <div className={`text-[10px] font-normal ${appMode === "goal" ? "text-white/70" : "text-black/40"}`}>
-                  Select your life area and concern
+                  {t.byGoalBtnDesc}
                 </div>
               </button>
               <button
@@ -297,9 +377,9 @@ export default function YantraPage() {
                 }`}
               >
                 <div className="text-base">🔭</div>
-                <div>By Kundli (Birth Chart)</div>
+                <div>{t.byKundliBtn}</div>
                 <div className={`text-[10px] font-normal ${appMode === "kundli" ? "text-white/70" : "text-black/40"}`}>
-                  Enter birth time & place for exact chart
+                  {t.byKundliBtnDesc}
                 </div>
               </button>
             </div>
@@ -313,10 +393,14 @@ export default function YantraPage() {
               {/* Goal Step 1: Details */}
               {goalStep === 1 && (
                 <form onSubmit={handleGoalStep1} className="space-y-6">
-                  <h3 className="text-base font-semibold font-serif text-black pb-1 border-b border-black/10">Step 1: Your Details</h3>
+                  <h3 className="text-base font-semibold font-serif text-black pb-1 border-b border-black/10">
+                    {t.yantraStep1Title}
+                  </h3>
 
                   <div className="space-y-1.5">
-                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">Your Name (Required)</label>
+                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                      {t.yourNameRequired}
+                    </label>
                     <input
                       type="text" required placeholder="e.g. Rahul Sharma"
                       value={name} onChange={e => setName(e.target.value)}
@@ -325,7 +409,9 @@ export default function YantraPage() {
                   </div>
 
                   <div className="space-y-2">
-                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">Planetary Alignment (Optional)</label>
+                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                      {t.planetaryAlignment}
+                    </label>
                     <div className="grid grid-cols-3 gap-2">
                       {(["none", "dob", "manual"] as const).map((mode) => (
                         <button key={mode} type="button" onClick={() => setPlanetSelectMode(mode)}
@@ -335,7 +421,7 @@ export default function YantraPage() {
                               : "bg-white border-black/10 text-black hover:border-[#9A7026]/40"
                           }`}
                         >
-                          {mode === "none" ? "No Focus" : mode === "dob" ? "DOB Check" : "Pick Planet"}
+                          {mode === "none" ? t.noFocus : mode === "dob" ? t.dobCheck : t.pickPlanet}
                         </button>
                       ))}
                     </div>
@@ -343,17 +429,23 @@ export default function YantraPage() {
 
                   {planetSelectMode === "dob" && (
                     <div className="p-4 bg-[#EEEBE6]/20 border border-black/10 rounded-xl space-y-1.5">
-                      <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">Date of Birth</label>
+                      <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                        {t.dobLabel}
+                      </label>
                       <input type="date" required value={dob} onChange={e => setDob(e.target.value)}
                         className="w-full bg-white border border-black/10 rounded-lg px-4 py-2.5 text-black focus:outline-none focus:border-[#9A7026] text-sm font-medium"
                       />
-                      <p className="text-[10px] text-black/40">Calculates missing numbers in your numeroscope grid.</p>
+                      <p className="text-[10px] text-black/40">
+                        {t.dobHelper}
+                      </p>
                     </div>
                   )}
 
                   {planetSelectMode === "manual" && (
                     <div className="p-4 bg-[#EEEBE6]/20 border border-black/10 rounded-xl space-y-2">
-                      <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">Select Planet Focus</label>
+                      <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                        {t.selectPlanetFocus}
+                      </label>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-[180px] overflow-y-auto pr-1">
                         {planetList.map((p) => (
                           <button key={p.id} type="button" onClick={() => setSelectedPlanet(p.id)}
@@ -371,7 +463,7 @@ export default function YantraPage() {
                   )}
 
                   <button type="submit" className="w-full py-3.5 bg-[#0A2133] hover:bg-[#0A2133]/90 active:scale-[0.99] font-bold text-sm text-white rounded-lg transition-all">
-                    Continue to Goals →
+                    {t.continueToGoals}
                   </button>
                 </form>
               )}
@@ -380,11 +472,15 @@ export default function YantraPage() {
               {goalStep === 2 && (
                 <div className="space-y-6">
                   <div className="flex justify-between items-center pb-1 border-b border-black/10">
-                    <h3 className="text-base font-semibold font-serif text-black">Step 2: Area of Life</h3>
-                    <button onClick={() => setGoalStep(1)} className="text-xs text-[#9A7026] hover:underline font-bold">← Back</button>
+                    <h3 className="text-base font-semibold font-serif text-black">
+                      {t.yantraStep2Title}
+                    </h3>
+                    <button onClick={() => setGoalStep(1)} className="text-xs text-[#9A7026] hover:underline font-bold">
+                      {t.back}
+                    </button>
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {categories.map(cat => (
+                    {categoriesList.map(cat => (
                       <button key={cat.id} onClick={() => handleCategorySelect(cat.id)}
                         className="text-left bg-[#EEEBE6]/20 hover:bg-[#EEEBE6]/50 border border-black/10 hover:border-[#9A7026]/40 rounded-xl p-4 transition-all duration-200 active:scale-[0.98] group space-y-1"
                       >
@@ -403,18 +499,25 @@ export default function YantraPage() {
               {goalStep === 3 && (
                 <div className="space-y-6">
                   <div className="flex justify-between items-center pb-1 border-b border-black/10">
-                    <h3 className="text-base font-semibold font-serif text-black">Step 3: Specific Concern</h3>
-                    <button onClick={() => setGoalStep(2)} className="text-xs text-[#9A7026] hover:underline font-bold">← Back</button>
+                    <h3 className="text-base font-semibold font-serif text-black">
+                      {t.yantraStep3Title}
+                    </h3>
+                    <button onClick={() => setGoalStep(2)} className="text-xs text-[#9A7026] hover:underline font-bold">
+                      {t.back}
+                    </button>
                   </div>
                   <div className="space-y-3 max-h-[360px] overflow-y-auto pr-1">
-                    {issueList[category]?.map(issue => (
-                      <button key={issue.id} onClick={() => handleIssueSelect(issue.id, issue.recommendedId)}
-                        className="w-full text-left bg-[#EEEBE6]/20 hover:bg-[#EEEBE6]/50 border border-black/10 hover:border-[#9A7026]/40 rounded-xl p-4 text-xs font-semibold text-black hover:text-[#9A7026] transition-all leading-relaxed active:scale-[0.99] flex items-center justify-between gap-2"
-                      >
-                        <span>{issue.label}</span>
-                        <span className="text-[#9A7026] text-sm shrink-0">→</span>
-                      </button>
-                    ))}
+                    {issueList[category]?.map(issue => {
+                      const localizedLabel = yantraIssueLabels[issue.id]?.[language] || issue.label;
+                      return (
+                        <button key={issue.id} onClick={() => handleIssueSelect(issue.id, issue.recommendedId)}
+                          className="w-full text-left bg-[#EEEBE6]/20 hover:bg-[#EEEBE6]/50 border border-black/10 hover:border-[#9A7026]/40 rounded-xl p-4 text-xs font-semibold text-black hover:text-[#9A7026] transition-all leading-relaxed active:scale-[0.99] flex items-center justify-between gap-2"
+                        >
+                          <span>{localizedLabel}</span>
+                          <span className="text-[#9A7026] text-sm shrink-0">→</span>
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
               )}
@@ -423,20 +526,28 @@ export default function YantraPage() {
               {goalStep === 4 && currentYantra && (
                 <div className="space-y-6">
                   <div className="flex justify-between items-center pb-2 border-b border-black/10">
-                    <h3 className="text-base font-bold font-serif text-[#9A7026]">Your Recommended Talisman</h3>
-                    <button onClick={resetGoal} className="text-xs text-red-600 hover:underline font-bold">Start Over ←</button>
+                    <h3 className="text-base font-bold font-serif text-[#9A7026]">
+                      {t.yourRecommendedTalisman}
+                    </h3>
+                    <button onClick={resetGoal} className="text-xs text-red-600 hover:underline font-bold">
+                      {t.startOver}
+                    </button>
                   </div>
 
                   {/* DOB Numerology */}
                   {planetSelectMode === "dob" && missingNumbers.length > 0 && (
                     <div className="bg-[#EEEBE6]/30 border border-black/10 p-4 rounded-xl space-y-3">
-                      <p className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">🪐 Numeroscope Insights</p>
-                      <p className="text-[11px] text-black/70">Missing grid numbers: <span className="font-bold text-[#9A7026]">{missingNumbers.join(", ")}</span></p>
+                      <p className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">
+                        {t.numeroscopeInsights}
+                      </p>
+                      <p className="text-[11px] text-black/70">
+                        {t.missingGridNumbers} <span className="font-bold text-[#9A7026]">{missingNumbers.join(", ")}</span>
+                      </p>
                       <div className="flex flex-wrap gap-2">
                         <button onClick={() => setCurrentYantra(primaryYantra)}
                           className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === primaryYantra?.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
                         >
-                          Goal Yantra (Recommended)
+                          {t.goalYantraRecommended}
                         </button>
                         {missingNumbers.map(num => {
                           const m = numerologyMap[num];
@@ -447,7 +558,7 @@ export default function YantraPage() {
                             <button key={num} onClick={() => setCurrentYantra(y)}
                               className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === y.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
                             >
-                              Missing {num}: {y.name.split(" ")[0]}
+                              {language === "en" ? `Missing ${num}:` : `लापता ${num}:`} {y.name.split(" ")[0]}
                             </button>
                           );
                         })}
@@ -460,18 +571,20 @@ export default function YantraPage() {
                     const linked = yantras.find(y => y.id === selectedPlanet);
                     return (
                       <div className="bg-[#EEEBE6]/30 border border-black/10 p-4 rounded-xl space-y-3">
-                        <p className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">🪐 Planet Focus Toggle</p>
+                        <p className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">
+                          {t.planetFocusToggle}
+                        </p>
                         <div className="flex flex-wrap gap-2">
                           <button onClick={() => setCurrentYantra(primaryYantra)}
                             className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === primaryYantra?.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
                           >
-                            Goal Yantra
+                            {t.goalYantra}
                           </button>
                           {linked && (
                             <button onClick={() => setCurrentYantra(linked)}
                               className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === linked.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
                             >
-                              Planet: {linked.name.split(" ")[0]}
+                              {t.planetYantraLabel} {linked.name.split(" ")[0]}
                             </button>
                           )}
                         </div>
@@ -482,24 +595,26 @@ export default function YantraPage() {
                   {/* Custom input for dynamic yantras */}
                   {["travel-arch", "business-grid", "court-yantra", "house-protection"].includes(currentYantra.layout.type) && (
                     <div className="bg-[#EEEBE6]/20 border border-black/10 p-4 rounded-xl space-y-3">
-                      <p className="text-[11px] font-bold text-[#9A7026] uppercase tracking-wider">Customize Talisman Content</p>
+                      <p className="text-[11px] font-bold text-[#9A7026] uppercase tracking-wider">
+                        {t.customizeTalismanContent}
+                      </p>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                         {currentYantra.layout.type === "travel-arch" && (
                           <div className="space-y-1">
-                            <label className="text-[10px] text-black/50 font-bold uppercase">Destination Name</label>
+                            <label className="text-[10px] text-black/50 font-bold uppercase">{t.destinationName}</label>
                             <input type="text" placeholder="e.g. Kashi" value={destination} onChange={e => setDestination(e.target.value)}
                               className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
                           </div>
                         )}
                         {currentYantra.layout.type === "business-grid" && (
                           <div className="space-y-1">
-                            <label className="text-[10px] text-black/50 font-bold uppercase">Business Name</label>
+                            <label className="text-[10px] text-black/50 font-bold uppercase">{t.businessName}</label>
                             <input type="text" placeholder="e.g. Sharma Traders" value={businessName} onChange={e => setBusinessName(e.target.value)}
                               className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
                           </div>
                         )}
                         <div className="space-y-1">
-                          <label className="text-[10px] text-black/50 font-bold uppercase">Name on Talisman</label>
+                          <label className="text-[10px] text-black/50 font-bold uppercase">{t.nameOnTalisman}</label>
                           <input type="text" placeholder="e.g. Rahul Sharma" value={name} onChange={e => setName(e.target.value)}
                             className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
                         </div>
@@ -528,9 +643,9 @@ export default function YantraPage() {
                       <p key={i} className="text-xs italic font-serif text-black text-center bg-white px-3 py-2 rounded border border-black/5">&quot;{m}&quot;</p>
                     ))}
                     <div className="text-xs text-black/75 space-y-0.5 pt-1 border-t border-black/5">
-                      <p><span className="font-bold">Day:</span> {currentYantra.preparation.day}</p>
-                      <p><span className="font-bold">Time:</span> {currentYantra.preparation.time}</p>
-                      <p className="leading-relaxed"><span className="font-bold">Materials:</span> {currentYantra.preparation.materials}</p>
+                      <p><span className="font-bold">{t.preparationDay}</span> {currentYantra.preparation.day}</p>
+                      <p><span className="font-bold">{t.preparationTime}</span> {currentYantra.preparation.time}</p>
+                      <p className="leading-relaxed"><span className="font-bold">{t.preparationMaterials}</span> {currentYantra.preparation.materials}</p>
                     </div>
                   </div>
                 </div>
@@ -547,12 +662,18 @@ export default function YantraPage() {
               {kundliStep === 1 && (
                 <form onSubmit={handleKundliSubmit} className="space-y-6">
                   <div className="pb-1 border-b border-black/10 space-y-1">
-                    <h3 className="text-base font-semibold font-serif text-black">Enter Your Birth Details</h3>
-                    <p className="text-[11px] text-black/50">Your Kundli (birth chart) will be calculated using Vedic Jyotish — Lahiri Ayanamsha, Whole Sign houses.</p>
+                    <h3 className="text-base font-semibold font-serif text-black">
+                      {t.enterBirthDetails}
+                    </h3>
+                    <p className="text-[11px] text-black/50">
+                      {t.birthDetailsHelper}
+                    </p>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">Your Name</label>
+                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                      {language === "en" ? "Your Name" : "आपका नाम"}
+                    </label>
                     <input type="text" placeholder="e.g. Rahul Sharma" value={name} onChange={e => setName(e.target.value)}
                       className="w-full bg-[#EEEBE6]/40 border border-black/10 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[#9A7026] text-sm font-medium placeholder-black/30"
                     />
@@ -560,26 +681,36 @@ export default function YantraPage() {
 
                   <div className="grid grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">Date of Birth *</label>
+                      <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                        {t.dobRequired}
+                      </label>
                       <input type="date" required value={birthDob} onChange={e => setBirthDob(e.target.value)}
                         className="w-full bg-[#EEEBE6]/40 border border-black/10 rounded-lg px-3 py-3 text-black focus:outline-none focus:border-[#9A7026] text-sm font-medium"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">Time of Birth *</label>
+                      <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                        {t.tobRequired}
+                      </label>
                       <input type="time" required value={birthTime} onChange={e => setBirthTime(e.target.value)}
                         className="w-full bg-[#EEEBE6]/40 border border-black/10 rounded-lg px-3 py-3 text-black focus:outline-none focus:border-[#9A7026] text-sm font-medium"
                       />
                     </div>
                   </div>
-                  <p className="text-[10px] text-black/40 -mt-3">Birth time is essential to calculate the correct Lagna (Ascendant / rising sign).</p>
+                  <p className="text-[10px] text-black/40 -mt-3">
+                    {t.tobHelper}
+                  </p>
 
                   <div className="space-y-1.5">
-                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">Place of Birth *</label>
+                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                      {t.pobRequired}
+                    </label>
                     <input type="text" required placeholder="e.g. Mumbai, India" value={birthCity} onChange={e => setBirthCity(e.target.value)}
                       className="w-full bg-[#EEEBE6]/40 border border-black/10 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[#9A7026] text-sm font-medium placeholder-black/30"
                     />
-                    <p className="text-[10px] text-black/40">City name is geocoded via OpenStreetMap to get latitude & longitude for Lagna calculation.</p>
+                    <p className="text-[10px] text-black/40">
+                      {t.pobHelper}
+                    </p>
                   </div>
 
                   {geocodeError && (
@@ -594,10 +725,10 @@ export default function YantraPage() {
                     {kundliLoading ? (
                       <>
                         <span className="inline-block w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
-                        Calculating Kundli...
+                        {t.calculatingText}
                       </>
                     ) : (
-                      "🔭 Calculate My Kundli & Recommend Yantras"
+                      t.calculateBtn
                     )}
                   </button>
                 </form>
@@ -608,22 +739,28 @@ export default function YantraPage() {
                 <div className="space-y-6">
                   <div className="flex justify-between items-center pb-2 border-b border-black/10">
                     <div>
-                      <span className="text-[10px] font-bold text-[#9A7026] uppercase tracking-wider">Kundli Analysis</span>
-                      <h3 className="text-base font-bold text-black font-serif">{name || "Your"} Birth Chart</h3>
+                      <span className="text-[10px] font-bold text-[#9A7026] uppercase tracking-wider">
+                        {t.kundliAnalysis}
+                      </span>
+                      <h3 className="text-base font-bold text-black font-serif">
+                        {name || (language === "en" ? "Your" : "आपका")} {t.birthChartTitle}
+                      </h3>
                     </div>
-                    <button onClick={resetKundli} className="text-xs text-red-600 hover:underline font-bold">Start Over ←</button>
+                    <button onClick={resetKundli} className="text-xs text-red-600 hover:underline font-bold">
+                      {t.back}
+                    </button>
                   </div>
 
                   {/* Lagna & Birth Info Card */}
                   <div className="bg-[#0A2133] text-white rounded-xl p-5 space-y-4">
                     <div className="flex flex-wrap gap-4 justify-between items-start">
                       <div>
-                        <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold">Lagna (Ascendant)</p>
+                        <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold">{t.lagnaLabel}</p>
                         <p className="text-2xl font-bold font-serif mt-0.5">{kundliResult.lagnaSignName} ♊</p>
                         <p className="text-[11px] text-white/60 mt-1">{kundliResult.birthPlace}</p>
                       </div>
                       <div className="text-right">
-                        <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold">Ayanamsha</p>
+                        <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold">{t.ayanamshaLabel}</p>
                         <p className="text-sm font-bold text-[#FFD700]">{kundliResult.ayanamsha.toFixed(4)}°</p>
                         <p className="text-[10px] text-white/50">Lahiri</p>
                       </div>
@@ -631,12 +768,14 @@ export default function YantraPage() {
 
                     {/* Planet grid */}
                     <div>
-                      <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold mb-2">Navagraha Positions</p>
-                      <div className="grid grid-cols-3 gap-1.5">
+                      <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold mb-2">
+                        {t.navagrahaPositions}
+                      </p>
+                      <div className="grid grid-cols-3 gap-1.5 text-black">
                         {kundliResult.planets.map(p => (
                           <div key={p.planet}
                             className={`px-2 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 ${
-                              p.weakReasons.length > 0 ? "bg-red-600/30 border border-red-400/40" : "bg-white/10"
+                              p.weakReasons.length > 0 ? "bg-red-200/95 border border-red-400" : "bg-white"
                             }`}
                           >
                             <span>{p.symbol}</span>
@@ -644,7 +783,7 @@ export default function YantraPage() {
                               <div>{p.name.split(" ")[0]}</div>
                               <div className="text-[9px] font-normal opacity-75">H{p.house} · {p.signName.slice(0, 3)}</div>
                             </div>
-                            {p.weakReasons.length > 0 && <span className="ml-auto text-red-300">⚠</span>}
+                            {p.weakReasons.length > 0 && <span className="ml-auto text-red-700">⚠</span>}
                           </div>
                         ))}
                       </div>
@@ -655,14 +794,19 @@ export default function YantraPage() {
                   {kundliResult.weakPlanets.length === 0 ? (
                     <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center space-y-2">
                       <p className="text-2xl">✅</p>
-                      <p className="text-sm font-bold text-green-800">No severely afflicted planets found in your chart.</p>
-                      <p className="text-xs text-green-700">Your planetary positions appear relatively balanced. You may still use the Goal-based flow to select specific intention yantras.</p>
+                      <p className="text-sm font-bold text-green-800">
+                        {t.noWeakPlanets}
+                      </p>
+                      <p className="text-xs text-green-700">
+                        {t.noWeakPlanetsDesc}
+                      </p>
                     </div>
                   ) : (
                     <>
                       <div className="space-y-2">
                         <p className="text-xs font-bold uppercase text-black/50 tracking-wider">
-                          {kundliResult.weakPlanets.length} Afflicted Planet{kundliResult.weakPlanets.length > 1 ? "s" : ""} Detected
+                          {kundliResult.weakPlanets.length}{" "}
+                          {kundliResult.weakPlanets.length > 1 ? t.afflictedPlanetsDetectedPlural : t.afflictedPlanetsDetected}
                         </p>
                         <div className="flex flex-wrap gap-2">
                           {kundliRecs.map(rec => (
@@ -686,24 +830,24 @@ export default function YantraPage() {
                       </div>
 
                       {/* Active recommendation reason */}
-                      {kundliRecs.find(r => r.planet === kundliActiveRec) && (
-                        <div className={`border rounded-xl p-4 text-xs space-y-1 ${
-                          kundliRecs.find(r => r.planet === kundliActiveRec)?.severity === "high"
-                            ? "bg-red-50 border-red-200"
-                            : "bg-[#EEEBE6]/30 border-black/10"
-                        }`}>
-                          <p className="font-bold text-black">
-                            {kundliRecs.find(r => r.planet === kundliActiveRec)?.symbol}{" "}
-                            Why {kundliRecs.find(r => r.planet === kundliActiveRec)?.planetName}?
-                          </p>
-                          <p className="text-black/70 leading-relaxed">
-                            {kundliRecs.find(r => r.planet === kundliActiveRec)?.reason}
-                          </p>
-                          <p className="text-[#9A7026] font-semibold">
-                            Remedy: Energize the <strong>{activeKundliYantra?.name}</strong> to pacify and strengthen this planet.
-                          </p>
-                        </div>
-                      )}
+                      {kundliRecs.find(r => r.planet === kundliActiveRec) && (() => {
+                        const activeRecObj = kundliRecs.find(r => r.planet === kundliActiveRec);
+                        return (
+                          <div className={`border rounded-xl p-4 text-xs space-y-1 ${
+                            activeRecObj?.severity === "high" ? "bg-red-50 border-red-200" : "bg-[#EEEBE6]/30 border-black/10"
+                          }`}>
+                            <p className="font-bold text-black">
+                              {activeRecObj?.symbol} {t.whyPlanetQuestion} {activeRecObj?.planetName}?
+                            </p>
+                            <p className="text-black/70 leading-relaxed">
+                              {activeRecObj?.reason}
+                            </p>
+                            <p className="text-[#9A7026] font-semibold">
+                              {t.remedyStrongLabel} <strong>{t.remedyText}</strong>
+                            </p>
+                          </div>
+                        );
+                      })()}
 
                       {/* Yantra Render */}
                       {activeKundliYantra && (
@@ -727,9 +871,9 @@ export default function YantraPage() {
                               <p key={i} className="text-xs italic font-serif text-black text-center bg-white px-3 py-2 rounded border border-black/5">&quot;{m}&quot;</p>
                             ))}
                             <div className="text-xs text-black/75 space-y-0.5 pt-1 border-t border-black/5">
-                              <p><span className="font-bold">Day:</span> {activeKundliYantra.preparation.day}</p>
-                              <p><span className="font-bold">Time:</span> {activeKundliYantra.preparation.time}</p>
-                              <p className="leading-relaxed"><span className="font-bold">Materials:</span> {activeKundliYantra.preparation.materials}</p>
+                              <p><span className="font-bold">{t.preparationDay}</span> {activeKundliYantra.preparation.day}</p>
+                              <p><span className="font-bold">{t.preparationTime}</span> {activeKundliYantra.preparation.time}</p>
+                              <p className="leading-relaxed"><span className="font-bold">{t.preparationMaterials}</span> {activeKundliYantra.preparation.materials}</p>
                             </div>
                           </div>
                         </>
@@ -746,7 +890,7 @@ export default function YantraPage() {
       {/* Disclaimer */}
       <footer className="w-full text-center max-w-4xl mx-auto px-4 mt-auto">
         <p className="text-[10px] text-black/40">
-          Disclaimer: AstroLearn yantras are traditional Vedic practices for educational purposes. Planetary positions are approximate. Not medical or financial advice.
+          {t.disclaimer}
         </p>
       </footer>
     </div>
