@@ -806,8 +806,11 @@ export default function YantraPage() {
                         <div className="flex flex-wrap gap-4 justify-between items-start">
                           <div>
                             <p className="text-[10px] uppercase tracking-wider text-[#FFD700] font-bold">{t.lagnaLabel}</p>
-                            <p className="text-2xl font-bold font-serif mt-0.5 text-white">{kundliResult.lagnaSignName} ♊</p>
-                            <p className="text-[11px] text-white/60 mt-1">{kundliResult.birthPlace}</p>
+                            <p className="text-2xl font-bold font-serif mt-0.5 text-white">{kundliResult.lagnaSignName}</p>
+                            <p className="text-[11px] text-white/60 mt-0.5">
+                              {kundliResult.lagnaDegrees}° {kundliResult.lagnaMinutes}′ · {kundliResult.lagnaNakshatra}
+                            </p>
+                            <p className="text-[11px] text-white/50 mt-0.5">{kundliResult.birthPlace}</p>
                           </div>
                           <div className="text-right">
                             <p className="text-[10px] uppercase tracking-wider text-[#FFD700] font-bold">{t.ayanamshaLabel}</p>
@@ -821,19 +824,30 @@ export default function YantraPage() {
                           <p className="text-[10px] uppercase tracking-wider text-[#FFD700] font-bold mb-2">
                             {t.navagrahaPositions}
                           </p>
-                          <div className="grid grid-cols-3 gap-1.5 text-black">
+                          <div className="space-y-1 text-black">
                             {kundliResult.planets.map(p => (
                               <div key={p.planet}
-                                className={`px-2 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 ${
-                                  p.weakReasons.length > 0 ? "bg-red-100 border border-red-300" : "bg-white"
+                                className={`px-2.5 py-2 rounded-lg text-[10px] font-bold flex items-center gap-2 ${
+                                  p.debilitated || p.combust ? "bg-red-100 border border-red-300"
+                                  : p.exalted ? "bg-yellow-50 border border-yellow-300"
+                                  : p.ownSign ? "bg-green-50 border border-green-200"
+                                  : "bg-white"
                                 }`}
                               >
-                                <span>{p.symbol}</span>
-                                <div>
-                                  <div>{p.name.split(" ")[0]}</div>
-                                  <div className="text-[9px] font-normal opacity-75">H{p.house} · {p.signName.slice(0, 3)}</div>
+                                <span className="text-base shrink-0" style={{ color: p.color }}>{p.symbol}</span>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-1">
+                                    <span>{p.name.split(" ")[0]}</span>
+                                    {p.retrograde && <span className="text-[8px] text-orange-600 font-black">(R)</span>}
+                                    {p.exalted && <span className="text-[8px] text-yellow-700 font-black">⬆ UCH</span>}
+                                    {p.ownSign && !p.exalted && <span className="text-[8px] text-green-700 font-black">⌂ SW</span>}
+                                    {p.debilitated && <span className="text-[8px] text-red-700 font-black">⬇ NEE</span>}
+                                    {p.combust && !p.debilitated && <span className="text-[8px] text-orange-700 font-black">🔥</span>}
+                                  </div>
+                                  <div className="text-[9px] font-normal opacity-70 mt-0.5">
+                                    H{p.house} · {p.signName.slice(0, 3)} {p.degrees}°{p.minutes}′ · {p.nakshatra}
+                                  </div>
                                 </div>
-                                {p.weakReasons.length > 0 && <span className="ml-auto text-red-700">⚠</span>}
                               </div>
                             ))}
                           </div>
