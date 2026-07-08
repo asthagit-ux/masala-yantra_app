@@ -165,37 +165,37 @@ export default function MasalaFunnel() {
   };
 
   return (
-    <div className="min-h-screen bg-[#EEEBE6] text-black font-sans flex flex-col justify-between pb-10">
+    <div className="min-h-screen bg-[#F9F9FB] text-black font-sans flex flex-col justify-between pb-10">
       
-      {/* AstroLearn Header */}
-      <div className="py-4 bg-white sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-sm border-b border-black/5">
-        <header className="flex items-center justify-between w-full max-w-4xl mx-auto">
-          <Link href="/" className="flex items-center gap-2.5 no-underline">
+      {/* AstroLearn Premium Header */}
+      <div className="py-4 bg-black sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-lg border-b border-[#FFD700]/30">
+        <header className="flex items-center justify-between w-full max-w-6xl mx-auto">
+          <Link href="/" className="flex items-center gap-2.5 no-underline group">
             <svg
-              className="w-[36px] h-[36px] text-[#9A7026] fill-current animate-[spin_30s_linear_infinite]"
+              className="w-[36px] h-[36px] text-[#FFD700] fill-current animate-[spin_30s_linear_infinite]"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
             </svg>
-            <h1 className="text-black font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1">
+            <h1 className="text-white font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1 group-hover:text-[#FFD700] transition-colors">
               {t.logoName}
             </h1>
           </Link>
           <div className="flex gap-4 items-center">
             <Link
               href="/yantra-funnel"
-              className="text-xs font-bold text-white bg-[#0A2133] hover:bg-[#0A2133]/90 px-3.5 py-2 rounded transition-all"
+              className="text-xs font-bold text-black bg-[#FFD700] hover:bg-[#FFC800] px-3.5 py-2 rounded transition-all shadow-sm"
             >
               {t.yantra}
             </Link>
             
             {/* Language Toggle Switcher */}
-            <div className="flex bg-[#EEEBE6] rounded-lg p-0.5 border border-black/5 ml-2">
+            <div className="flex bg-white/10 rounded-lg p-0.5 border border-white/10 ml-2">
               <button
                 onClick={() => setLanguage("en")}
                 className={`text-[10px] font-bold px-2.5 py-1 rounded-md transition-all ${
-                  language === "en" ? "bg-white text-black shadow-sm" : "text-black/50 hover:text-black"
+                  language === "en" ? "bg-[#FFD700] text-black shadow-sm" : "text-white/60 hover:text-white"
                 }`}
               >
                 EN
@@ -203,7 +203,7 @@ export default function MasalaFunnel() {
               <button
                 onClick={() => setLanguage("hi")}
                 className={`text-[10px] font-bold px-2.5 py-1 rounded-md transition-all ${
-                  language === "hi" ? "bg-[#9A7026] text-white shadow-sm" : "text-black/50 hover:text-black"
+                  language === "hi" ? "bg-[#FFD700] text-black shadow-sm" : "text-white/60 hover:text-white"
                 }`}
               >
                 हिन्दी
@@ -232,7 +232,7 @@ export default function MasalaFunnel() {
 
           {/* Step 1: Details */}
           {step === 1 && (
-            <form onSubmit={handleStep1} className="space-y-6">
+            <form onSubmit={handleStep1} className="space-y-6 max-w-xl mx-auto">
               <div className="space-y-4">
                 <h3 className="text-base font-semibold font-serif text-black pb-1 border-b border-black/10">
                   {t.step1Title}
@@ -247,7 +247,7 @@ export default function MasalaFunnel() {
                     placeholder="e.g. Rahul Sharma"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
-                    className="w-full bg-[#EEEBE6]/40 border border-black/10 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[#9A7026] transition-all font-medium placeholder-black/30 text-sm"
+                    className="w-full bg-[#F9F9FB] border border-black/10 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[#FFD700] transition-all font-medium placeholder-black/30 text-sm"
                   />
                   <p className="text-[10px] text-black/40">
                     {t.nameHelper}
@@ -257,7 +257,7 @@ export default function MasalaFunnel() {
 
               <button
                 type="submit"
-                className="w-full py-3.5 bg-[#0A2133] hover:bg-[#0A2133]/90 active:scale-[0.99] font-bold text-sm text-white rounded-lg transition-all"
+                className="w-full py-3.5 bg-black hover:bg-black/90 active:scale-[0.99] font-bold text-sm text-white rounded-lg transition-all"
               >
                 {t.continueToCategories}
               </button>
@@ -284,7 +284,7 @@ export default function MasalaFunnel() {
                   <button
                     key={cat.id}
                     onClick={() => handleCategorySelect(cat.id)}
-                    className="text-left bg-[#EEEBE6]/20 hover:bg-[#EEEBE6]/50 border border-black/10 hover:border-[#9A7026]/40 rounded-xl p-4 transition-all duration-200 active:scale-[0.98] group space-y-1"
+                    className="text-left bg-white border border-black/10 hover:border-[#FFD700] hover:shadow-xl rounded-xl p-5 transition-all duration-200 active:scale-[0.98] group space-y-1"
                   >
                     <div className="flex items-center gap-2">
                       <span className="text-xl">{cat.icon}</span>
@@ -303,7 +303,7 @@ export default function MasalaFunnel() {
 
           {/* Step 3: Problems */}
           {step === 3 && (
-            <div className="space-y-6">
+            <div className="space-y-6 max-w-2xl mx-auto">
               <div className="flex justify-between items-center pb-1 border-b border-black/10">
                 <h3 className="text-base font-semibold font-serif text-black">
                   {t.step3Title}
@@ -323,7 +323,7 @@ export default function MasalaFunnel() {
                     <button
                       key={prob.id}
                       onClick={() => handleProblemSelect(prob.id, prob.remedyTitles)}
-                      className="w-full text-left bg-[#EEEBE6]/20 hover:bg-[#EEEBE6]/50 border border-black/10 hover:border-[#9A7026]/40 rounded-xl p-4 text-xs font-semibold text-black hover:text-[#9A7026] transition-all leading-relaxed active:scale-[0.99] flex items-center justify-between"
+                      className="w-full text-left bg-white border border-black/10 hover:border-[#FFD700] hover:shadow-lg rounded-xl p-4 text-xs font-semibold text-black hover:text-[#9A7026] transition-all leading-relaxed active:scale-[0.99] flex items-center justify-between"
                     >
                       <span>{localizedLabel}</span>
                       <span className="text-[#9A7026] text-sm">&rarr;</span>
@@ -361,7 +361,7 @@ export default function MasalaFunnel() {
                 {matchingRemedies.map((remedy, remIdx) => (
                   <div
                     key={remIdx}
-                    className="border border-[#9A7026]/20 bg-amber-50/10 rounded-xl p-5 md:p-6 space-y-4 shadow-sm"
+                    className="border border-black/10 hover:border-[#FFD700] bg-white rounded-xl p-5 md:p-6 space-y-4 shadow-sm transition-all"
                   >
                     
                     {/* Title */}
@@ -375,7 +375,7 @@ export default function MasalaFunnel() {
                         </p>
                       </div>
                       {remedy.timing && (
-                        <span className="inline-block bg-[#0A2133] text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                        <span className="inline-block bg-black text-[#FFD700] text-[10px] font-bold px-2.5 py-0.5 rounded uppercase tracking-wider">
                           ⏱ {remedy.timing}
                         </span>
                       )}
@@ -395,8 +395,8 @@ export default function MasalaFunnel() {
                               onClick={() => handleToggleIngredient(remIdx, ingIdx)}
                               className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-medium transition-all ${
                                 isChecked
-                                  ? "bg-green-100 border-green-300 text-green-800 line-through"
-                                  : "bg-white border-black/10 text-black/80 hover:border-[#9A7026]/40"
+                                  ? "bg-green-50 border-green-300 text-green-800 line-through"
+                                  : "bg-[#F9F9FB] border-black/10 text-black/80 hover:border-black/30"
                               }`}
                             >
                               <span>{isChecked ? "✓" : "☐"}</span>
@@ -429,7 +429,7 @@ export default function MasalaFunnel() {
 
                     {/* Optional Intention Chants */}
                     {remedy.sampleIntention && (
-                      <div className="bg-[#EEEBE6]/50 border-l-4 border-[#9A7026] p-3 rounded-r-lg">
+                      <div className="bg-[#F9F9FB] border-l-4 border-[#FFD700] p-3 rounded-r-lg">
                         <p className="text-[9px] uppercase font-bold text-[#9A7026] tracking-wider mb-1">
                           {t.intentionTitle}
                         </p>
@@ -441,7 +441,7 @@ export default function MasalaFunnel() {
 
                     {/* Mantra */}
                     {remedy.mantra && (
-                      <div className="bg-amber-100/40 border border-[#9A7026]/20 p-3 rounded-lg text-center">
+                      <div className="bg-yellow-50/30 border border-[#FFD700]/30 p-3 rounded-lg text-center">
                         <p className="text-[9px] uppercase font-bold text-[#9A7026] tracking-wider mb-1">
                           {t.mantraChanting}
                         </p>

@@ -8,43 +8,43 @@ export default function Home() {
   const { language, setLanguage, t } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-[#EEEBE6] text-black font-sans flex flex-col justify-between select-none">
+    <div className="min-h-screen bg-[#F9F9FB] text-black font-sans flex flex-col justify-between select-none">
       
-      {/* AstroLearn Header */}
-      <div className="py-4 bg-white sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-sm border-b border-black/5">
+      {/* AstroLearn Premium Header (Black navbar with Gold/Yellow highlights) */}
+      <div className="py-4 bg-black sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-lg border-b border-[#FFD700]/30">
         <header className="flex items-center justify-between w-full max-w-6xl mx-auto">
-          <Link href="/" className="flex items-center gap-2.5 no-underline">
+          <Link href="/" className="flex items-center gap-2.5 no-underline group">
             <svg
-              className="w-[36px] h-[36px] text-[#9A7026] fill-current animate-[spin_30s_linear_infinite]"
+              className="w-[36px] h-[36px] text-[#FFD700] fill-current animate-[spin_30s_linear_infinite]"
               viewBox="0 0 24 24"
               xmlns="http://www.w3.org/2000/svg"
             >
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
             </svg>
-            <h1 className="text-black font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1">
+            <h1 className="text-white font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1 group-hover:text-[#FFD700] transition-colors">
               {t.logoName}
             </h1>
           </Link>
           <div className="flex gap-4 items-center">
             <Link
               href="/remedies/find"
-              className="text-xs font-semibold text-black hover:text-[#9A7026] hidden sm:block"
+              className="text-xs font-semibold text-white/80 hover:text-[#FFD700] transition-colors hidden sm:block"
             >
               {t.masalaRemedies}
             </Link>
             <Link
               href="/yantra-funnel"
-              className="text-xs font-semibold text-black hover:text-[#9A7026] hidden sm:block"
+              className="text-xs font-semibold text-white/80 hover:text-[#FFD700] transition-colors hidden sm:block"
             >
               {t.yantra}
             </Link>
 
             {/* Language Toggle Switcher */}
-            <div className="flex bg-[#EEEBE6] rounded-lg p-0.5 border border-black/5 ml-2">
+            <div className="flex bg-white/10 rounded-lg p-0.5 border border-white/10 ml-2">
               <button
                 onClick={() => setLanguage("en")}
                 className={`text-[10px] font-bold px-2.5 py-1 rounded-md transition-all ${
-                  language === "en" ? "bg-white text-black shadow-sm" : "text-black/50 hover:text-black"
+                  language === "en" ? "bg-[#FFD700] text-black shadow-sm" : "text-white/60 hover:text-white"
                 }`}
               >
                 EN
@@ -52,7 +52,7 @@ export default function Home() {
               <button
                 onClick={() => setLanguage("hi")}
                 className={`text-[10px] font-bold px-2.5 py-1 rounded-md transition-all ${
-                  language === "hi" ? "bg-[#9A7026] text-white shadow-sm" : "text-black/50 hover:text-black"
+                  language === "hi" ? "bg-[#FFD700] text-black shadow-sm" : "text-white/60 hover:text-white"
                 }`}
               >
                 हिन्दी
@@ -68,7 +68,7 @@ export default function Home() {
           
           {/* Rotating Chakra Decorative Graphic */}
           <div className="w-full md:w-[45%] flex justify-center items-center relative py-4">
-            <div className="w-64 h-64 md:w-80 md:h-80 bg-white/20 rounded-full flex justify-center items-center border border-[#9A7026]/10 animate-[spin_60s_linear_infinite]">
+            <div className="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full flex justify-center items-center border border-[#9A7026]/20 shadow-md animate-[spin_60s_linear_infinite]">
               <svg
                 viewBox="0 0 200 200"
                 className="w-56 h-56 md:w-72 md:h-72 text-[#9A7026] opacity-75"
@@ -97,7 +97,7 @@ export default function Home() {
               </svg>
             </div>
             {/* Core focus center item */}
-            <div className="absolute w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-md border border-black/5">
+            <div className="absolute w-12 h-12 bg-black rounded-full flex items-center justify-center shadow-lg border border-[#FFD700]/30">
               <span className="text-xl">🪐</span>
             </div>
           </div>
@@ -105,7 +105,7 @@ export default function Home() {
           {/* Hero text */}
           <div className="w-full md:w-[50%] text-center md:text-left space-y-4 max-md:mt-6">
             <div className="flex justify-center md:justify-start items-center gap-2">
-              <span className="bg-[#FFD700] rounded-full text-black text-[10px] font-bold px-2 py-0.5 uppercase tracking-wider">
+              <span className="bg-[#FFD700] rounded-full text-black text-[10px] font-bold px-2.5 py-0.5 uppercase tracking-wider shadow-sm">
                 {t.freeBadge}
               </span>
             </div>
@@ -131,11 +131,11 @@ export default function Home() {
             {/* Masala Remedies Entry */}
             <Link
               href="/remedies/find"
-              className="bg-white border border-black/10 hover:border-[#9A7026]/40 p-6 md:p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:shadow-lg group text-left"
+              className="bg-white border border-black/10 hover:border-[#FFD700] p-6 md:p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:shadow-xl group text-left hover:-translate-y-1"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl p-2.5 bg-[#EEEBE6] rounded-xl group-hover:scale-110 transition-transform">
+                  <span className="text-3xl p-2.5 bg-[#F9F9FB] rounded-xl group-hover:scale-110 transition-transform">
                     🌶️
                   </span>
                   <div>
@@ -151,7 +151,7 @@ export default function Home() {
                   {t.masalaCardDesc}
                 </p>
               </div>
-              <div className="pt-6 flex items-center justify-between text-xs font-bold text-[#0A2133] group-hover:text-[#9A7026] transition-colors">
+              <div className="pt-6 flex items-center justify-between text-xs font-bold text-black group-hover:text-[#9A7026] transition-colors">
                 <span dangerouslySetInnerHTML={{ __html: t.masalaCardCTA }} />
                 <span className="text-black/30 font-normal">{t.masalaCountText}</span>
               </div>
@@ -160,11 +160,11 @@ export default function Home() {
             {/* Yantra Entry */}
             <Link
               href="/yantra-funnel"
-              className="bg-white border border-black/10 hover:border-[#9A7026]/40 p-6 md:p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:shadow-lg group text-left"
+              className="bg-white border border-black/10 hover:border-[#FFD700] p-6 md:p-8 rounded-2xl flex flex-col justify-between transition-all duration-300 hover:shadow-xl group text-left hover:-translate-y-1"
             >
               <div className="space-y-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-3xl p-2.5 bg-[#EEEBE6] rounded-xl group-hover:scale-110 transition-transform">
+                  <span className="text-3xl p-2.5 bg-[#F9F9FB] rounded-xl group-hover:scale-110 transition-transform">
                     🔱
                   </span>
                   <div>
@@ -180,7 +180,7 @@ export default function Home() {
                   {t.yantraCardDesc}
                 </p>
               </div>
-              <div className="pt-6 flex items-center justify-between text-xs font-bold text-[#0A2133] group-hover:text-[#9A7026] transition-colors">
+              <div className="pt-6 flex items-center justify-between text-xs font-bold text-black group-hover:text-[#9A7026] transition-colors">
                 <span dangerouslySetInnerHTML={{ __html: t.yantraCardCTA }} />
                 <span className="text-black/30 font-normal">{t.yantraCountText}</span>
               </div>
@@ -196,19 +196,19 @@ export default function Home() {
           <div className="flex flex-wrap justify-center gap-3">
             <Link
               href="/remedies"
-              className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#9A7026]/40 transition-all shadow-sm"
+              className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#FFD700] hover:shadow-md transition-all"
             >
               {t.grahaRemediesLink}
             </Link>
             <Link
               href="/masala-remedies"
-              className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#9A7026]/40 transition-all shadow-sm"
+              className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#FFD700] hover:shadow-md transition-all"
             >
               {t.masalaCategoriesLink}
             </Link>
             <Link
               href="/horoscope"
-              className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#9A7026]/40 transition-all shadow-sm"
+              className="px-4 py-2 bg-white border border-black/5 rounded-lg text-xs font-bold text-black hover:border-[#FFD700] hover:shadow-md transition-all"
             >
               {t.dailyHoroscopeLink}
             </Link>
