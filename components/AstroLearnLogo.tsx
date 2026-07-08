@@ -1,5 +1,5 @@
 // Reusable AstroLearn Saturn Logo Component
-// Renders the original high-resolution logo image asset directly to ensure perfect design fidelity.
+// Renders the original cropped square logo icon asset to ensure perfect design fidelity.
 
 interface AstroLearnLogoProps {
   size?: number;
@@ -9,11 +9,11 @@ interface AstroLearnLogoProps {
 export function AstroLearnLogo({ size = 38, className = "" }: AstroLearnLogoProps) {
   return (
     <img
-      src="/logo.png"
+      src="/logo-icon.png"
       alt="AstroLearn Logo"
       width={size}
       height={size}
-      className={`rounded-xl object-contain shadow-md border border-black/10 transition-transform duration-200 ${className}`}
+      className={`object-contain transition-transform duration-200 ${className}`}
       style={{ width: size, height: size }}
     />
   );
