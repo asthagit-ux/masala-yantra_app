@@ -139,6 +139,7 @@ export default function YantraPage() {
   const [birthDob, setBirthDob] = useState("");
   const [birthTime, setBirthTime] = useState("");
   const [birthCity, setBirthCity] = useState("");
+  const [birthTz, setBirthTz] = useState<number>(5.5); // default IST
   const [geocodeError, setGeocodeError] = useState("");
   const [kundliResult, setKundliResult] = useState<KundliResult | null>(null);
   const [kundliRecs, setKundliRecs] = useState<YantraRecommendation[]>([]);
@@ -273,7 +274,7 @@ export default function YantraPage() {
     }
 
     try {
-      const result = calculateKundli(birthDob, birthTime, location.lat, location.lng, location.displayName);
+      const result = calculateKundli(birthDob, birthTime, location.lat, location.lng, location.displayName, birthTz);
       const recs = getKundliYantraRecommendations(result);
       setKundliResult(result);
       setKundliRecs(recs);
@@ -754,6 +755,57 @@ export default function YantraPage() {
                     />
                     <p className="text-[10px] text-black/40">
                       {t.pobHelper}
+                    </p>
+                  </div>
+
+                  {/* Timezone selector — critical for accurate ascendant */}
+                  <div className="space-y-1.5">
+                    <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
+                      {language === "en" ? "Time Zone (UTC Offset)" : "समय क्षेत्र (UTC अंतर)"}
+                    </label>
+                    <select value={birthTz} onChange={e => setBirthTz(parseFloat(e.target.value))}
+                      className="w-full bg-[#F9F9FB] border border-black/10 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[#FFD700] text-sm font-medium"
+                    >
+                      <optgroup label="India">
+                        <option value={5.5}>IST — India Standard Time (UTC+5:30) ✓ Default</option>
+                      </optgroup>
+                      <optgroup label="Asia">
+                        <option value={5.75}>NPT — Nepal (UTC+5:45)</option>
+                        <option value={6}>BST — Bangladesh / Bhutan (UTC+6)</option>
+                        <option value={5}>PKT — Pakistan (UTC+5)</option>
+                        <option value={5.5}>SLT — Sri Lanka (UTC+5:30)</option>
+                        <option value={8}>CST — China / Singapore (UTC+8)</option>
+                        <option value={7}>WIB — Indonesia West (UTC+7)</option>
+                        <option value={9}>JST — Japan / Korea (UTC+9)</option>
+                        <option value={4}>GST — Gulf / UAE / Oman (UTC+4)</option>
+                        <option value={3.5}>IRST — Iran (UTC+3:30)</option>
+                        <option value={3}>AST — Saudi / Kuwait (UTC+3)</option>
+                      </optgroup>
+                      <optgroup label="Europe">
+                        <option value={0}>GMT — UK (UTC+0)</option>
+                        <option value={1}>CET — Central Europe (UTC+1)</option>
+                        <option value={2}>EET — Eastern Europe (UTC+2)</option>
+                      </optgroup>
+                      <optgroup label="Americas">
+                        <option value={-5}>EST — US East (UTC-5)</option>
+                        <option value={-6}>CST — US Central (UTC-6)</option>
+                        <option value={-7}>MST — US Mountain (UTC-7)</option>
+                        <option value={-8}>PST — US Pacific (UTC-8)</option>
+                        <option value={-4.5}>VET — Venezuela (UTC-4:30)</option>
+                        <option value={-3}>BRT — Brazil (UTC-3)</option>
+                      </optgroup>
+                      <optgroup label="Africa / Other">
+                        <option value={2}>SAST — South Africa (UTC+2)</option>
+                        <option value={1}>WAT — West Africa (UTC+1)</option>
+                        <option value={3}>EAT — East Africa (UTC+3)</option>
+                        <option value={10}>AEST — Australia East (UTC+10)</option>
+                        <option value={12}>NZST — New Zealand (UTC+12)</option>
+                      </optgroup>
+                    </select>
+                    <p className="text-[10px] text-black/40">
+                      {language === "en"
+                        ? "⚠ Select your birth city's exact time zone. Wrong TZ = wrong Ascendant (Lagna)."
+                        : "⚠ जन्म शहर का सही समय क्षेत्र चुनें। गलत TZ = गलत लग्न।"}
                     </p>
                   </div>
 
