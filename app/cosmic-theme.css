@@ -1,0 +1,21 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   COSMIC THEME — Global CSS Variables & Utilities
+   Applied to the full app: Landing, Yantra Funnel, Masala Remedies
+───────────────────────────────────────────────────────────────────────────── */
+
+:root {
+  --bg-base:        #08081A;
+  --bg-surface:     #0F0F25;
+  --bg-card:        #111128;
+  --border-gold:    rgba(255, 213, 105, 0.14);
+  --border-gold-hover: rgba(255, 213, 105, 0.45);
+  --gold:           #FFD369;
+  --gold-dim:       rgba(255, 211, 105, 0.55);
+  --text-primary:   #F1F0FF;
+  --text-muted:     rgba(255,255,255,0.5);
+  --text-faint:     rgba(255,255,255,0.28);
+  --gradient-cta:   linear-gradient(135deg, #6C5CE7, #A855F7, #EC4899);
+  --gradient-gold:  linear-gradient(135deg, #FFD369, #F5A623);
+  --glow-violet:    rgba(108, 92, 231, 0.25);
+  --glow-magenta:   rgba(236, 72, 153, 0.18);
+}
