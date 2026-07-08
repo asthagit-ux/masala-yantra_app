@@ -395,7 +395,7 @@ export default function YantraPage() {
         </div>
 
         {/* ── Mode Toggle — only on step 1 ──────────────────────────────── */}
-        {(goalStep === 1 || kundliStep === 1) && (
+        {((appMode === "goal" && goalStep === 1) || (appMode === "kundli" && kundliStep === 1)) && (
           <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto mb-10">
             <button onClick={() => { setAppMode("goal"); resetGoal(); }}
               className="py-5 px-5 rounded-2xl border text-left transition-all duration-250 space-y-1.5"
@@ -557,10 +557,11 @@ export default function YantraPage() {
 
             {/* Goal Step 4: Yantra Result */}
             {goalStep === 4 && currentYantra && (
-              <div className="space-y-7">
-                <div className="flex justify-between items-center">
+              <div className="space-y-6">
+                {/* ── Result Header ── */}
+                <div className="flex justify-between items-center px-1">
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65">✦ Your Sacred Talisman</p>
+                    <p className="text-[10px] font-black uppercase tracking-[0.25em] text-[#FFD369]/60">✦ Your Sacred Talisman</p>
                     <h3 className="text-xl font-bold font-serif text-white mt-0.5">{t.yourRecommendedTalisman}</h3>
                   </div>
                   <button onClick={resetGoal}
@@ -569,171 +570,182 @@ export default function YantraPage() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+                {/* ── Full-width Yantra Card (reference: apnaastro layout) ── */}
+                <div className="rounded-2xl overflow-hidden" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.22)" }}>
 
-                  {/* Left: Sidebars */}
-                  <div className="lg:col-span-5 space-y-5">
-                    {/* DOB Numerology */}
-                    {planetSelectMode === "dob" && missingNumbers.length > 0 && (
-                      <div className="rounded-2xl p-5 space-y-4" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.2)" }}>
-                        <p className="text-[10px] font-black tracking-wider text-[#FFD369] uppercase">{t.numeroscopeInsights}</p>
-                        <p className="text-[11px] text-white/65">
-                          {t.missingGridNumbers} <span className="font-bold text-[#FFD369]">{missingNumbers.join(", ")}</span>
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          <button onClick={() => setCurrentYantra(primaryYantra)}
-                            className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all"
-                            style={{
-                              background: currentYantra?.id === primaryYantra?.id ? "#FFD369" : "rgba(255,255,255,0.05)",
-                              color: currentYantra?.id === primaryYantra?.id ? "#000" : "rgba(255,255,255,0.7)",
-                              border: currentYantra?.id === primaryYantra?.id ? "none" : "1px solid rgba(255,255,255,0.1)"
-                            }}>
-                            {t.goalYantraRecommended}
-                          </button>
-                          {missingNumbers.map(num => {
-                            const m = numerologyMap[num];
-                            if (!m) return null;
-                            const y = yantras.find(y => y.id === m.yantraId);
-                            if (!y) return null;
-                            return (
-                              <button key={num} onClick={() => setCurrentYantra(y)}
-                                className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all"
-                                style={{
-                                  background: currentYantra?.id === y.id ? "#FFD369" : "rgba(255,255,255,0.05)",
-                                  color: currentYantra?.id === y.id ? "#000" : "rgba(255,255,255,0.7)",
-                                  border: currentYantra?.id === y.id ? "none" : "1px solid rgba(255,255,255,0.1)"
-                                }}>
-                                {language === "en" ? `Missing ${num}:` : `लापता ${num}:`} {y.name.split(" ")[0]}
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Manual Planet Switcher */}
-                    {planetSelectMode === "manual" && selectedPlanet && (() => {
-                      const linked = yantras.find(y => y.id === selectedPlanet);
-                      return (
-                        <div className="rounded-2xl p-5 space-y-4" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.2)" }}>
-                          <p className="text-[10px] font-black tracking-wider text-[#FFD369] uppercase">{t.planetFocusToggle}</p>
-                          <div className="flex flex-wrap gap-2">
-                            <button onClick={() => setCurrentYantra(primaryYantra)}
-                              className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all"
-                              style={{ background: currentYantra?.id === primaryYantra?.id ? "#FFD369" : "rgba(255,255,255,0.05)", color: currentYantra?.id === primaryYantra?.id ? "#000" : "rgba(255,255,255,0.7)", border: currentYantra?.id === primaryYantra?.id ? "none" : "1px solid rgba(255,255,255,0.1)" }}>
-                              {t.goalYantra}
-                            </button>
-                            {linked && (
-                              <button onClick={() => setCurrentYantra(linked)}
-                                className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all"
-                                style={{ background: currentYantra?.id === linked.id ? "#FFD369" : "rgba(255,255,255,0.05)", color: currentYantra?.id === linked.id ? "#000" : "rgba(255,255,255,0.7)", border: currentYantra?.id === linked.id ? "none" : "1px solid rgba(255,255,255,0.1)" }}>
-                                {t.planetYantraLabel} {linked.name.split(" ")[0]}
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      );
-                    })()}
-
-                    {/* Dynamic yantra customizer */}
-                    {["travel-arch", "business-grid", "court-yantra", "house-protection"].includes(currentYantra.layout.type) && (
-                      <div className="rounded-2xl p-5 space-y-4" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.15)" }}>
-                        <p className="text-[10px] font-black text-[#FFD369]/70 uppercase tracking-wider">{t.customizeTalismanContent}</p>
-                        <div className="space-y-3">
-                          {currentYantra.layout.type === "travel-arch" && (
-                            <div className="space-y-1">
-                              <label className="text-[10px] text-white/40 font-bold uppercase">{t.destinationName}</label>
-                              <input type="text" placeholder="e.g. Kashi" value={destination} onChange={e => setDestination(e.target.value)}
-                                className={inputCls} style={inputStyle} />
-                            </div>
-                          )}
-                          {currentYantra.layout.type === "business-grid" && (
-                            <div className="space-y-1">
-                              <label className="text-[10px] text-white/40 font-bold uppercase">{t.businessName}</label>
-                              <input type="text" placeholder="e.g. Sharma Traders" value={businessName} onChange={e => setBusinessName(e.target.value)}
-                                className={inputCls} style={inputStyle} />
-                            </div>
-                          )}
-                          <div className="space-y-1">
-                            <label className="text-[10px] text-white/40 font-bold uppercase">{t.nameOnTalisman}</label>
-                            <input type="text" placeholder="e.g. Rahul Sharma" value={name} onChange={e => setName(e.target.value)}
-                              className={inputCls} style={inputStyle} />
-                          </div>
-                        </div>
-                      </div>
-                    )}
+                  {/* Card Top Banner */}
+                  <div className="flex flex-wrap items-start justify-between gap-3 px-7 pt-6 pb-5 border-b" style={{ borderColor: "rgba(255,213,105,0.12)" }}>
+                    <div className="space-y-1">
+                      <h3 className="text-xl md:text-2xl font-black font-serif text-[#FFD369] uppercase tracking-wide leading-tight">
+                        {currentYantra.name}
+                      </h3>
+                      <p className="text-[10px] font-bold tracking-[0.22em] text-white/30 uppercase">✦ Vedic Remedial Geometry ✦</p>
+                    </div>
+                    <span className="shrink-0 text-black text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider mt-1"
+                      style={{ background: "linear-gradient(135deg, #FFD369, #F5A623)" }}>
+                      RECOMMENDED REMEDY
+                    </span>
                   </div>
 
-                  {/* Right: Consecration Report */}
-                  <div className="lg:col-span-7">
-                    <div className="rounded-2xl overflow-hidden space-y-7 p-6 md:p-8" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.2)" }}>
-                      {/* Header */}
-                      <div className="border-b pb-6 flex flex-wrap justify-between items-start gap-4" style={{ borderColor: "rgba(255,213,105,0.15)" }}>
-                        <div>
-                          <h3 className="text-xl font-bold font-serif text-[#FFD369] uppercase tracking-wide">{currentYantra.name}</h3>
-                          <p className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase mt-1">✦ Vedic Remedial Geometry ✦</p>
-                        </div>
-                        <span className="inline-block text-black text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider"
-                          style={{ background: "linear-gradient(135deg, #FFD369, #F5A623)" }}>
-                          RECOMMENDED REMEDY
-                        </span>
-                      </div>
+                  {/* Card Body — 2 always-filled columns */}
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
 
-                      {/* Section 1 */}
-                      <div className="space-y-3">
-                        <h4 className="text-[10px] font-black uppercase tracking-wider text-[#FFD369]/70 flex items-center gap-2">
-                          <span className="text-red-500">🛑</span> 1. PROBLEM & CHALLENGE ANALYSIS
-                        </h4>
-                        <div className="rounded-xl p-4 space-y-2" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.15)" }}>
-                          <p className="text-[9px] font-black tracking-wider text-[#FFD369] uppercase">Focus of Talisman:</p>
-                          <p className="text-xs text-white/80 leading-relaxed font-medium">{currentYantra.description}</p>
-                        </div>
-                      </div>
+                    {/* ── LEFT COLUMN: Drawing + Description + Optional Switchers ── */}
+                    <div className="p-6 space-y-5 border-r" style={{ borderColor: "rgba(255,213,105,0.08)" }}>
 
-                      {/* Section 2 */}
-                      <div className="space-y-4">
-                        <h4 className="text-[10px] font-black uppercase tracking-wider text-[#FFD369]/70 flex items-center gap-2">
-                          <span className="text-yellow-400">✨</span> 2. SACRED BHOJPATRA YANTRA DRAWING
-                        </h4>
-                        <div className="flex flex-col items-center justify-center p-5 bg-white border border-black/10 rounded-2xl max-w-xs mx-auto shadow-2xl">
+                      {/* Yantra SVG Drawing */}
+                      <div>
+                        <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 mb-3 flex items-center gap-2">
+                          <span className="text-yellow-400">✨</span> SACRED BHOJPATRA DRAWING
+                        </p>
+                        <div className="flex flex-col items-center justify-center p-5 bg-white rounded-2xl shadow-2xl max-w-[280px] mx-auto">
                           <YantraRenderer yantra={currentYantra} userName={name} destinationName={destination} businessName={businessName} />
                         </div>
                       </div>
 
-                      {/* Section 3 */}
-                      <div className="space-y-4">
-                        <h4 className="text-[10px] font-black uppercase tracking-wider text-[#FFD369]/70 flex items-center gap-2">
-                          <span className="text-green-400">🧘</span> 3. CONSECRATION & ACTIVATION DETAILS
-                        </h4>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                          <div className="rounded-xl p-4 text-[11px] space-y-2" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
-                            <p className="text-[9px] font-black tracking-wider text-[#FFD369] uppercase">Ritual Instructions:</p>
-                            <p className="text-white/70"><span className="font-bold text-white/55">{t.preparationDay}</span> {currentYantra.preparation.day}</p>
-                            <p className="text-white/70"><span className="font-bold text-white/55">{t.preparationTime}</span> {currentYantra.preparation.time}</p>
-                            <p className="text-white/70 leading-relaxed"><span className="font-bold text-white/55">{t.preparationMaterials}</span> {currentYantra.preparation.materials}</p>
-                          </div>
-                          <div className="rounded-xl p-4 text-[11px] space-y-3" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
-                            <p className="text-[9px] font-black tracking-wider text-[#FFD369] uppercase">Activation Mantras:</p>
-                            {currentYantra.mantras.map((m, i) => (
-                              <p key={i} className="italic text-xs font-serif text-white/85 rounded-lg px-3 py-2 text-center font-semibold"
-                                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                                &ldquo;{m}&rdquo;
-                              </p>
-                            ))}
+                      {/* Description */}
+                      <div className="rounded-xl p-4 space-y-1.5" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
+                        <p className="text-[9px] font-black tracking-[0.18em] uppercase text-[#FFD369]">Focus of Talisman</p>
+                        <p className="text-[11px] text-white/75 leading-relaxed">{currentYantra.description}</p>
+                      </div>
+
+                      {/* DOB Numerology switcher (optional) */}
+                      {planetSelectMode === "dob" && missingNumbers.length > 0 && (
+                        <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
+                          <p className="text-[9px] font-black tracking-[0.18em] uppercase text-[#FFD369]">{t.numeroscopeInsights}</p>
+                          <p className="text-[10px] text-white/55">
+                            {t.missingGridNumbers} <span className="font-bold text-[#FFD369]">{missingNumbers.join(", ")}</span>
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <button onClick={() => setCurrentYantra(primaryYantra)}
+                              className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all"
+                              style={{ background: currentYantra?.id === primaryYantra?.id ? "#FFD369" : "rgba(255,255,255,0.06)", color: currentYantra?.id === primaryYantra?.id ? "#000" : "rgba(255,255,255,0.65)", border: currentYantra?.id === primaryYantra?.id ? "none" : "1px solid rgba(255,255,255,0.1)" }}>
+                              {t.goalYantraRecommended}
+                            </button>
+                            {missingNumbers.map(num => {
+                              const m = numerologyMap[num];
+                              if (!m) return null;
+                              const y = yantras.find(y => y.id === m.yantraId);
+                              if (!y) return null;
+                              return (
+                                <button key={num} onClick={() => setCurrentYantra(y)}
+                                  className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all"
+                                  style={{ background: currentYantra?.id === y.id ? "#FFD369" : "rgba(255,255,255,0.06)", color: currentYantra?.id === y.id ? "#000" : "rgba(255,255,255,0.65)", border: currentYantra?.id === y.id ? "none" : "1px solid rgba(255,255,255,0.1)" }}>
+                                  {language === "en" ? `Missing ${num}:` : `लापता ${num}:`} {y.name.split(" ")[0]}
+                                </button>
+                              );
+                            })}
                           </div>
                         </div>
-                        <div className="rounded-xl p-4 text-[11px] space-y-2" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
-                          <p className="text-[9px] font-black tracking-wider text-[#FFD369] uppercase">Expected Benefits & Protections:</p>
-                          <ul className="space-y-1.5">
-                            {currentYantra.benefits.map((b, i) => (
-                              <li key={i} className="flex items-start gap-2 text-white/65">
-                                <span className="text-[#FFD369] mt-0.5 shrink-0">•</span>
-                                <span>{b}</span>
-                              </li>
-                            ))}
-                          </ul>
+                      )}
+
+                      {/* Manual planet switcher (optional) */}
+                      {planetSelectMode === "manual" && selectedPlanet && (() => {
+                        const linked = yantras.find(y => y.id === selectedPlanet);
+                        return (
+                          <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.15)" }}>
+                            <p className="text-[9px] font-black tracking-[0.18em] uppercase text-[#A855F7]">{t.planetFocusToggle}</p>
+                            <div className="flex flex-wrap gap-2">
+                              <button onClick={() => setCurrentYantra(primaryYantra)}
+                                className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all"
+                                style={{ background: currentYantra?.id === primaryYantra?.id ? "#FFD369" : "rgba(255,255,255,0.06)", color: currentYantra?.id === primaryYantra?.id ? "#000" : "rgba(255,255,255,0.65)", border: currentYantra?.id === primaryYantra?.id ? "none" : "1px solid rgba(255,255,255,0.1)" }}>
+                                {t.goalYantra}
+                              </button>
+                              {linked && (
+                                <button onClick={() => setCurrentYantra(linked)}
+                                  className="px-3 py-1.5 rounded-lg text-[10px] font-bold transition-all"
+                                  style={{ background: currentYantra?.id === linked.id ? "#FFD369" : "rgba(255,255,255,0.06)", color: currentYantra?.id === linked.id ? "#000" : "rgba(255,255,255,0.65)", border: currentYantra?.id === linked.id ? "none" : "1px solid rgba(255,255,255,0.1)" }}>
+                                  {t.planetYantraLabel} {linked.name.split(" ")[0]}
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })()}
+
+                      {/* Dynamic yantra customizer (optional) */}
+                      {["travel-arch", "business-grid", "court-yantra", "house-protection"].includes(currentYantra.layout.type) && (
+                        <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
+                          <p className="text-[9px] font-black tracking-[0.18em] uppercase text-[#FFD369]">{t.customizeTalismanContent}</p>
+                          <div className="space-y-3">
+                            {currentYantra.layout.type === "travel-arch" && (
+                              <div className="space-y-1">
+                                <label className="text-[10px] text-white/40 font-bold uppercase">{t.destinationName}</label>
+                                <input type="text" placeholder="e.g. Kashi" value={destination} onChange={e => setDestination(e.target.value)} className={inputCls} style={inputStyle} />
+                              </div>
+                            )}
+                            {currentYantra.layout.type === "business-grid" && (
+                              <div className="space-y-1">
+                                <label className="text-[10px] text-white/40 font-bold uppercase">{t.businessName}</label>
+                                <input type="text" placeholder="e.g. Sharma Traders" value={businessName} onChange={e => setBusinessName(e.target.value)} className={inputCls} style={inputStyle} />
+                              </div>
+                            )}
+                            <div className="space-y-1">
+                              <label className="text-[10px] text-white/40 font-bold uppercase">{t.nameOnTalisman}</label>
+                              <input type="text" placeholder="e.g. Rahul Sharma" value={name} onChange={e => setName(e.target.value)} className={inputCls} style={inputStyle} />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    {/* ── RIGHT COLUMN: Consecration Details ── */}
+                    <div className="p-6 space-y-5">
+
+                      {/* Section 1: Problem Analysis */}
+                      <div className="space-y-3">
+                        <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                          <span className="text-red-400">🛑</span> 1. PROBLEM & CHALLENGE ANALYSIS
+                        </h4>
+                        <div className="rounded-xl p-4 space-y-1.5" style={{ background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)" }}>
+                          <p className="text-[9px] font-black tracking-[0.18em] uppercase text-red-400">Identified Blockage</p>
+                          <p className="text-[11px] text-white/75 leading-relaxed">{currentYantra.description}</p>
                         </div>
                       </div>
+
+                      {/* Section 2: Ritual Instructions */}
+                      <div className="space-y-3">
+                        <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                          <span className="text-green-400">🧘</span> 2. CONSECRATION & ACTIVATION
+                        </h4>
+                        <div className="rounded-xl p-4 space-y-2 text-[11px]" style={{ background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.12)" }}>
+                          <p className="text-[9px] font-black tracking-[0.18em] uppercase text-green-400">Ritual Instructions</p>
+                          <p className="text-white/65"><span className="font-bold text-white/50">{t.preparationDay}</span> {currentYantra.preparation.day}</p>
+                          <p className="text-white/65"><span className="font-bold text-white/50">{t.preparationTime}</span> {currentYantra.preparation.time}</p>
+                          <p className="text-white/65 leading-relaxed"><span className="font-bold text-white/50">{t.preparationMaterials}</span> {currentYantra.preparation.materials}</p>
+                        </div>
+                      </div>
+
+                      {/* Section 3: Mantras */}
+                      <div className="space-y-3">
+                        <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                          <span className="text-violet-400">🔱</span> 3. ACTIVATION MANTRAS
+                        </h4>
+                        <div className="space-y-2">
+                          {currentYantra.mantras.map((m, i) => (
+                            <p key={i} className="italic text-xs font-serif text-white/80 rounded-xl px-4 py-3 text-center font-semibold leading-relaxed"
+                              style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.15)" }}>
+                              &ldquo;{m}&rdquo;
+                            </p>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Section 4: Benefits */}
+                      <div className="space-y-3">
+                        <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                          <span className="text-yellow-400">✦</span> 4. EXPECTED BENEFITS
+                        </h4>
+                        <ul className="space-y-2">
+                          {currentYantra.benefits.map((b, i) => (
+                            <li key={i} className="flex items-start gap-2.5 text-[11px] text-white/65">
+                              <span className="text-[#FFD369] shrink-0 mt-0.5 font-black">›</span>
+                              <span className="leading-relaxed">{b}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
                     </div>
                   </div>
                 </div>
