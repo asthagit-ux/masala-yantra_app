@@ -222,7 +222,8 @@ function getRahuMeanTropicalLng(jd: number): number {
 // ─── Ascendant ────────────────────────────────────────────────────────────────
 
 function calculateAscendantTropical(date: Date, lat: number, lng: number): number {
-  const gstHours = Astronomy.SiderealTime(date);
+  const time = Astronomy.MakeTime(date);
+  const gstHours = Astronomy.SiderealTime(time);
   // Local Sidereal Time (degrees)
   const lst = normLng(gstHours * 15 + lng);
   const ramc = lst * (Math.PI / 180);
@@ -233,11 +234,14 @@ function calculateAscendantTropical(date: Date, lat: number, lng: number): numbe
   const eps = (23.439291111 - 0.013004167 * T) * (Math.PI / 180);
   const phi = lat * (Math.PI / 180);
 
-  // Standard ascendant formula
-  const asc = Math.atan2(
-    -Math.cos(ramc),
-    Math.sin(eps) * Math.tan(phi) + Math.cos(eps) * Math.sin(ramc)
-  ) * (180 / Math.PI);
+  // Correct mathematical signs for Ascendant:
+  // num = cos(RAMC)
+  // den = -sin(RAMC) * cos(eps) - tan(phi) * sin(eps)
+  const num = Math.cos(ramc);
+  const den = -Math.sin(ramc) * Math.cos(eps) - Math.tan(phi) * Math.sin(eps);
+
+  // Math.atan2(y, x) takes y (numerator) as the first argument, and x (denominator) as the second.
+  const asc = Math.atan2(num, den) * (180 / Math.PI);
 
   return normLng(asc);
 }
