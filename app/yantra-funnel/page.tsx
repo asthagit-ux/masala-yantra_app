@@ -403,7 +403,7 @@ export default function YantraPage() {
       <div className="py-4 bg-black sticky top-0 z-40 px-4 md:px-8 flex justify-center shadow-lg border-b border-[#FFD700]/30 relative">
         <header className="flex items-center justify-between w-full max-w-6xl mx-auto">
           <Link href="/" className="flex items-center gap-3 no-underline group">
-            <AstroLearnLogo size={38} className="group-hover:scale-105" />
+            <AstroLearnLogo size={48} className="group-hover:scale-105" />
             <h1 className="text-white font-semibold font-serif text-2xl tracking-wide group-hover:text-[#FFD700] transition-colors">{t.logoName}</h1>
           </Link>
 

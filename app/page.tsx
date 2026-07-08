@@ -58,7 +58,7 @@ export default function Home() {
           
           {/* LOGO LINK */}
           <Link href="/" className="flex items-center gap-3 no-underline group">
-            <AstroLearnLogo size={38} className="group-hover:scale-105" />
+            <AstroLearnLogo size={48} className="group-hover:scale-105" />
             <h1 className="text-white font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1 group-hover:text-[#FFD700] transition-colors">
               {t.logoName}
             </h1>
