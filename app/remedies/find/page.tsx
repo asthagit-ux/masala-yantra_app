@@ -165,23 +165,51 @@ export default function MasalaFunnel() {
   };
 
   return (
-    <div className="min-h-screen bg-[#F9F9FB] text-black font-sans flex flex-col justify-between pb-10">
+    <div className="min-h-screen bg-[#F9F9FB] text-black font-sans flex flex-col justify-between pb-10 relative overflow-x-hidden">
       
-      {/* AstroLearn Premium Header */}
-      <div className="py-4 bg-black sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-lg border-b border-[#FFD700]/30">
+      {/* BACKGROUND DECORATIVE ELEMENTS: Rotating Celestial Chakra & Astrological Charts */}
+      <div className="absolute top-[10%] left-[-15%] w-[600px] h-[600px] opacity-[0.025] text-black pointer-events-none select-none animate-[spin_200s_linear_infinite]">
+        <svg viewBox="0 0 200 200" className="w-full h-full fill-none stroke-current stroke-[0.5]">
+          <circle cx="100" cy="100" r="90" />
+          <circle cx="100" cy="100" r="75" strokeDasharray="3,3" />
+          <circle cx="100" cy="100" r="60" />
+          {Array.from({ length: 24 }).map((_, i) => {
+            const angle = (i * 15 * Math.PI) / 180;
+            const x1 = 100 + 45 * Math.cos(angle);
+            const y1 = 100 + 45 * Math.sin(angle);
+            const x2 = 100 + 90 * Math.cos(angle);
+            const y2 = 100 + 90 * Math.sin(angle);
+            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
+          })}
+        </svg>
+      </div>
+
+      {/* Floating Constellation Stars */}
+      <div className="absolute top-[20%] right-[10%] opacity-25 text-[#9A7026] pointer-events-none select-none animate-pulse">✦</div>
+      <div className="absolute top-[50%] left-[5%] opacity-20 text-[#9A7026] pointer-events-none select-none animate-bounce duration-[5s]">✦</div>
+      <div className="absolute bottom-[30%] right-[5%] opacity-20 text-[#9A7026] pointer-events-none select-none animate-pulse">✦</div>
+
+      {/* AstroLearn Premium Header with Exact Saturn Logo */}
+      <div className="py-4 bg-black sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-lg border-b border-[#FFD700]/30 relative">
         <header className="flex items-center justify-between w-full max-w-6xl mx-auto">
-          <Link href="/" className="flex items-center gap-2.5 no-underline group">
-            <svg
-              className="w-[36px] h-[36px] text-[#FFD700] fill-current animate-[spin_30s_linear_infinite]"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-            </svg>
+          
+          <Link href="/" className="flex items-center gap-3 no-underline group">
+            {/* The Exact Logo: Yellow Rounded Corner Box with Black Line-Drawing Saturn */}
+            <div className="w-[38px] h-[38px] bg-[#FFD700] rounded-xl flex items-center justify-center shrink-0 shadow-md border border-black/10 transition-transform group-hover:scale-105 duration-200">
+              <svg 
+                viewBox="0 0 100 100" 
+                className="w-[26px] h-[26px] stroke-black stroke-[8] fill-none"
+                style={{ transform: "rotate(-15deg)" }}
+              >
+                <circle cx="50" cy="50" r="23" />
+                <ellipse cx="50" cy="50" rx="38" ry="11" />
+              </svg>
+            </div>
             <h1 className="text-white font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1 group-hover:text-[#FFD700] transition-colors">
               {t.logoName}
             </h1>
           </Link>
+
           <div className="flex gap-4 items-center">
             <Link
               href="/yantra-funnel"
@@ -214,7 +242,7 @@ export default function MasalaFunnel() {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-grow w-full max-w-5xl mx-auto px-4 py-8 md:py-12">
+      <div className="flex-grow w-full max-w-5xl mx-auto px-4 py-8 md:py-12 z-10 relative">
         <div className="bg-white border border-black/10 rounded-2xl p-6 md:p-10 shadow-md space-y-8">
           
           {/* Funnel Title */}
@@ -484,7 +512,7 @@ export default function MasalaFunnel() {
       </div>
       
       {/* Disclaimer */}
-      <footer className="w-full text-center max-w-4xl mx-auto px-4 mt-auto">
+      <footer className="w-full text-center max-w-4xl mx-auto px-4 mt-auto z-10 relative">
         <p className="text-[10px] text-black/40">
           {t.disclaimer}
         </p>

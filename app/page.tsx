@@ -8,23 +8,71 @@ export default function Home() {
   const { language, setLanguage, t } = useLanguage();
 
   return (
-    <div className="min-h-screen bg-[#F9F9FB] text-black font-sans flex flex-col justify-between select-none">
+    <div className="min-h-screen bg-[#F9F9FB] text-black font-sans flex flex-col justify-between select-none relative overflow-x-hidden">
       
-      {/* AstroLearn Premium Header (Black navbar with Gold/Yellow highlights) */}
-      <div className="py-4 bg-black sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-lg border-b border-[#FFD700]/30">
+      {/* BACKGROUND DECORATIVE ELEMENTS: Rotating Celestial Chakra & Astrological Charts */}
+      <div className="absolute top-[10%] left-[-10%] w-[500px] h-[500px] opacity-[0.03] text-black pointer-events-none select-none animate-[spin_180s_linear_infinite]">
+        <svg viewBox="0 0 200 200" className="w-full h-full fill-none stroke-current stroke-[0.5]">
+          <circle cx="100" cy="100" r="90" />
+          <circle cx="100" cy="100" r="75" strokeDasharray="3,3" />
+          <circle cx="100" cy="100" r="60" />
+          <circle cx="100" cy="100" r="45" />
+          {Array.from({ length: 24 }).map((_, i) => {
+            const angle = (i * 15 * Math.PI) / 180;
+            const x1 = 100 + 45 * Math.cos(angle);
+            const y1 = 100 + 45 * Math.sin(angle);
+            const x2 = 100 + 90 * Math.cos(angle);
+            const y2 = 100 + 90 * Math.sin(angle);
+            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
+          })}
+        </svg>
+      </div>
+
+      <div className="absolute bottom-[10%] right-[-10%] w-[600px] h-[600px] opacity-[0.03] text-black pointer-events-none select-none animate-[spin_240s_linear_infinite]">
+        <svg viewBox="0 0 200 200" className="w-full h-full fill-none stroke-current stroke-[0.5]">
+          <circle cx="100" cy="100" r="95" />
+          <circle cx="100" cy="100" r="80" />
+          <circle cx="100" cy="100" r="50" strokeDasharray="2,2" />
+          {Array.from({ length: 12 }).map((_, i) => {
+            const angle = (i * 30 * Math.PI) / 180;
+            const x1 = 100 + 10 * Math.cos(angle);
+            const y1 = 100 + 10 * Math.sin(angle);
+            const x2 = 100 + 95 * Math.cos(angle);
+            const y2 = 100 + 95 * Math.sin(angle);
+            return <line key={i} x1={x1} y1={y1} x2={x2} y2={y2} />;
+          })}
+        </svg>
+      </div>
+
+      {/* Floating Constellation Stars */}
+      <div className="absolute top-[25%] right-[15%] opacity-20 text-[#9A7026] pointer-events-none select-none animate-pulse">✦</div>
+      <div className="absolute top-[60%] left-[8%] opacity-30 text-[#9A7026] pointer-events-none select-none animate-bounce duration-[4s]">✦</div>
+      <div className="absolute top-[40%] left-[45%] opacity-20 text-[#9A7026] pointer-events-none select-none">✦</div>
+      <div className="absolute bottom-[25%] left-[20%] opacity-25 text-[#9A7026] pointer-events-none select-none animate-pulse">✦</div>
+      <div className="absolute bottom-[40%] right-[8%] opacity-20 text-[#9A7026] pointer-events-none select-none">✦</div>
+
+      {/* AstroLearn Premium Header (Black navbar with Gold/Yellow highlights & Exact Logo) */}
+      <div className="py-4 bg-black sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-lg border-b border-[#FFD700]/30 relative">
         <header className="flex items-center justify-between w-full max-w-6xl mx-auto">
-          <Link href="/" className="flex items-center gap-2.5 no-underline group">
-            <svg
-              className="w-[36px] h-[36px] text-[#FFD700] fill-current animate-[spin_30s_linear_infinite]"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
-            </svg>
+          
+          {/* LOGO LINK WITH THE EXACT YELLOW SATURN LOGO COMPONENT */}
+          <Link href="/" className="flex items-center gap-3 no-underline group">
+            {/* The Exact Logo: Yellow Rounded Corner Box with Black Line-Drawing Saturn */}
+            <div className="w-[38px] h-[38px] bg-[#FFD700] rounded-xl flex items-center justify-center shrink-0 shadow-md border border-black/10 transition-transform group-hover:scale-105 duration-200">
+              <svg 
+                viewBox="0 0 100 100" 
+                className="w-[26px] h-[26px] stroke-black stroke-[8] fill-none"
+                style={{ transform: "rotate(-15deg)" }}
+              >
+                <circle cx="50" cy="50" r="23" />
+                <ellipse cx="50" cy="50" rx="38" ry="11" />
+              </svg>
+            </div>
             <h1 className="text-white font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1 group-hover:text-[#FFD700] transition-colors">
               {t.logoName}
             </h1>
           </Link>
+
           <div className="flex gap-4 items-center">
             <Link
               href="/remedies/find"
@@ -63,12 +111,12 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <main className="flex-grow w-full max-w-6xl mx-auto px-4 py-8 md:py-16 space-y-12">
+      <main className="flex-grow w-full max-w-6xl mx-auto px-4 py-8 md:py-16 space-y-12 z-10 relative">
         <section className="relative overflow-hidden md:flex flex-row-reverse items-center justify-between gap-[5%] py-8 w-full">
           
           {/* Rotating Chakra Decorative Graphic */}
           <div className="w-full md:w-[45%] flex justify-center items-center relative py-4">
-            <div className="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full flex justify-center items-center border border-[#9A7026]/20 shadow-md animate-[spin_60s_linear_infinite]">
+            <div className="w-64 h-64 md:w-80 md:h-80 bg-white rounded-full flex justify-center items-center border border-[#9A7026]/20 shadow-lg animate-[spin_60s_linear_infinite]">
               <svg
                 viewBox="0 0 200 200"
                 className="w-56 h-56 md:w-72 md:h-72 text-[#9A7026] opacity-75"
@@ -97,7 +145,7 @@ export default function Home() {
               </svg>
             </div>
             {/* Core focus center item */}
-            <div className="absolute w-12 h-12 bg-black rounded-full flex items-center justify-center shadow-lg border border-[#FFD700]/30">
+            <div className="absolute w-12 h-12 bg-black rounded-full flex items-center justify-center shadow-xl border border-[#FFD700]/30">
               <span className="text-xl">🪐</span>
             </div>
           </div>
@@ -217,7 +265,7 @@ export default function Home() {
       </main>
 
       {/* Disclaimer */}
-      <footer className="w-full text-center max-w-4xl mx-auto px-4 mt-auto">
+      <footer className="w-full text-center max-w-4xl mx-auto px-4 mt-auto z-10 relative">
         <p className="text-[10px] text-black/40">
           {t.disclaimer}
         </p>
