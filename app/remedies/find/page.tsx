@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { useLanguage } from "../../../lib/LanguageContext";
+import { AstroLearnLogo } from "../../../components/AstroLearnLogo";
 import protectionData from "../../../content/masala-remedies/protection.json";
 import wealthData from "../../../content/masala-remedies/wealth.json";
 import loveData from "../../../content/masala-remedies/love-relationships.json";
@@ -194,48 +195,7 @@ export default function MasalaFunnel() {
         <header className="flex items-center justify-between w-full max-w-6xl mx-auto">
           
           <Link href="/" className="flex items-center gap-3 no-underline group">
-            {/* The Exact Logo: Yellow Rounded Corner Box with Black Line-Drawing Saturn */}
-            <div className="w-[38px] h-[38px] bg-[#FFD700] rounded-xl flex items-center justify-center shrink-0 shadow-md border border-black/10 transition-transform group-hover:scale-105 duration-200">
-              <svg 
-                viewBox="0 0 100 100" 
-                className="w-[28px] h-[26px]"
-              >
-                <g transform="translate(50, 50) rotate(-22)">
-                  {/* Behind Ring */}
-                  <path 
-                    d="M -36 -2 A 38 12 0 0 1 35 -4" 
-                    fill="none" 
-                    stroke="black" 
-                    strokeWidth="9" 
-                    strokeLinecap="round" 
-                  />
-                  {/* Planet Sphere */}
-                  <path 
-                    d="M 21.6 -10.5 A 24 24 0 1 0 21.6 10.5" 
-                    fill="none" 
-                    stroke="black" 
-                    strokeWidth="9" 
-                    strokeLinecap="round" 
-                  />
-                  {/* Front Ring */}
-                  <path 
-                    d="M 36 -2 A 38 12 0 0 1 -20 10" 
-                    fill="none" 
-                    stroke="black" 
-                    strokeWidth="9" 
-                    strokeLinecap="round" 
-                  />
-                  {/* Outer Left Ring Tip */}
-                  <path 
-                    d="M -36 -2 A 38 12 0 0 0 -34.4 5.1" 
-                    fill="none" 
-                    stroke="black" 
-                    strokeWidth="9" 
-                    strokeLinecap="round" 
-                  />
-                </g>
-              </svg>
-            </div>
+            <AstroLearnLogo size={38} className="group-hover:scale-105" />
             <h1 className="text-white font-semibold font-serif text-[24px] tracking-wide flex items-center gap-1 group-hover:text-[#FFD700] transition-colors">
               {t.logoName}
             </h1>
