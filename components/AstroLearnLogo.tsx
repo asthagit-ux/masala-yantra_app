@@ -1,6 +1,14 @@
-// Reusable AstroLearn Saturn Logo Component
-// Matches exact AstroLearn brand: yellow rounded square + black Saturn icon
-// Uses 3-layer rendering for correct ring depth illusion
+// AstroLearn Saturn Logo — exact match to brand logo
+//
+// DEPTH ORDER (back to front):
+//   Layer 1: Full ring ellipse (both arcs) — drawn behind everything
+//   Layer 2: Planet circle with YELLOW fill — masks the ring's BOTTOM arc inside planet
+//            (makes bottom of ring appear "behind" the planet)
+//   Layer 3: TOP arc of ring — REDRAWN in front of planet
+//            (ring passes IN FRONT of planet at top — no planet arc visible above the ring)
+//
+// Result: ring is complete, planet upper portion is HIDDEN behind the ring (yellow space visible),
+//         planet lower portion extends below the ring.
 
 interface AstroLearnLogoProps {
   size?: number;
@@ -20,26 +28,27 @@ export function AstroLearnLogo({ size = 38, className = "" }: AstroLearnLogoProp
         height={iconSize}
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/*
-          3-layer depth trick:
-          1. Draw TOP arc of ring first  → planet drawn over it → ring appears BEHIND
-          2. Draw planet with yellow fill → masks top arc of ring
-          3. Draw BOTTOM arc of ring last → appears IN FRONT of planet
-          
-          Works in a rotated coordinate system (-33 deg tilt)
-          Ring: horizontal ellipse rx=38 ry=10 centered at (50,50)
-          Planet: circle r=21 centered at (50,50)
-        */}
         <g transform="rotate(-33, 50, 50)">
-          {/* Layer 1: TOP arc — counterclockwise sweep goes ABOVE center = behind planet */}
+          {/*
+            Ring is a horizontal ellipse: center=(50,50), rx=38, ry=10
+            Planet is a circle: center=(50,50), r=21
+            
+            Top arc:    M 12 50 A 38 10 0 0 0 88 50  (sweep=0 = counterclockwise = goes UPWARD)
+            Bottom arc: from (88,50) sweep=0 back to (12,50) = goes DOWNWARD through (50,60)
+          */}
+
+          {/* LAYER 1: Full ring — both top + bottom arcs, drawn FIRST (behind) */}
           <path
-            d="M 12 50 A 38 10 0 0 0 88 50"
+            d="M 12 50 A 38 10 0 0 0 88 50 A 38 10 0 0 0 12 50 Z"
             stroke="black"
             strokeWidth="9"
             fill="none"
             strokeLinecap="round"
+            strokeLinejoin="round"
           />
-          {/* Layer 2: Planet body — yellow fill hides layer 1 ring behind it */}
+
+          {/* LAYER 2: Planet circle — yellow fill hides ring's BOTTOM arc inside planet */}
+          {/* This makes the bottom ring arc appear to go BEHIND the planet */}
           <circle
             cx="50"
             cy="50"
@@ -48,9 +57,12 @@ export function AstroLearnLogo({ size = 38, className = "" }: AstroLearnLogoProp
             strokeWidth="9"
             fill="#FFD700"
           />
-          {/* Layer 3: BOTTOM arc — clockwise sweep goes BELOW center = in front of planet */}
+
+          {/* LAYER 3: TOP arc of ring — redrawn on top of planet */}
+          {/* Ring passes IN FRONT of the planet's top portion */}
+          {/* Planet upper arc is NOT visible (covered by this) — yellow space shows instead */}
           <path
-            d="M 12 50 A 38 10 0 0 1 88 50"
+            d="M 12 50 A 38 10 0 0 0 88 50"
             stroke="black"
             strokeWidth="9"
             fill="none"
