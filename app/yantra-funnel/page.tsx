@@ -891,10 +891,12 @@ export default function YantraPage() {
 
             {/* Kundli Step 2: Results */}
             {kundliStep === 2 && kundliResult && (
-              <div className="space-y-7">
-                <div className="flex justify-between items-center">
+              <div className="space-y-6">
+
+                {/* Page header */}
+                <div className="flex justify-between items-center px-1">
                   <div>
-                    <p className="text-[10px] font-black tracking-[0.2em] uppercase text-[#FFD369]/65">✦ {t.kundliAnalysis}</p>
+                    <p className="text-[10px] font-black tracking-[0.25em] uppercase text-[#FFD369]/60">✦ {t.kundliAnalysis}</p>
                     <h3 className="text-xl font-bold text-white font-serif mt-0.5">
                       {name || (language === "en" ? "Your" : "आपका")} {t.birthChartTitle}
                     </h3>
@@ -905,70 +907,72 @@ export default function YantraPage() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-7 items-start">
+                {/* Row 1: 2 equal columns — planets left, yantra list right */}
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 items-start">
 
-                  {/* Left: Planetary table */}
-                  <div className="lg:col-span-5 space-y-5">
-                    <div className="rounded-2xl p-5 space-y-4" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.2)" }}>
-                      <div className="flex flex-wrap gap-4 justify-between items-start">
-                        <div>
-                          <p className="text-[10px] uppercase tracking-wider text-[#FFD369] font-black">{t.lagnaLabel}</p>
-                          <p className="text-2xl font-bold font-serif mt-0.5 text-white">{kundliResult.lagnaSignName}</p>
-                          <p className="text-[11px] text-white/50 mt-0.5">
-                            {kundliResult.lagnaDegrees}° {kundliResult.lagnaMinutes}′ · {kundliResult.lagnaNakshatra}
-                          </p>
-                          <p className="text-[11px] text-white/35 mt-0.5">{kundliResult.birthPlace}</p>
-                        </div>
-                        <div className="text-right">
-                          <p className="text-[10px] uppercase tracking-wider text-[#FFD369] font-black">{t.ayanamshaLabel}</p>
-                          <p className="text-sm font-bold text-white">{kundliResult.ayanamsha.toFixed(4)}°</p>
-                          <p className="text-[10px] text-white/35">Lahiri</p>
-                        </div>
-                      </div>
-
+                  {/* LEFT — Lagna + Planetary table */}
+                  <div className="rounded-2xl p-5 space-y-4" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.2)" }}>
+                    <div className="flex flex-wrap gap-4 justify-between items-start border-b pb-4" style={{ borderColor: "rgba(255,213,105,0.1)" }}>
                       <div>
-                        <p className="text-[10px] uppercase tracking-wider text-[#FFD369] font-black mb-2">{t.navagrahaPositions}</p>
-                        <div className="space-y-1.5">
-                          {kundliResult.planets.map(p => (
-                            <div key={p.planet}
-                              className="px-3 py-2 rounded-xl text-[10px] font-bold flex items-center gap-2"
-                              style={{
-                                background: p.debilitated || p.combust ? "rgba(239,68,68,0.12)"
-                                  : p.exalted ? "rgba(255,215,0,0.1)"
-                                  : p.ownSign ? "rgba(74,222,128,0.08)"
-                                  : "rgba(255,255,255,0.04)",
-                                border: p.debilitated || p.combust ? "1px solid rgba(239,68,68,0.25)"
-                                  : p.exalted ? "1px solid rgba(255,215,0,0.25)"
-                                  : p.ownSign ? "1px solid rgba(74,222,128,0.2)"
-                                  : "1px solid rgba(255,255,255,0.07)"
-                              }}>
-                              <span className="text-base shrink-0" style={{ color: p.color }}>{p.symbol}</span>
-                              <div className="flex-1 min-w-0">
-                                <div className="flex items-center gap-1 text-white">
-                                  <span>{p.name.split(" ")[0]}</span>
-                                  {p.retrograde && <span className="text-[8px] text-orange-400 font-black">(R)</span>}
-                                  {p.exalted && <span className="text-[8px] text-yellow-400 font-black">⬆ UCH</span>}
-                                  {p.ownSign && !p.exalted && <span className="text-[8px] text-green-400 font-black">⌂ SW</span>}
-                                  {p.debilitated && <span className="text-[8px] text-red-400 font-black">⬇ NEE</span>}
-                                  {p.combust && !p.debilitated && <span className="text-[8px] text-orange-400 font-black">🔥</span>}
-                                </div>
-                                <div className="text-[9px] font-normal text-white/40 mt-0.5">
-                                  H{p.house} · {p.signName.slice(0, 3)} {p.degrees}°{p.minutes}′ · {p.nakshatra}
-                                </div>
+                        <p className="text-[10px] uppercase tracking-wider text-[#FFD369] font-black">{t.lagnaLabel}</p>
+                        <p className="text-2xl font-bold font-serif mt-0.5 text-white">{kundliResult.lagnaSignName}</p>
+                        <p className="text-[11px] text-white/45 mt-0.5">
+                          {kundliResult.lagnaDegrees}° {kundliResult.lagnaMinutes}′ · {kundliResult.lagnaNakshatra}
+                        </p>
+                        <p className="text-[10px] text-white/30 mt-0.5">{kundliResult.birthPlace}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-[10px] uppercase tracking-wider text-[#FFD369] font-black">{t.ayanamshaLabel}</p>
+                        <p className="text-sm font-bold text-white">{kundliResult.ayanamsha.toFixed(4)}°</p>
+                        <p className="text-[10px] text-white/30">Lahiri</p>
+                      </div>
+                    </div>
+                    <div>
+                      <p className="text-[9px] uppercase tracking-[0.2em] text-[#FFD369] font-black mb-2.5">{t.navagrahaPositions}</p>
+                      <div className="space-y-1">
+                        {kundliResult.planets.map(p => (
+                          <div key={p.planet}
+                            className="px-3 py-2 rounded-xl text-[10px] font-bold flex items-center gap-2"
+                            style={{
+                              background: p.debilitated || p.combust ? "rgba(239,68,68,0.10)"
+                                : p.exalted ? "rgba(255,215,0,0.08)"
+                                : p.ownSign ? "rgba(74,222,128,0.07)"
+                                : "rgba(255,255,255,0.03)",
+                              border: p.debilitated || p.combust ? "1px solid rgba(239,68,68,0.2)"
+                                : p.exalted ? "1px solid rgba(255,215,0,0.2)"
+                                : p.ownSign ? "1px solid rgba(74,222,128,0.18)"
+                                : "1px solid rgba(255,255,255,0.06)"
+                            }}>
+                            <span className="text-base shrink-0" style={{ color: p.color }}>{p.symbol}</span>
+                            <div className="flex-1 min-w-0">
+                              <div className="flex items-center gap-1 text-white">
+                                <span>{p.name.split(" ")[0]}</span>
+                                {p.retrograde && <span className="text-[8px] text-orange-400 font-black">(R)</span>}
+                                {p.exalted && <span className="text-[8px] text-yellow-400 font-black">⬆ UCH</span>}
+                                {p.ownSign && !p.exalted && <span className="text-[8px] text-green-400 font-black">⌂ SW</span>}
+                                {p.debilitated && <span className="text-[8px] text-red-400 font-black">⬇ NEE</span>}
+                                {p.combust && !p.debilitated && <span className="text-[8px] text-orange-400 font-black">🔥</span>}
+                              </div>
+                              <div className="text-[9px] font-normal text-white/35 mt-0.5">
+                                H{p.house} · {p.signName.slice(0, 3)} {p.degrees}°{p.minutes}′ · {p.nakshatra}
                               </div>
                             </div>
-                          ))}
-                        </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
                   </div>
 
-                  {/* Right: Yantra Recommendations */}
-                  <div className="lg:col-span-7 space-y-6">
+                  {/* RIGHT — Yantra selection as horizontal rows (no orphaned grid cells) */}
+                  <div className="space-y-4">
                     <div>
-                      <p className="text-[10px] font-black tracking-[0.2em] uppercase text-[#FFD369]/65">✦ {language === "en" ? "Vedic Remedies" : "वैदिक उपाय"} ✦</p>
-                      <h3 className="text-lg font-bold text-white font-serif mt-0.5">
-                        {kundliResult.weakPlanets.length === 0 ? t.noWeakPlanets : language === "en" ? "Recommended Yantras for Afflictions" : "दोषों के लिए अनुशंसित यंत्र"}
+                      <p className="text-[9px] font-black tracking-[0.22em] uppercase text-[#FFD369]/60">
+                        ✦ {language === "en" ? "Vedic Remedies" : "वैदिक उपाय"} ✦
+                      </p>
+                      <h3 className="text-base font-bold text-white font-serif mt-0.5">
+                        {kundliResult.weakPlanets.length === 0
+                          ? t.noWeakPlanets
+                          : language === "en" ? "Yantras Recommended for Your Afflictions" : "दोषों के लिए अनुशंसित यंत्र"}
                       </h3>
                     </div>
 
@@ -979,141 +983,173 @@ export default function YantraPage() {
                         <p className="text-xs text-green-400/70">{t.noWeakPlanetsDesc}</p>
                       </div>
                     ) : (
-                      <div className="space-y-6">
-                        {/* Yantra cards grid */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                          {kundliRecs.map(rec => {
-                            const isActive = kundliActiveRec === rec.planet;
-                            const targetYantra = yantras.find(y => y.id === rec.planet);
-                            const glyphColors: Record<string, string> = { high: "#ef4444", medium: "#eab308" };
-                            const color = glyphColors[rec.severity] || "#FFD700";
-                            return (
-                              <div key={rec.planet} onClick={() => setKundliActiveRec(rec.planet)}
-                                className="cursor-pointer flex flex-col rounded-2xl overflow-hidden transition-all duration-300"
-                                style={{
-                                  background: "linear-gradient(160deg, #0d0d1e 0%, #111028 100%)",
-                                  border: isActive ? `1px solid ${color}60` : "1px solid rgba(255,213,105,0.1)",
-                                  boxShadow: isActive ? `0 0 24px ${color}18` : "none",
-                                  transform: isActive ? "scale(1.02)" : "scale(1)"
-                                }}>
-                                <div className="flex items-center justify-between px-4 pt-4 pb-2">
-                                  <div className="flex items-center gap-1.5">
-                                    <span className="text-[9px] font-bold tracking-wider uppercase text-white/25">RULER:</span>
-                                    <span className="text-[9px] font-bold tracking-wider uppercase text-white/55">{rec.planetName.split(" ")[0]}</span>
-                                  </div>
-                                  <span className="text-[9px] font-black tracking-widest px-2 py-0.5 rounded-full uppercase"
-                                    style={{ background: rec.severity === "high" ? "rgba(239,68,68,0.15)" : "rgba(234,179,8,0.15)", color, border: `1px solid ${color}30` }}>
+                      <div className="space-y-3">
+                        {kundliRecs.map(rec => {
+                          const isActive = kundliActiveRec === rec.planet;
+                          const targetYantra = yantras.find(y => y.id === rec.planet);
+                          const clr = rec.severity === "high" ? "#ef4444" : rec.severity === "medium" ? "#eab308" : "#FFD700";
+                          return (
+                            <div key={rec.planet} onClick={() => setKundliActiveRec(rec.planet)}
+                              className="cursor-pointer flex items-center gap-4 rounded-2xl px-4 py-3 transition-all duration-300"
+                              style={{
+                                background: isActive ? `linear-gradient(135deg, ${clr}14, ${clr}07)` : "rgba(255,255,255,0.03)",
+                                border: isActive ? `1px solid ${clr}55` : "1px solid rgba(255,255,255,0.07)",
+                                boxShadow: isActive ? `0 0 18px ${clr}14` : "none"
+                              }}>
+                              {/* Planet glyph circle */}
+                              <div className="relative shrink-0 w-14 h-14 rounded-xl flex items-center justify-center overflow-hidden"
+                                style={{ background: `${clr}12`, border: `1px solid ${clr}28` }}>
+                                <div className="absolute inset-0 rounded-xl"
+                                  style={{ background: `radial-gradient(circle, ${clr}20 0%, transparent 70%)` }} />
+                                <span className="relative text-2xl leading-none"
+                                  style={{ color: clr, textShadow: `0 0 12px ${clr}60` }}>
+                                  {rec.symbol}
+                                </span>
+                              </div>
+                              {/* Info */}
+                              <div className="flex-1 min-w-0">
+                                <div className="flex items-center justify-between gap-2 mb-0.5">
+                                  <h4 className="text-xs font-black uppercase tracking-wide text-white truncate">
+                                    {targetYantra?.name.split(" (")[0] || rec.planetName}
+                                  </h4>
+                                  <span className="shrink-0 text-[8px] font-black tracking-widest px-2 py-0.5 rounded-full uppercase"
+                                    style={{
+                                      background: rec.severity === "high" ? "rgba(239,68,68,0.15)" : "rgba(234,179,8,0.15)",
+                                      color: clr,
+                                      border: `1px solid ${clr}30`
+                                    }}>
                                     {rec.severity === "high" ? "CRITICAL" : "WEAK"}
                                   </span>
                                 </div>
-
-                                <div className="relative flex items-center justify-center py-5 mx-4 overflow-hidden rounded-xl" style={{ background: "rgba(255,255,255,0.03)" }}>
-                                  <div className="absolute w-20 h-20 rounded-full" style={{ background: `radial-gradient(circle, ${color}15 0%, transparent 70%)` }} />
-                                  <span className="relative text-4xl leading-none" style={{ color, textShadow: `0 0 20px ${color}50` }}>{rec.symbol}</span>
-                                </div>
-
-                                <div className="px-4 pt-3 pb-4">
-                                  <h4 className="text-xs font-black uppercase tracking-wide text-white flex justify-between items-center">
-                                    <span>{targetYantra?.name.split(" (")[0] || rec.planetName}</span>
-                                    {sanskritNames[rec.planet] && (
-                                      <span className="text-[10px] text-[#FFD369]/60 font-normal font-serif">{sanskritNames[rec.planet]}</span>
-                                    )}
-                                  </h4>
-                                  <p className="text-[10px] text-white/50 mt-1.5 leading-relaxed line-clamp-2">{rec.reason}</p>
-                                </div>
+                                {sanskritNames[rec.planet] && (
+                                  <p className="text-[10px] text-[#FFD369]/55 font-serif mb-0.5">{sanskritNames[rec.planet]}</p>
+                                )}
+                                <p className="text-[10px] text-white/45 leading-relaxed line-clamp-2">{rec.reason}</p>
                               </div>
-                            );
-                          })}
-                        </div>
-
-                        {/* Active Yantra consecration report */}
-                        {activeKundliYantra && (() => {
-                          const activeRecObj = kundliRecs.find(r => r.planet === kundliActiveRec);
-                          return (
-                            <div className="rounded-2xl overflow-hidden space-y-7 p-6 md:p-8" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.2)" }}>
-                              <div className="border-b pb-6 flex flex-wrap justify-between items-start gap-4" style={{ borderColor: "rgba(255,213,105,0.15)" }}>
-                                <div>
-                                  <div className="flex items-center gap-2.5 flex-wrap">
-                                    <h3 className="text-xl font-bold font-serif text-[#FFD369] uppercase tracking-wide">{activeKundliYantra.name}</h3>
-                                    {sanskritNames[kundliActiveRec] && (
-                                      <span className="text-[10px] px-2.5 py-0.5 rounded-full font-serif"
-                                        style={{ background: "rgba(255,213,105,0.1)", color: "#FFD369", border: "1px solid rgba(255,213,105,0.2)" }}>
-                                        {sanskritNames[kundliActiveRec]}
-                                      </span>
-                                    )}
-                                  </div>
-                                  <p className="text-[10px] font-bold tracking-[0.2em] text-white/30 uppercase mt-1">✦ Vedic Remedial Geometry ✦</p>
-                                </div>
-                                <span className="inline-block text-black text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider"
-                                  style={{ background: "linear-gradient(135deg, #FFD369, #F5A623)" }}>
-                                  RECOMMENDED REMEDY
-                                </span>
-                              </div>
-
-                              <div className="space-y-3">
-                                <h4 className="text-[10px] font-black uppercase tracking-wider text-[#FFD369]/70 flex items-center gap-2">
-                                  <span className="text-red-500">🛑</span> 1. PROBLEM & CHALLENGE ANALYSIS
-                                </h4>
-                                <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
-                                  <div>
-                                    <p className="text-[9px] font-black tracking-wider text-[#FFD369] uppercase">Identified Energetic Blockage:</p>
-                                    <p className="text-xs text-white/85 font-semibold mt-1 leading-relaxed">{activeRecObj?.reason}</p>
-                                  </div>
-                                  <p className="text-[11px] text-white/50 leading-relaxed pt-2 border-t" style={{ borderColor: "rgba(255,255,255,0.06)" }}>
-                                    Your chart shows an affliction on {activeRecObj?.planetName}. According to ancient Vedic wisdom, planetary weaknesses manifest as persistent life hurdles. The sacred mathematical arrangement of the {activeKundliYantra.name} is calculated to offset these energetic deficits, restoring harmony to your aura.
-                                  </p>
-                                </div>
-                              </div>
-
-                              <div className="space-y-4">
-                                <h4 className="text-[10px] font-black uppercase tracking-wider text-[#FFD369]/70 flex items-center gap-2">
-                                  <span className="text-yellow-400">✨</span> 2. SACRED BHOJPATRA YANTRA DRAWING
-                                </h4>
-                                <div className="flex flex-col items-center justify-center p-5 bg-white border border-black/10 rounded-2xl max-w-xs mx-auto shadow-2xl">
-                                  <YantraRenderer yantra={activeKundliYantra} userName={name} destinationName="" businessName="" />
-                                </div>
-                              </div>
-
-                              <div className="space-y-4">
-                                <h4 className="text-[10px] font-black uppercase tracking-wider text-[#FFD369]/70 flex items-center gap-2">
-                                  <span className="text-green-400">🧘</span> 3. CONSECRATION & ACTIVATION DETAILS
-                                </h4>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                  <div className="rounded-xl p-4 text-[11px] space-y-2" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
-                                    <p className="text-[9px] font-black tracking-wider text-[#FFD369] uppercase">Ritual Instructions:</p>
-                                    <p className="text-white/70"><span className="font-bold text-white/50">{t.preparationDay}</span> {activeKundliYantra.preparation.day}</p>
-                                    <p className="text-white/70"><span className="font-bold text-white/50">{t.preparationTime}</span> {activeKundliYantra.preparation.time}</p>
-                                    <p className="text-white/70 leading-relaxed"><span className="font-bold text-white/50">{t.preparationMaterials}</span> {activeKundliYantra.preparation.materials}</p>
-                                  </div>
-                                  <div className="rounded-xl p-4 text-[11px] space-y-3" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
-                                    <p className="text-[9px] font-black tracking-wider text-[#FFD369] uppercase">Activation Mantras:</p>
-                                    {activeKundliYantra.mantras.map((m, i) => (
-                                      <p key={i} className="italic text-xs font-serif text-white/85 rounded-lg px-3 py-2 text-center font-semibold"
-                                        style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
-                                        &ldquo;{m}&rdquo;
-                                      </p>
-                                    ))}
-                                  </div>
-                                </div>
-                                <div className="rounded-xl p-4 text-[11px] space-y-2" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
-                                  <p className="text-[9px] font-black tracking-wider text-[#FFD369] uppercase">Expected Benefits & Protections:</p>
-                                  <ul className="space-y-1.5">
-                                    {activeKundliYantra.benefits.map((b, i) => (
-                                      <li key={i} className="flex items-start gap-2 text-white/60">
-                                        <span className="text-[#FFD369] mt-0.5 shrink-0">•</span>
-                                        <span>{b}</span>
-                                      </li>
-                                    ))}
-                                  </ul>
-                                </div>
-                              </div>
+                              {/* Active indicator */}
+                              <span className="shrink-0 text-base font-black"
+                                style={{ color: isActive ? clr : "rgba(255,255,255,0.18)" }}>
+                                {isActive ? "●" : "›"}
+                              </span>
                             </div>
                           );
-                        })()}
+                        })}
                       </div>
                     )}
                   </div>
                 </div>
+
+                {/* Row 2: Full-width consecration report — only shows when a yantra is selected */}
+                {activeKundliYantra && (() => {
+                  const activeRecObj = kundliRecs.find(r => r.planet === kundliActiveRec);
+                  return (
+                    <div className="rounded-2xl overflow-hidden" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.22)" }}>
+
+                      {/* Top banner */}
+                      <div className="flex flex-wrap items-start justify-between gap-3 px-7 pt-6 pb-5 border-b"
+                        style={{ borderColor: "rgba(255,213,105,0.12)" }}>
+                        <div className="space-y-1">
+                          <div className="flex items-center gap-3 flex-wrap">
+                            <h3 className="text-xl md:text-2xl font-black font-serif text-[#FFD369] uppercase tracking-wide leading-tight">
+                              {activeKundliYantra.name}
+                            </h3>
+                            {sanskritNames[kundliActiveRec] && (
+                              <span className="text-[10px] px-2.5 py-0.5 rounded-full font-serif"
+                                style={{ background: "rgba(255,213,105,0.1)", color: "#FFD369", border: "1px solid rgba(255,213,105,0.2)" }}>
+                                {sanskritNames[kundliActiveRec]}
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-[10px] font-bold tracking-[0.22em] text-white/30 uppercase">✦ Vedic Remedial Geometry ✦</p>
+                        </div>
+                        <span className="shrink-0 text-black text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider"
+                          style={{ background: "linear-gradient(135deg, #FFD369, #F5A623)" }}>
+                          RECOMMENDED REMEDY
+                        </span>
+                      </div>
+
+                      {/* Body: drawing left | details right */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+
+                        {/* LEFT: Yantra drawing + blockage info */}
+                        <div className="p-6 space-y-5 border-r" style={{ borderColor: "rgba(255,213,105,0.08)" }}>
+                          <div>
+                            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/60 mb-3 flex items-center gap-2">
+                              <span className="text-yellow-400">✨</span> SACRED BHOJPATRA DRAWING
+                            </p>
+                            <div className="flex flex-col items-center justify-center p-5 bg-white rounded-2xl shadow-2xl max-w-[280px] mx-auto">
+                              <YantraRenderer yantra={activeKundliYantra} userName={name} destinationName="" businessName="" />
+                            </div>
+                          </div>
+                          <div className="rounded-xl p-4 space-y-2"
+                            style={{ background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)" }}>
+                            <p className="text-[9px] font-black tracking-[0.18em] uppercase text-red-400">🛑 Identified Energetic Blockage</p>
+                            <p className="text-xs text-white/80 font-semibold leading-relaxed">{activeRecObj?.reason}</p>
+                            <p className="text-[10px] text-white/45 leading-relaxed pt-1.5 border-t"
+                              style={{ borderColor: "rgba(255,255,255,0.06)" }}>
+                              Your chart shows an affliction on {activeRecObj?.planetName}. The sacred mathematical
+                              arrangement of the {activeKundliYantra.name} directly harmonises this planetary energy.
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* RIGHT: Consecration, mantras, benefits */}
+                        <div className="p-6 space-y-5">
+
+                          <div className="space-y-3">
+                            <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                              <span className="text-green-400">🧘</span> 1. CONSECRATION & ACTIVATION
+                            </h4>
+                            <div className="rounded-xl p-4 space-y-2 text-[11px]"
+                              style={{ background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.12)" }}>
+                              <p className="text-[9px] font-black tracking-[0.18em] uppercase text-green-400">Ritual Instructions</p>
+                              <p className="text-white/65">
+                                <span className="font-bold text-white/50">{t.preparationDay}</span> {activeKundliYantra.preparation.day}
+                              </p>
+                              <p className="text-white/65">
+                                <span className="font-bold text-white/50">{t.preparationTime}</span> {activeKundliYantra.preparation.time}
+                              </p>
+                              <p className="text-white/65 leading-relaxed">
+                                <span className="font-bold text-white/50">{t.preparationMaterials}</span> {activeKundliYantra.preparation.materials}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                              <span className="text-violet-400">🔱</span> 2. ACTIVATION MANTRAS
+                            </h4>
+                            <div className="space-y-2">
+                              {activeKundliYantra.mantras.map((m, i) => (
+                                <p key={i}
+                                  className="italic text-xs font-serif text-white/80 rounded-xl px-4 py-3 text-center font-semibold leading-relaxed"
+                                  style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.15)" }}>
+                                  &ldquo;{m}&rdquo;
+                                </p>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                              <span className="text-yellow-400">✦</span> 3. EXPECTED BENEFITS
+                            </h4>
+                            <ul className="space-y-2">
+                              {activeKundliYantra.benefits.map((b, i) => (
+                                <li key={i} className="flex items-start gap-2.5 text-[11px] text-white/60">
+                                  <span className="text-[#FFD369] shrink-0 mt-0.5 font-black">›</span>
+                                  <span className="leading-relaxed">{b}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })()}
+
               </div>
             )}
           </>
