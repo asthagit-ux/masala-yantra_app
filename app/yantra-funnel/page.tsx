@@ -146,6 +146,74 @@ export default function YantraPage() {
   const [kundliActiveRec, setKundliActiveRec] = useState<string>("");
   const [kundliLoading, setKundliLoading] = useState(false);
 
+  // ── Autocomplete Location state ──────────────────────────────────────────
+  const [suggestions, setSuggestions] = useState<Array<{ displayName: string; lat: number; lng: number }>>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [searchLoading, setSearchLoading] = useState(false);
+  const [selectedCoords, setSelectedCoords] = useState<{ lat: number; lng: number; displayName: string } | null>(null);
+  const debounceTimer = React.useRef<any>(null);
+
+  const fetchSuggestions = async (val: string) => {
+    if (val.trim().length < 3) {
+      setSuggestions([]);
+      return;
+    }
+    setSearchLoading(true);
+    try {
+      // Prioritize India by default, then fallback to global search
+      let url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(val)}&countrycodes=in&format=json&limit=6&addressdetails=1`;
+      let res = await fetch(url, { headers: { "User-Agent": "AstroLearn-Kundli/1.0" } });
+      let data = await res.json();
+
+      if (!data || data.length === 0) {
+        url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(val)}&format=json&limit=6&addressdetails=1`;
+        res = await fetch(url, { headers: { "User-Agent": "AstroLearn-Kundli/1.0" } });
+        data = await res.json();
+      }
+
+      if (data && Array.isArray(data)) {
+        setSuggestions(data.map(item => {
+          const addr = item.address || {};
+          const place = addr.village || addr.town || addr.suburb || addr.city_district || addr.city || addr.municipality || "";
+          const district = addr.county || addr.district || "";
+          const state = addr.state || "";
+          const country = addr.country || "";
+
+          let parts = [place, district, state, country].filter(Boolean);
+          let display = parts.join(", ");
+          if (!display) display = item.display_name;
+
+          return {
+            displayName: display,
+            lat: parseFloat(item.lat),
+            lng: parseFloat(item.lon)
+          };
+        }));
+      }
+    } catch (err) {
+      console.error("Suggestions error:", err);
+    }
+    setSearchLoading(false);
+  };
+
+  const handleCityChange = (val: string) => {
+    setBirthCity(val);
+    setSelectedCoords(null); // invalidate cached selection on manual edit
+    setShowSuggestions(true);
+
+    if (debounceTimer.current) clearTimeout(debounceTimer.current);
+    debounceTimer.current = setTimeout(() => {
+      fetchSuggestions(val);
+    }, 450);
+  };
+
+  const selectSuggestion = (s: { displayName: string; lat: number; lng: number }) => {
+    setBirthCity(s.displayName);
+    setSelectedCoords({ lat: s.lat, lng: s.lng, displayName: s.displayName });
+    setSuggestions([]);
+    setShowSuggestions(false);
+  };
+
   const categoryTitles: Record<string, Record<string, string>> = {
     wealth: { en: "Wealth & Prosperity", hi: "धन और समृद्धि" },
     health: { en: "Health & Healing", hi: "स्वास्थ्य और कल्याण" },
@@ -262,13 +330,20 @@ export default function YantraPage() {
   const handleKundliSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setGeocodeError("");
-    setKundliLoading(true);
+    let location: { lat: number; lng: number; displayName: string } | null = null;
 
-    const location = await geocodeCity(birthCity);
+    if (selectedCoords && selectedCoords.displayName === birthCity) {
+      // Use cached coordinates immediately (avoids Nominatim lookup on submit)
+      location = selectedCoords;
+    } else {
+      // Manual fallback geocode
+      location = await geocodeCity(birthCity);
+    }
+
     if (!location) {
       setGeocodeError(language === "en" 
-        ? "Could not find this city. Try a more specific name (e.g. 'Mumbai, India')." 
-        : "यह शहर नहीं मिल सका। कृपया अधिक विशिष्ट नाम (जैसे 'मुंबई, भारत') आज़माएं।");
+        ? "Could not find this city. Try selecting from the suggestions list." 
+        : "यह शहर नहीं मिल सका। कृपया सुझाव सूची से चयन करने का प्रयास करें।");
       setKundliLoading(false);
       return;
     }
@@ -290,6 +365,7 @@ export default function YantraPage() {
 
   const resetKundli = () => {
     setKundliStep(1); setBirthDob(""); setBirthTime(""); setBirthCity("");
+    setSuggestions([]); setShowSuggestions(false); setSelectedCoords(null);
     setKundliResult(null); setKundliRecs([]); setKundliActiveRec(""); setGeocodeError("");
   };
 
@@ -746,15 +822,46 @@ export default function YantraPage() {
                     {t.tobHelper}
                   </p>
 
-                  <div className="space-y-1.5">
+                  <div className="space-y-1.5 relative">
                     <label className="block text-xs uppercase font-bold text-black/60 tracking-wider">
                       {t.pobRequired}
                     </label>
-                    <input type="text" required placeholder="e.g. Mumbai, India" value={birthCity} onChange={e => setBirthCity(e.target.value)}
-                      className="w-full bg-[#F9F9FB] border border-black/10 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[#FFD700] text-sm font-medium placeholder-black/30"
-                    />
+                    <div className="relative">
+                      <input 
+                        type="text" 
+                        required 
+                        placeholder={language === "en" ? "Search your village, town or city..." : "अपना गाँव, कस्बा या शहर खोजें..."} 
+                        value={birthCity} 
+                        onChange={e => handleCityChange(e.target.value)}
+                        onBlur={() => setTimeout(() => setShowSuggestions(false), 250)}
+                        onFocus={() => setShowSuggestions(true)}
+                        className="w-full bg-[#F9F9FB] border border-black/10 rounded-lg px-4 py-3 text-black focus:outline-none focus:border-[#FFD700] text-sm font-medium placeholder-black/30 pr-10"
+                      />
+                      {searchLoading && (
+                        <span className="absolute right-3.5 top-3.5 block w-4 h-4 border-2 border-[#9A7026] border-t-transparent rounded-full animate-spin"></span>
+                      )}
+                    </div>
+
+                    {/* Suggestions dropdown dropdown list list */}
+                    {showSuggestions && suggestions.length > 0 && (
+                      <div className="absolute left-0 right-0 top-full mt-1 bg-white border border-black/10 rounded-xl shadow-2xl z-50 max-h-[220px] overflow-y-auto divide-y divide-black/5">
+                        {suggestions.map((s, idx) => (
+                          <button
+                            key={idx}
+                            type="button"
+                            onMouseDown={() => selectSuggestion(s)}
+                            className="w-full text-left px-4 py-2.5 hover:bg-[#FFD700]/10 text-xs text-black font-semibold transition-all flex items-start gap-1.5 leading-relaxed"
+                          >
+                            <span className="text-[#9A7026] shrink-0 text-sm">📍</span>
+                            <span>{s.displayName}</span>
+                          </button>
+                        ))}
+                      </div>
+                    )}
                     <p className="text-[10px] text-black/40">
-                      {t.pobHelper}
+                      {language === "en" 
+                        ? "✨ Autocomplete prioritizes Indian villages, tehsils and towns. Type 3 or more letters."
+                        : "✨ स्वतः पूर्ण सुविधा भारतीय गांवों, तहसीलों और शहरों को प्राथमिकता देती है। 3 या अधिक अक्षर लिखें।"}
                     </p>
                   </div>
 
