@@ -214,7 +214,7 @@ export default function MasalaFunnel() {
       </div>
 
       {/* Main Content Area */}
-      <div className="flex-grow w-full max-w-2xl mx-auto px-4 py-8 md:py-12">
+      <div className="flex-grow w-full max-w-5xl mx-auto px-4 py-8 md:py-12">
         <div className="bg-white border border-black/10 rounded-2xl p-6 md:p-10 shadow-md space-y-8">
           
           {/* Funnel Title */}
@@ -279,7 +279,7 @@ export default function MasalaFunnel() {
                 </button>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {categoriesList.map((cat) => (
                   <button
                     key={cat.id}
@@ -357,7 +357,7 @@ export default function MasalaFunnel() {
               </div>
 
               {/* Remedies Cards */}
-              <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {matchingRemedies.map((remedy, remIdx) => (
                   <div
                     key={remIdx}

@@ -301,7 +301,7 @@ export default function YantraPage() {
 
       {/* AstroLearn Header */}
       <div className="py-4 bg-white sticky top-0 z-40 px-4 md:px-8 flex justify-center shadow-sm border-b border-black/5">
-        <header className="flex items-center justify-between w-full max-w-4xl mx-auto">
+        <header className="flex items-center justify-between w-full max-w-6xl mx-auto">
           <Link href="/" className="flex items-center gap-2.5 no-underline">
             <svg className="w-9 h-9 text-[#9A7026] fill-current animate-[spin_30s_linear_infinite]" viewBox="0 0 24 24">
               <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
@@ -337,7 +337,7 @@ export default function YantraPage() {
       </div>
 
       {/* Main */}
-      <div className="flex-grow w-full max-w-2xl mx-auto px-4 py-8 md:py-12">
+      <div className="flex-grow w-full max-w-6xl mx-auto px-4 py-8 md:py-12">
         <div className="bg-white border border-black/10 rounded-2xl p-6 md:p-10 shadow-md space-y-8">
 
           {/* Title */}
@@ -353,7 +353,7 @@ export default function YantraPage() {
 
           {/* Mode Toggle — only show on Step 1 of each flow */}
           {(goalStep === 1 || kundliStep === 1) && (
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 gap-3 max-w-2xl mx-auto">
               <button
                 onClick={() => { setAppMode("goal"); resetGoal(); }}
                 className={`py-3 px-4 rounded-xl border text-xs font-bold transition-all text-left space-y-0.5 ${
@@ -392,7 +392,7 @@ export default function YantraPage() {
             <>
               {/* Goal Step 1: Details */}
               {goalStep === 1 && (
-                <form onSubmit={handleGoalStep1} className="space-y-6">
+                <form onSubmit={handleGoalStep1} className="space-y-6 max-w-2xl mx-auto">
                   <h3 className="text-base font-semibold font-serif text-black pb-1 border-b border-black/10">
                     {t.yantraStep1Title}
                   </h3>
@@ -479,7 +479,7 @@ export default function YantraPage() {
                       {t.back}
                     </button>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {categoriesList.map(cat => (
                       <button key={cat.id} onClick={() => handleCategorySelect(cat.id)}
                         className="text-left bg-[#EEEBE6]/20 hover:bg-[#EEEBE6]/50 border border-black/10 hover:border-[#9A7026]/40 rounded-xl p-4 transition-all duration-200 active:scale-[0.98] group space-y-1"
@@ -497,7 +497,7 @@ export default function YantraPage() {
 
               {/* Goal Step 3: Issue */}
               {goalStep === 3 && (
-                <div className="space-y-6">
+                <div className="space-y-6 max-w-2xl mx-auto">
                   <div className="flex justify-between items-center pb-1 border-b border-black/10">
                     <h3 className="text-base font-semibold font-serif text-black">
                       {t.yantraStep3Title}
@@ -534,119 +534,141 @@ export default function YantraPage() {
                     </button>
                   </div>
 
-                  {/* DOB Numerology */}
-                  {planetSelectMode === "dob" && missingNumbers.length > 0 && (
-                    <div className="bg-[#EEEBE6]/30 border border-black/10 p-4 rounded-xl space-y-3">
-                      <p className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">
-                        {t.numeroscopeInsights}
-                      </p>
-                      <p className="text-[11px] text-black/70">
-                        {t.missingGridNumbers} <span className="font-bold text-[#9A7026]">{missingNumbers.join(", ")}</span>
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        <button onClick={() => setCurrentYantra(primaryYantra)}
-                          className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === primaryYantra?.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
-                        >
-                          {t.goalYantraRecommended}
-                        </button>
-                        {missingNumbers.map(num => {
-                          const m = numerologyMap[num];
-                          if (!m) return null;
-                          const y = yantras.find(y => y.id === m.yantraId);
-                          if (!y) return null;
-                          return (
-                            <button key={num} onClick={() => setCurrentYantra(y)}
-                              className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === y.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
+                  {/* Responsive 2-Column Live Editor Layout */}
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    {/* Left Column: Switchers & Info */}
+                    <div className="lg:col-span-7 space-y-6">
+                      
+                      {/* DOB Numerology */}
+                      {planetSelectMode === "dob" && missingNumbers.length > 0 && (
+                        <div className="bg-[#EEEBE6]/30 border border-black/10 p-4 rounded-xl space-y-3">
+                          <p className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">
+                            {t.numeroscopeInsights}
+                          </p>
+                          <p className="text-[11px] text-black/70">
+                            {t.missingGridNumbers} <span className="font-bold text-[#9A7026]">{missingNumbers.join(", ")}</span>
+                          </p>
+                          <div className="flex flex-wrap gap-2">
+                            <button onClick={() => setCurrentYantra(primaryYantra)}
+                              className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === primaryYantra?.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
                             >
-                              {language === "en" ? `Missing ${num}:` : `लापता ${num}:`} {y.name.split(" ")[0]}
+                              {t.goalYantraRecommended}
                             </button>
-                          );
-                        })}
-                      </div>
-                    </div>
-                  )}
+                            {missingNumbers.map(num => {
+                              const m = numerologyMap[num];
+                              if (!m) return null;
+                              const y = yantras.find(y => y.id === m.yantraId);
+                              if (!y) return null;
+                              return (
+                                <button key={num} onClick={() => setCurrentYantra(y)}
+                                  className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === y.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
+                                >
+                                  {language === "en" ? `Missing ${num}:` : `लापता ${num}:`} {y.name.split(" ")[0]}
+                                </button>
+                              );
+                            })}
+                          </div>
+                        </div>
+                      )}
 
-                  {/* Manual Planet Switcher */}
-                  {planetSelectMode === "manual" && selectedPlanet && (() => {
-                    const linked = yantras.find(y => y.id === selectedPlanet);
-                    return (
-                      <div className="bg-[#EEEBE6]/30 border border-black/10 p-4 rounded-xl space-y-3">
-                        <p className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">
-                          {t.planetFocusToggle}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          <button onClick={() => setCurrentYantra(primaryYantra)}
-                            className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === primaryYantra?.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
-                          >
-                            {t.goalYantra}
-                          </button>
-                          {linked && (
-                            <button onClick={() => setCurrentYantra(linked)}
-                              className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === linked.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
-                            >
-                              {t.planetYantraLabel} {linked.name.split(" ")[0]}
-                            </button>
-                          )}
+                      {/* Manual Planet Switcher */}
+                      {planetSelectMode === "manual" && selectedPlanet && (() => {
+                        const linked = yantras.find(y => y.id === selectedPlanet);
+                        return (
+                          <div className="bg-[#EEEBE6]/30 border border-black/10 p-4 rounded-xl space-y-3">
+                            <p className="text-xs font-bold text-[#9A7026] uppercase tracking-wider">
+                              {t.planetFocusToggle}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              <button onClick={() => setCurrentYantra(primaryYantra)}
+                                  className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === primaryYantra?.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
+                              >
+                                {t.goalYantra}
+                              </button>
+                              {linked && (
+                                <button onClick={() => setCurrentYantra(linked)}
+                                  className={`px-3 py-1.5 rounded-lg text-[10px] font-bold border transition-all ${currentYantra?.id === linked.id ? "bg-[#0A2133] text-white border-[#0A2133]" : "bg-white text-black border-black/10 hover:border-[#9A7026]"}`}
+                                >
+                                  {t.planetYantraLabel} {linked.name.split(" ")[0]}
+                                </button>
+                              )}
+                            </div>
+                          </div>
+                        );
+                      })()}
+
+                      {/* Custom input for dynamic yantras */}
+                      {["travel-arch", "business-grid", "court-yantra", "house-protection"].includes(currentYantra.layout.type) && (
+                        <div className="bg-[#EEEBE6]/20 border border-black/10 p-4 rounded-xl space-y-3">
+                          <p className="text-[11px] font-bold text-[#9A7026] uppercase tracking-wider">
+                            {t.customizeTalismanContent}
+                          </p>
+                          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            {currentYantra.layout.type === "travel-arch" && (
+                              <div className="space-y-1">
+                                <label className="text-[10px] text-black/50 font-bold uppercase">{t.destinationName}</label>
+                                <input type="text" placeholder="e.g. Kashi" value={destination} onChange={e => setDestination(e.target.value)}
+                                  className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
+                              </div>
+                            )}
+                            {currentYantra.layout.type === "business-grid" && (
+                              <div className="space-y-1">
+                                <label className="text-[10px] text-black/50 font-bold uppercase">{t.businessName}</label>
+                                <input type="text" placeholder="e.g. Sharma Traders" value={businessName} onChange={e => setBusinessName(e.target.value)}
+                                  className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
+                              </div>
+                            )}
+                            <div className="space-y-1">
+                              <label className="text-[10px] text-black/50 font-bold uppercase">{t.nameOnTalisman}</label>
+                              <input type="text" placeholder="e.g. Rahul Sharma" value={name} onChange={e => setName(e.target.value)}
+                                className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
+                            </div>
+                          </div>
+                        </div>
+                      )}
+
+                      {/* Yantra text details */}
+                      <div className="bg-[#EEEBE6]/20 border border-black/10 rounded-xl p-5 space-y-4">
+                        <div>
+                          <h4 className="font-bold text-black font-serif text-lg">{currentYantra.name}</h4>
+                          <p className="text-xs text-black/70 mt-1 leading-relaxed">{currentYantra.description}</p>
+                        </div>
+                        <div>
+                          <p className="text-[10px] uppercase font-bold text-black/50 tracking-wider">Benefits:</p>
+                          <ul className="list-disc pl-4 text-xs text-black/80 space-y-0.5 mt-1">
+                            {currentYantra.benefits.map((b, i) => <li key={i}>{b}</li>)}
+                          </ul>
                         </div>
                       </div>
-                    );
-                  })()}
 
-                  {/* Custom input for dynamic yantras */}
-                  {["travel-arch", "business-grid", "court-yantra", "house-protection"].includes(currentYantra.layout.type) && (
-                    <div className="bg-[#EEEBE6]/20 border border-black/10 p-4 rounded-xl space-y-3">
-                      <p className="text-[11px] font-bold text-[#9A7026] uppercase tracking-wider">
-                        {t.customizeTalismanContent}
-                      </p>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        {currentYantra.layout.type === "travel-arch" && (
-                          <div className="space-y-1">
-                            <label className="text-[10px] text-black/50 font-bold uppercase">{t.destinationName}</label>
-                            <input type="text" placeholder="e.g. Kashi" value={destination} onChange={e => setDestination(e.target.value)}
-                              className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
+                    </div>
+
+                    {/* Right Column: Rendering & Mantras (Sticky on Desktop) */}
+                    <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+                      
+                      {/* Yantra rendering card */}
+                      <div className="border border-black/10 rounded-xl p-6 bg-white flex flex-col items-center shadow-sm">
+                        <YantraRenderer yantra={currentYantra} userName={name} destinationName={destination} businessName={businessName} />
+                      </div>
+
+                      {/* Mantras & preparation info */}
+                      <div className="bg-[#EEEBE6]/40 border border-black/10 rounded-xl p-5 space-y-4">
+                        {currentYantra.mantras.map((m, i) => (
+                          <div key={i} className="text-center">
+                            <p className="text-[9px] uppercase font-bold text-black/50 tracking-wider mb-1">{language === "en" ? "Mantra Chanting" : "मंत्र जाप"}</p>
+                            <p className="text-sm italic font-serif text-black bg-white px-3 py-2.5 rounded border border-black/5 font-semibold">&quot;{m}&quot;</p>
                           </div>
-                        )}
-                        {currentYantra.layout.type === "business-grid" && (
-                          <div className="space-y-1">
-                            <label className="text-[10px] text-black/50 font-bold uppercase">{t.businessName}</label>
-                            <input type="text" placeholder="e.g. Sharma Traders" value={businessName} onChange={e => setBusinessName(e.target.value)}
-                              className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
-                          </div>
-                        )}
-                        <div className="space-y-1">
-                          <label className="text-[10px] text-black/50 font-bold uppercase">{t.nameOnTalisman}</label>
-                          <input type="text" placeholder="e.g. Rahul Sharma" value={name} onChange={e => setName(e.target.value)}
-                            className="w-full bg-white border border-black/10 rounded-lg px-3 py-2 text-black text-xs focus:outline-none focus:border-[#9A7026]" />
+                        ))}
+                        <div className="text-xs text-black/75 space-y-0.5 pt-2 border-t border-black/5">
+                          <p><span className="font-bold">{t.preparationDay}</span> {currentYantra.preparation.day}</p>
+                          <p><span className="font-bold">{t.preparationTime}</span> {currentYantra.preparation.time}</p>
+                          <p className="leading-relaxed"><span className="font-bold">{t.preparationMaterials}</span> {currentYantra.preparation.materials}</p>
                         </div>
                       </div>
-                    </div>
-                  )}
 
-                  {/* Yantra render */}
-                  <div className="border border-black/10 rounded-xl p-4 bg-white flex flex-col items-center">
-                    <YantraRenderer yantra={currentYantra} userName={name} destinationName={destination} businessName={businessName} />
-                  </div>
+                    </div>
 
-                  {/* Yantra details */}
-                  <div className="bg-[#EEEBE6]/20 border border-black/10 rounded-xl p-5 space-y-4">
-                    <div>
-                      <h4 className="font-bold text-black font-serif">{currentYantra.name}</h4>
-                      <p className="text-xs text-black/70 mt-1 leading-relaxed">{currentYantra.description}</p>
-                    </div>
-                    <div>
-                      <p className="text-[10px] uppercase font-bold text-black/50 tracking-wider">Benefits:</p>
-                      <ul className="list-disc pl-4 text-xs text-black/80 space-y-0.5 mt-1">
-                        {currentYantra.benefits.map((b, i) => <li key={i}>{b}</li>)}
-                      </ul>
-                    </div>
-                    {currentYantra.mantras.map((m, i) => (
-                      <p key={i} className="text-xs italic font-serif text-black text-center bg-white px-3 py-2 rounded border border-black/5">&quot;{m}&quot;</p>
-                    ))}
-                    <div className="text-xs text-black/75 space-y-0.5 pt-1 border-t border-black/5">
-                      <p><span className="font-bold">{t.preparationDay}</span> {currentYantra.preparation.day}</p>
-                      <p><span className="font-bold">{t.preparationTime}</span> {currentYantra.preparation.time}</p>
-                      <p className="leading-relaxed"><span className="font-bold">{t.preparationMaterials}</span> {currentYantra.preparation.materials}</p>
-                    </div>
                   </div>
                 </div>
               )}
@@ -660,7 +682,7 @@ export default function YantraPage() {
             <>
               {/* Kundli Step 1: Birth Details Form */}
               {kundliStep === 1 && (
-                <form onSubmit={handleKundliSubmit} className="space-y-6">
+                <form onSubmit={handleKundliSubmit} className="space-y-6 max-w-2xl mx-auto">
                   <div className="pb-1 border-b border-black/10 space-y-1">
                     <h3 className="text-base font-semibold font-serif text-black">
                       {t.enterBirthDetails}
@@ -751,114 +773,126 @@ export default function YantraPage() {
                     </button>
                   </div>
 
-                  {/* Lagna & Birth Info Card */}
-                  <div className="bg-[#0A2133] text-white rounded-xl p-5 space-y-4">
-                    <div className="flex flex-wrap gap-4 justify-between items-start">
-                      <div>
-                        <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold">{t.lagnaLabel}</p>
-                        <p className="text-2xl font-bold font-serif mt-0.5">{kundliResult.lagnaSignName} ♊</p>
-                        <p className="text-[11px] text-white/60 mt-1">{kundliResult.birthPlace}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold">{t.ayanamshaLabel}</p>
-                        <p className="text-sm font-bold text-[#FFD700]">{kundliResult.ayanamsha.toFixed(4)}°</p>
-                        <p className="text-[10px] text-white/50">Lahiri</p>
-                      </div>
-                    </div>
-
-                    {/* Planet grid */}
-                    <div>
-                      <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold mb-2">
-                        {t.navagrahaPositions}
-                      </p>
-                      <div className="grid grid-cols-3 gap-1.5 text-black">
-                        {kundliResult.planets.map(p => (
-                          <div key={p.planet}
-                            className={`px-2 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 ${
-                              p.weakReasons.length > 0 ? "bg-red-200/95 border border-red-400" : "bg-white"
-                            }`}
-                          >
-                            <span>{p.symbol}</span>
-                            <div>
-                              <div>{p.name.split(" ")[0]}</div>
-                              <div className="text-[9px] font-normal opacity-75">H{p.house} · {p.signName.slice(0, 3)}</div>
-                            </div>
-                            {p.weakReasons.length > 0 && <span className="ml-auto text-red-700">⚠</span>}
+                  {/* Responsive 2-Column live calculation editor */}
+                  <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+                    
+                    {/* Left Column: Planetary tables, chart, switcher */}
+                    <div className="lg:col-span-7 space-y-6">
+                      
+                      {/* Lagna & Birth Info Card */}
+                      <div className="bg-[#0A2133] text-white rounded-xl p-5 space-y-4">
+                        <div className="flex flex-wrap gap-4 justify-between items-start">
+                          <div>
+                            <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold">{t.lagnaLabel}</p>
+                            <p className="text-2xl font-bold font-serif mt-0.5">{kundliResult.lagnaSignName} ♊</p>
+                            <p className="text-[11px] text-white/60 mt-1">{kundliResult.birthPlace}</p>
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                          <div className="text-right">
+                            <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold">{t.ayanamshaLabel}</p>
+                            <p className="text-sm font-bold text-[#FFD700]">{kundliResult.ayanamsha.toFixed(4)}°</p>
+                            <p className="text-[10px] text-white/50">Lahiri</p>
+                          </div>
+                        </div>
 
-                  {/* Weak Planets Summary */}
-                  {kundliResult.weakPlanets.length === 0 ? (
-                    <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center space-y-2">
-                      <p className="text-2xl">✅</p>
-                      <p className="text-sm font-bold text-green-800">
-                        {t.noWeakPlanets}
-                      </p>
-                      <p className="text-xs text-green-700">
-                        {t.noWeakPlanetsDesc}
-                      </p>
-                    </div>
-                  ) : (
-                    <>
-                      <div className="space-y-2">
-                        <p className="text-xs font-bold uppercase text-black/50 tracking-wider">
-                          {kundliResult.weakPlanets.length}{" "}
-                          {kundliResult.weakPlanets.length > 1 ? t.afflictedPlanetsDetectedPlural : t.afflictedPlanetsDetected}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {kundliRecs.map(rec => (
-                            <button key={rec.planet} onClick={() => setKundliActiveRec(rec.planet)}
-                              className={`px-3 py-2 rounded-xl border text-xs font-bold transition-all flex items-center gap-1.5 ${
-                                kundliActiveRec === rec.planet
-                                  ? "bg-[#0A2133] text-white border-[#0A2133]"
-                                  : rec.severity === "high"
-                                    ? "bg-red-50 border-red-200 text-red-800 hover:bg-red-100"
-                                    : "bg-white border-black/10 text-black hover:border-[#9A7026]"
-                              }`}
-                            >
-                              <span>{rec.symbol}</span>
-                              <span>{rec.planetName.split(" ")[0]}</span>
-                              {rec.severity === "high" && kundliActiveRec !== rec.planet && (
-                                <span className="text-red-500 text-[10px]">⚠</span>
-                              )}
-                            </button>
-                          ))}
+                        {/* Planet grid */}
+                        <div>
+                          <p className="text-[10px] uppercase tracking-wider text-white/60 font-bold mb-2">
+                            {t.navagrahaPositions}
+                          </p>
+                          <div className="grid grid-cols-3 gap-1.5 text-black">
+                            {kundliResult.planets.map(p => (
+                              <div key={p.planet}
+                                className={`px-2 py-1.5 rounded-lg text-[10px] font-bold flex items-center gap-1 ${
+                                  p.weakReasons.length > 0 ? "bg-red-200/95 border border-red-400" : "bg-white"
+                                }`}
+                              >
+                                <span>{p.symbol}</span>
+                                <div>
+                                  <div>{p.name.split(" ")[0]}</div>
+                                  <div className="text-[9px] font-normal opacity-75">H{p.house} · {p.signName.slice(0, 3)}</div>
+                                </div>
+                                {p.weakReasons.length > 0 && <span className="ml-auto text-red-700">⚠</span>}
+                              </div>
+                            ))}
+                          </div>
                         </div>
                       </div>
 
-                      {/* Active recommendation reason */}
-                      {kundliRecs.find(r => r.planet === kundliActiveRec) && (() => {
-                        const activeRecObj = kundliRecs.find(r => r.planet === kundliActiveRec);
-                        return (
-                          <div className={`border rounded-xl p-4 text-xs space-y-1 ${
-                            activeRecObj?.severity === "high" ? "bg-red-50 border-red-200" : "bg-[#EEEBE6]/30 border-black/10"
-                          }`}>
-                            <p className="font-bold text-black">
-                              {activeRecObj?.symbol} {t.whyPlanetQuestion} {activeRecObj?.planetName}?
+                      {/* Weak Planets Summary */}
+                      {kundliResult.weakPlanets.length === 0 ? (
+                        <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-center space-y-2">
+                          <p className="text-2xl">✅</p>
+                          <p className="text-sm font-bold text-green-800">
+                            {t.noWeakPlanets}
+                          </p>
+                          <p className="text-xs text-green-700">
+                            {t.noWeakPlanetsDesc}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="space-y-4">
+                          <div className="space-y-2">
+                            <p className="text-xs font-bold uppercase text-black/50 tracking-wider">
+                              {kundliResult.weakPlanets.length}{" "}
+                              {kundliResult.weakPlanets.length > 1 ? t.afflictedPlanetsDetectedPlural : t.afflictedPlanetsDetected}
                             </p>
-                            <p className="text-black/70 leading-relaxed">
-                              {activeRecObj?.reason}
-                            </p>
-                            <p className="text-[#9A7026] font-semibold">
-                              {t.remedyStrongLabel} <strong>{t.remedyText}</strong>
-                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {kundliRecs.map(rec => (
+                                <button key={rec.planet} onClick={() => setKundliActiveRec(rec.planet)}
+                                  className={`px-3 py-2 rounded-xl border text-xs font-bold transition-all flex items-center gap-1.5 ${
+                                    kundliActiveRec === rec.planet
+                                      ? "bg-[#0A2133] text-white border-[#0A2133]"
+                                      : rec.severity === "high"
+                                        ? "bg-red-50 border-red-200 text-red-800 hover:bg-red-100"
+                                        : "bg-white border-black/10 text-black hover:border-[#9A7026]"
+                                  }`}
+                                >
+                                  <span>{rec.symbol}</span>
+                                  <span>{rec.planetName.split(" ")[0]}</span>
+                                  {rec.severity === "high" && kundliActiveRec !== rec.planet && (
+                                    <span className="text-red-500 text-[10px]">⚠</span>
+                                  )}
+                                </button>
+                              ))}
+                            </div>
                           </div>
-                        );
-                      })()}
 
-                      {/* Yantra Render */}
+                          {/* Active recommendation reason */}
+                          {kundliRecs.find(r => r.planet === kundliActiveRec) && (() => {
+                            const activeRecObj = kundliRecs.find(r => r.planet === kundliActiveRec);
+                            return (
+                              <div className={`border rounded-xl p-4 text-xs space-y-1 ${
+                                activeRecObj?.severity === "high" ? "bg-red-50 border-red-200" : "bg-[#EEEBE6]/30 border-black/10"
+                              }`}>
+                                <p className="font-bold text-black">
+                                  {activeRecObj?.symbol} {t.whyPlanetQuestion} {activeRecObj?.planetName}?
+                                </p>
+                                <p className="text-black/70 leading-relaxed">
+                                  {activeRecObj?.reason}
+                                </p>
+                                <p className="text-[#9A7026] font-semibold">
+                                  {t.remedyStrongLabel} <strong>{t.remedyText}</strong>
+                                </p>
+                              </div>
+                            );
+                          })()}
+                        </div>
+                      )}
+
+                    </div>
+
+                    {/* Right Column: Rendered Yantra (Sticky) */}
+                    <div className="lg:col-span-5 lg:sticky lg:top-24 space-y-6">
+                      
                       {activeKundliYantra && (
                         <>
-                          <div className="border border-black/10 rounded-xl p-4 bg-white flex flex-col items-center">
+                          <div className="border border-black/10 rounded-xl p-6 bg-white flex flex-col items-center shadow-sm">
                             <YantraRenderer yantra={activeKundliYantra} userName={name} destinationName="" businessName="" />
                           </div>
 
-                          <div className="bg-[#EEEBE6]/20 border border-black/10 rounded-xl p-5 space-y-4">
+                          <div className="bg-[#EEEBE6]/20 border border-black/10 rounded-xl p-5 space-y-4 text-left">
                             <div>
-                              <h4 className="font-bold text-black font-serif">{activeKundliYantra.name}</h4>
+                              <h4 className="font-bold text-black font-serif text-lg">{activeKundliYantra.name}</h4>
                               <p className="text-xs text-black/70 mt-1 leading-relaxed">{activeKundliYantra.description}</p>
                             </div>
                             <div>
@@ -868,9 +902,9 @@ export default function YantraPage() {
                               </ul>
                             </div>
                             {activeKundliYantra.mantras.map((m, i) => (
-                              <p key={i} className="text-xs italic font-serif text-black text-center bg-white px-3 py-2 rounded border border-black/5">&quot;{m}&quot;</p>
+                              <p key={i} className="text-xs italic font-serif text-black text-center bg-white px-3 py-2 rounded border border-black/5 font-semibold">&quot;{m}&quot;</p>
                             ))}
-                            <div className="text-xs text-black/75 space-y-0.5 pt-1 border-t border-black/5">
+                            <div className="text-xs text-black/75 space-y-0.5 pt-2 border-t border-black/5">
                               <p><span className="font-bold">{t.preparationDay}</span> {activeKundliYantra.preparation.day}</p>
                               <p><span className="font-bold">{t.preparationTime}</span> {activeKundliYantra.preparation.time}</p>
                               <p className="leading-relaxed"><span className="font-bold">{t.preparationMaterials}</span> {activeKundliYantra.preparation.materials}</p>
@@ -878,8 +912,10 @@ export default function YantraPage() {
                           </div>
                         </>
                       )}
-                    </>
-                  )}
+
+                    </div>
+
+                  </div>
                 </div>
               )}
             </>

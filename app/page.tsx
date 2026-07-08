@@ -12,7 +12,7 @@ export default function Home() {
       
       {/* AstroLearn Header */}
       <div className="py-4 bg-white sticky top-0 z-40 px-4 md:px-8 flex justify-center items-center shadow-sm border-b border-black/5">
-        <header className="flex items-center justify-between w-full max-w-4xl mx-auto">
+        <header className="flex items-center justify-between w-full max-w-6xl mx-auto">
           <Link href="/" className="flex items-center gap-2.5 no-underline">
             <svg
               className="w-[36px] h-[36px] text-[#9A7026] fill-current animate-[spin_30s_linear_infinite]"
@@ -63,7 +63,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <main className="flex-grow w-full max-w-4xl mx-auto px-4 py-8 md:py-16 space-y-12">
+      <main className="flex-grow w-full max-w-6xl mx-auto px-4 py-8 md:py-16 space-y-12">
         <section className="relative overflow-hidden md:flex flex-row-reverse items-center justify-between gap-[5%] py-8 w-full">
           
           {/* Rotating Chakra Decorative Graphic */}
