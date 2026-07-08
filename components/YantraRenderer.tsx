@@ -50,6 +50,7 @@ interface YantraRendererProps {
   userName?: string;
   destinationName?: string;
   businessName?: string;
+  justSvg?: boolean;
 }
 
 export default function YantraRenderer({
@@ -57,6 +58,7 @@ export default function YantraRenderer({
   userName = "",
   destinationName = "",
   businessName = "",
+  justSvg = false,
 }: YantraRendererProps) {
   const nameToUse = userName.trim() || "NATIVE NAME";
   const destToUse = destinationName.trim() || "DESTINATION";
@@ -863,6 +865,10 @@ export default function YantraRenderer({
         );
     }
   };
+
+  if (justSvg) {
+    return renderLayout();
+  }
 
   return (
     <div className="bg-white/80 backdrop-blur-md border border-amber-100 rounded-2xl p-6 shadow-xl max-w-md mx-auto space-y-6">

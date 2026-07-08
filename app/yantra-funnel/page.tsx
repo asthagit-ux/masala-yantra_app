@@ -599,7 +599,7 @@ export default function YantraPage() {
                           <span className="text-yellow-400">✨</span> SACRED BHOJPATRA DRAWING
                         </p>
                         <div className="flex flex-col items-center justify-center p-5 bg-white rounded-2xl shadow-2xl max-w-[280px] mx-auto">
-                          <YantraRenderer yantra={currentYantra} userName={name} destinationName={destination} businessName={businessName} />
+                          <YantraRenderer yantra={currentYantra} userName={name} destinationName={destination} businessName={businessName} justSvg={true} />
                         </div>
                       </div>
 
@@ -1078,7 +1078,7 @@ export default function YantraPage() {
                               <span className="text-yellow-400">✨</span> SACRED BHOJPATRA DRAWING
                             </p>
                             <div className="flex flex-col items-center justify-center p-5 bg-white rounded-2xl shadow-2xl max-w-[280px] mx-auto">
-                              <YantraRenderer yantra={activeKundliYantra} userName={name} destinationName="" businessName="" />
+                              <YantraRenderer yantra={activeKundliYantra} userName={name} destinationName="" businessName="" justSvg={true} />
                             </div>
                           </div>
                           <div className="rounded-xl p-4 space-y-2"
