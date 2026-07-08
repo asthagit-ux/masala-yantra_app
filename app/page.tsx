@@ -165,6 +165,34 @@ export default function Home() {
             </span>
           </div>
 
+          {/* AstroAura Premium Dashboard Banner */}
+          <Link
+            href="/dashboard"
+            className="block w-full text-left rounded-3xl p-6 md:p-8 border border-[#FFD700]/30 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(108,92,231,0.25)] group hover:-translate-y-1 relative overflow-hidden mb-6"
+            style={{ background: "linear-gradient(135deg, #0B0B1E 0%, #0D0D24 100%)" }}
+          >
+            <div className="absolute right-0 top-0 w-48 h-48 bg-gradient-to-tr from-[#6C5CE7]/20 to-[#EC4899]/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <span className="bg-gradient-to-r from-[#6C5CE7] to-[#EC4899] text-white text-[9px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                    ✦ NEW PREMIUM PLATFORM
+                  </span>
+                </div>
+                <h3 className="font-serif text-2xl font-black bg-gradient-to-r from-[#FFD369] via-white to-pink-200 bg-clip-text text-transparent">
+                  AstroAura Dashboard
+                </h3>
+                <p className="text-xs text-white/60 max-w-xl leading-relaxed">
+                  Generate your custom Natal Birth Chart SVG wheel, track moon phases, explore daily transit forecasts, and calculate detailed Synastry compatibility matches.
+                </p>
+              </div>
+              <div className="shrink-0 flex items-center gap-2 text-xs font-black text-[#FFD369] group-hover:translate-x-1.5 transition-transform uppercase tracking-wider">
+                <span>Enter Portal</span>
+                <span>→</span>
+              </div>
+            </div>
+          </Link>
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             
             {/* Masala Remedies Entry */}
