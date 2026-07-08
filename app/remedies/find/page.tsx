@@ -50,6 +50,7 @@ export default function MasalaFunnel() {
   const [selectedProblemId, setSelectedProblemId] = useState<string>("");
   const [matchingRemedies, setMatchingRemedies] = useState<Remedy[]>([]);
   const [checkedIngredients, setCheckedIngredients] = useState<Record<string, boolean>>({});
+  const [expandedIdx, setExpandedIdx] = useState<number | null>(null);
 
   const categoryTitles: Record<string, Record<string, string>> = {
     protection: { en: "Protection & Cleansing", hi: "रक्षा और शुद्धिकरण" },
@@ -163,6 +164,7 @@ export default function MasalaFunnel() {
     setSelectedProblemId("");
     setMatchingRemedies([]);
     setCheckedIngredients({});
+    setExpandedIdx(null);
   };
 
   return (
@@ -364,7 +366,6 @@ export default function MasalaFunnel() {
               "spiritual-luck":  { label: "SPIRITUAL",   color: "#fb923c", bg: "rgba(249,115,22,0.15)", symbol: "गं",  rulerPlanet: "GURU (JUPITER)" },
             };
             const meta = categoryMeta[category] || categoryMeta["wealth"];
-            const [expandedIdx, setExpandedIdx] = React.useState<number | null>(null);
 
             return (
               <div className="space-y-6">
