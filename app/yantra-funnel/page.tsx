@@ -114,7 +114,7 @@ const numerologyMap: Record<number, { name: string; yantraId: string }> = {
   9: { name: "Mangal Yantra (Mars)", yantraId: "mangal" },
 };
 
-type AppMode = "goal" | "kundli";
+type AppMode = "goal" | "kundli" | "planet";
 
 // ── Shared style constants ─────────────────────────────────────────────────
 const BG_BASE    = "#08081A";
@@ -132,6 +132,7 @@ export default function YantraPage() {
   const [planetSelectMode, setPlanetSelectMode] = useState<"none" | "dob" | "manual">("none");
   const [dob, setDob] = useState("");
   const [selectedPlanet, setSelectedPlanet] = useState("");
+  const [planetStep, setPlanetStep] = useState(1);
   const [missingNumbers, setMissingNumbers] = useState<number[]>([]);
   const [category, setCategory] = useState("");
   const [primaryYantra, setPrimaryYantra] = useState<Yantra | null>(null);
@@ -303,6 +304,18 @@ export default function YantraPage() {
     setDestination(""); setBusinessName("");
   };
 
+  const resetPlanet = () => {
+    setPlanetStep(1); setSelectedPlanet(""); setName(""); setCurrentYantra(null);
+  };
+
+  const handlePlanetSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedPlanet) return;
+    const found = yantras.find((y) => y.id === selectedPlanet);
+    if (found) { setCurrentYantra(found); }
+    setPlanetStep(2);
+  };
+
   // ── Handlers: Kundli flow ─────────────────────────────────────────────
   const handleKundliSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -395,8 +408,8 @@ export default function YantraPage() {
         </div>
 
         {/* ── Mode Toggle — only on step 1 ──────────────────────────────── */}
-        {((appMode === "goal" && goalStep === 1) || (appMode === "kundli" && kundliStep === 1)) && (
-          <div className="grid grid-cols-2 gap-4 max-w-2xl mx-auto mb-10">
+        {((appMode === "goal" && goalStep === 1) || (appMode === "kundli" && kundliStep === 1) || (appMode === "planet" && planetStep === 1)) && (
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto mb-10">
             <button onClick={() => { setAppMode("goal"); resetGoal(); }}
               className="py-5 px-5 rounded-2xl border text-left transition-all duration-250 space-y-1.5"
               style={{
@@ -418,6 +431,17 @@ export default function YantraPage() {
               <div className="text-xl">🔭</div>
               <div className="text-xs font-black text-white">{t.byKundliBtn}</div>
               <div className="text-[10px] font-normal text-white/45">{t.byKundliBtnDesc}</div>
+            </button>
+            <button onClick={() => { setAppMode("planet"); resetPlanet(); }}
+              className="py-5 px-5 rounded-2xl border text-left transition-all duration-250 space-y-1.5"
+              style={{
+                background: appMode === "planet" ? "linear-gradient(135deg, rgba(168,85,247,0.15), rgba(192,132,252,0.1))" : "rgba(255,255,255,0.03)",
+                border: appMode === "planet" ? "1px solid rgba(168,85,247,0.5)" : "1px solid rgba(255,255,255,0.08)",
+                boxShadow: appMode === "planet" ? "0 0 24px rgba(168,85,247,0.15)" : "none"
+              }}>
+              <div className="text-xl">🪐</div>
+              <div className="text-xs font-black text-white">{t.byPlanetBtn}</div>
+              <div className="text-[10px] font-normal text-white/45">{t.byPlanetBtnDesc}</div>
             </button>
           </div>
         )}
@@ -441,51 +465,6 @@ export default function YantraPage() {
                       onFocus={e => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
                       onBlur={e => (e.target.style.borderColor = "rgba(255,213,105,0.2)")} />
                   </div>
-
-                  <div className="space-y-2">
-                    <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40">{t.planetaryAlignment}</label>
-                    <div className="grid grid-cols-3 gap-2">
-                      {(["none", "dob", "manual"] as const).map((mode) => (
-                        <button key={mode} type="button" onClick={() => setPlanetSelectMode(mode)}
-                          className="py-2.5 px-3 rounded-xl text-[11px] font-black transition-all border"
-                          style={{
-                            background: planetSelectMode === mode ? "linear-gradient(135deg, #6C5CE7, #A855F7)" : "rgba(255,255,255,0.04)",
-                            border: planetSelectMode === mode ? "1px solid transparent" : "1px solid rgba(255,255,255,0.08)",
-                            color: planetSelectMode === mode ? "white" : "rgba(255,255,255,0.5)"
-                          }}>
-                          {mode === "none" ? t.noFocus : mode === "dob" ? t.dobCheck : t.pickPlanet}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-
-                  {planetSelectMode === "dob" && (
-                    <div className="rounded-xl p-4 space-y-2" style={{ background: "rgba(255,213,105,0.05)", border: "1px solid rgba(255,213,105,0.15)" }}>
-                      <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[#FFD369]/60">{t.dobLabel}</label>
-                      <input type="date" required value={dob} onChange={e => setDob(e.target.value)}
-                        className={inputCls} style={inputStyle} />
-                      <p className="text-[10px] text-white/30">{t.dobHelper}</p>
-                    </div>
-                  )}
-
-                  {planetSelectMode === "manual" && (
-                    <div className="rounded-xl p-4 space-y-3" style={{ background: "rgba(168,85,247,0.05)", border: "1px solid rgba(168,85,247,0.15)" }}>
-                      <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-[#A855F7]/70">{t.selectPlanetFocus}</label>
-                      <div className="grid grid-cols-1 gap-1.5 max-h-[200px] overflow-y-auto pr-1">
-                        {planetList.map((p) => (
-                          <button key={p.id} type="button" onClick={() => setSelectedPlanet(p.id)}
-                            className="text-left px-3 py-2.5 rounded-lg text-xs font-medium transition-all"
-                            style={{
-                              background: selectedPlanet === p.id ? "rgba(168,85,247,0.18)" : "rgba(255,255,255,0.03)",
-                              border: selectedPlanet === p.id ? "1px solid rgba(168,85,247,0.45)" : "1px solid rgba(255,255,255,0.06)",
-                              color: selectedPlanet === p.id ? "#C4B5FD" : "rgba(255,255,255,0.5)"
-                            }}>
-                            🪐 {p.name}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  )}
                 </div>
 
                 <button type="submit"
@@ -1154,6 +1133,192 @@ export default function YantraPage() {
             )}
           </>
         )}
+            {/* Planet Flow */}
+            {appMode === "planet" && (
+              <>
+                {/* Planet Step 1: Selection Form */}
+                {planetStep === 1 && (
+                  <form onSubmit={handlePlanetSubmit} className="space-y-5 max-w-xl mx-auto">
+                    <div className="rounded-2xl p-7 space-y-5" style={{ background: BG_CARD, border: `1px solid ${BORDER_DIM}` }}>
+                      <div className="space-y-1 pb-3 border-b border-white/8">
+                        <h3 className="text-sm font-black font-serif text-white/85">
+                          {language === "en" ? "Generate Yantra by Planet Focus" : "ग्रह फोकस द्वारा यंत्र बनाएं"}
+                        </h3>
+                        <p className="text-[11px] text-white/40">
+                          {language === "en" ? "Select a planet to generate its sacred geometry talisman" : "अपनी पसंद के ग्रह का यंत्र प्राप्त करने के लिए नीचे चुनें"}
+                        </p>
+                      </div>
+
+                      {/* Name field */}
+                      <div className="space-y-1.5">
+                        <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40">
+                          {t.yourNameRequired}
+                        </label>
+                        <input type="text" required placeholder="e.g. Rahul Sharma"
+                          value={name} onChange={e => setName(e.target.value)}
+                          className={inputCls} style={inputStyle}
+                          onFocus={e => (e.target.style.borderColor = "rgba(168,85,247,0.55)")}
+                          onBlur={e => (e.target.style.borderColor = "rgba(255,213,105,0.2)")} />
+                      </div>
+
+                      {/* Planet list */}
+                      <div className="space-y-2">
+                        <label className="block text-[10px] font-black uppercase tracking-[0.2em] text-white/40">
+                          {language === "en" ? "Select Planet Focus" : "ग्रह फोकस चुनें"}
+                        </label>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 max-h-[220px] overflow-y-auto pr-1">
+                          {planetList.map((p) => {
+                            const isSelected = selectedPlanet === p.id;
+                            const glyphColors: Record<string, string> = {
+                              surya: "#ffb020", chandra: "#38bdf8", mangal: "#ef4444",
+                              budh: "#10b981", guru: "#f5c453", shukra: "#ec4899",
+                              shani: "#a855f7", rahu: "#f97316", ketu: "#6366f1"
+                            };
+                            const color = glyphColors[p.id] || "#FFD700";
+                            const glyphs: Record<string, string> = {
+                              surya: "☀️", chandra: "🌙", mangal: "♂", budh: "☿", guru: "♃", shukra: "♀", shani: "♄", rahu: "☊", ketu: "☋"
+                            };
+                            const glyph = glyphs[p.id] || "🪐";
+                            return (
+                              <button key={p.id} type="button" onClick={() => setSelectedPlanet(p.id)}
+                                className="text-left px-3 py-2.5 rounded-xl transition-all duration-200 flex items-center gap-3.5"
+                                style={{
+                                  background: isSelected ? `linear-gradient(135deg, ${color}15, ${color}08)` : "rgba(255,255,255,0.03)",
+                                  border: isSelected ? `1px solid ${color}55` : "1px solid rgba(255,255,255,0.06)",
+                                  boxShadow: isSelected ? `0 0 20px ${color}12` : "none"
+                                }}>
+                                <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0 text-lg font-bold"
+                                  style={{ background: `${color}10`, border: `1px solid ${color}20` }}>
+                                  <span style={{ color: isSelected ? color : "rgba(255,255,255,0.4)" }}>{glyph}</span>
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <p className="text-xs font-black uppercase tracking-wide text-white truncate">{p.name.split(" — ")[0]}</p>
+                                  <p className="text-[10px] text-white/35 truncate mt-0.5">{p.name.split(" — ")[1]}</p>
+                                </div>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    </div>
+
+                    <button type="submit" disabled={!selectedPlanet}
+                      className="w-full py-4 rounded-2xl font-black text-sm text-white transition-all hover:opacity-90 active:scale-[0.99] shadow-lg disabled:opacity-40"
+                      style={{ background: "linear-gradient(135deg, #6C5CE7, #A855F7, #EC4899)", boxShadow: "0 8px 24px rgba(108,92,231,0.35)" }}>
+                      {language === "en" ? "Generate Yantra" : "यंत्र उत्पन्न करें"} →
+                    </button>
+                  </form>
+                )}
+
+                {/* Planet Step 2: Yantra Result */}
+                {planetStep === 2 && currentYantra && (
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center px-1">
+                      <div>
+                        <p className="text-[10px] font-black uppercase tracking-[0.25em] text-[#FFD369]/60">✦ Your Planetary Talisman</p>
+                        <h3 className="text-xl font-bold font-serif text-white mt-0.5">{t.yourRecommendedTalisman}</h3>
+                      </div>
+                      <button onClick={resetPlanet}
+                        className="text-[10px] font-black uppercase tracking-wider text-white/35 hover:text-red-400 transition-colors border border-white/10 hover:border-red-400/30 px-3 py-1.5 rounded-lg">
+                        {t.startOver}
+                      </button>
+                    </div>
+
+                    {/* ── Full-width Yantra Card ── */}
+                    <div className="rounded-2xl overflow-hidden" style={{ background: BG_CARD, border: "1px solid rgba(255,213,105,0.22)" }}>
+
+                      {/* Card Top Banner */}
+                      <div className="flex flex-wrap items-start justify-between gap-3 px-7 pt-6 pb-5 border-b" style={{ borderColor: "rgba(255,213,105,0.12)" }}>
+                        <div className="space-y-1">
+                          <h3 className="text-xl md:text-2xl font-black font-serif text-[#FFD369] uppercase tracking-wide leading-tight">
+                            {currentYantra.name}
+                          </h3>
+                          <p className="text-[10px] font-bold tracking-[0.22em] text-white/30 uppercase">✦ Vedic Remedial Geometry ✦</p>
+                        </div>
+                        <span className="shrink-0 text-black text-[9px] font-black px-3 py-1.5 rounded-full uppercase tracking-wider mt-1"
+                          style={{ background: "linear-gradient(135deg, #FFD369, #F5A623)" }}>
+                          RECOMMENDED REMEDY
+                        </span>
+                      </div>
+
+                      {/* Card Body — 2 columns */}
+                      <div className="grid grid-cols-1 lg:grid-cols-2 gap-0">
+
+                        {/* LEFT COLUMN: Drawing */}
+                        <div className="p-6 space-y-5 border-r" style={{ borderColor: "rgba(255,213,105,0.08)" }}>
+                          <div>
+                            <p className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 mb-3 flex items-center gap-2">
+                              <span className="text-yellow-400">✨</span> SACRED BHOJPATRA DRAWING
+                            </p>
+                            <div className="flex flex-col items-center justify-center p-5 bg-white rounded-2xl shadow-2xl max-w-[280px] mx-auto">
+                              <YantraRenderer yantra={currentYantra} userName={name} destinationName="" businessName="" justSvg={true} />
+                            </div>
+                          </div>
+
+                          <div className="rounded-xl p-4 space-y-1.5" style={{ background: "rgba(255,213,105,0.04)", border: "1px solid rgba(255,213,105,0.12)" }}>
+                            <p className="text-[9px] font-black tracking-[0.18em] uppercase text-[#FFD369]">Focus of Talisman</p>
+                            <p className="text-[11px] text-white/75 leading-relaxed">{currentYantra.description}</p>
+                          </div>
+                        </div>
+
+                        {/* RIGHT COLUMN: Consecration Details */}
+                        <div className="p-6 space-y-5">
+                          <div className="space-y-3">
+                            <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                              <span className="text-red-400">🛑</span> 1. PROBLEM & CHALLENGE ANALYSIS
+                            </h4>
+                            <div className="rounded-xl p-4 space-y-1.5" style={{ background: "rgba(239,68,68,0.05)", border: "1px solid rgba(239,68,68,0.15)" }}>
+                              <p className="text-[9px] font-black tracking-[0.18em] uppercase text-red-400">Identified Blockage</p>
+                              <p className="text-[11px] text-white/75 leading-relaxed">{currentYantra.description}</p>
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                              <span className="text-green-400">🧘</span> 2. CONSECRATION & ACTIVATION
+                            </h4>
+                            <div className="rounded-xl p-4 space-y-2 text-[11px]" style={{ background: "rgba(74,222,128,0.04)", border: "1px solid rgba(74,222,128,0.12)" }}>
+                              <p className="text-[9px] font-black tracking-[0.18em] uppercase text-green-400">Ritual Instructions</p>
+                              <p className="text-white/65"><span className="font-bold text-white/50">{t.preparationDay}</span> {currentYantra.preparation.day}</p>
+                              <p className="text-white/65"><span className="font-bold text-white/50">{t.preparationTime}</span> {currentYantra.preparation.time}</p>
+                              <p className="text-white/65 leading-relaxed"><span className="font-bold text-white/50">{t.preparationMaterials}</span> {currentYantra.preparation.materials}</p>
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                              <span className="text-violet-400">🔱</span> 3. ACTIVATION MANTRAS
+                            </h4>
+                            <div className="space-y-2">
+                              {currentYantra.mantras.map((m, i) => (
+                                <p key={i} className="italic text-xs font-serif text-white/80 rounded-xl px-4 py-3 text-center font-semibold leading-relaxed"
+                                  style={{ background: "rgba(168,85,247,0.06)", border: "1px solid rgba(168,85,247,0.15)" }}>
+                                  &ldquo;{m}&rdquo;
+                                </p>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="space-y-3">
+                            <h4 className="text-[9px] font-black uppercase tracking-[0.2em] text-[#FFD369]/65 flex items-center gap-2">
+                              <span className="text-yellow-400">✦</span> 4. EXPECTED BENEFITS
+                            </h4>
+                            <ul className="space-y-2">
+                              {currentYantra.benefits.map((b, i) => (
+                                <li key={i} className="flex items-start gap-2.5 text-[11px] text-white/65">
+                                  <span className="text-[#FFD369] shrink-0 mt-0.5 font-black">›</span>
+                                  <span className="leading-relaxed">{b}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
       </div>
 
       {/* ── Footer ────────────────────────────────────────────────────────── */}

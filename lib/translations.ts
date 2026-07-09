@@ -62,6 +62,8 @@ export const translations = {
     byGoalBtnDesc: "Select your life area and concern",
     byKundliBtn: "By Kundli (Birth Chart)",
     byKundliBtnDesc: "Enter birth time & place for exact chart",
+    byPlanetBtn: "Pick Planet",
+    byPlanetBtnDesc: "Select a specific planetary yantra",
     
     // Yantra Goal Step 1
     yantraStep1Title: "Step 1: Your Details",
@@ -180,6 +182,8 @@ export const translations = {
     byGoalBtnDesc: "अपने जीवन क्षेत्र और चिंता का चयन करें",
     byKundliBtn: "कुंडली (जन्म चार्ट) द्वारा",
     byKundliBtnDesc: "सटीक चार्ट के लिए जन्म समय और स्थान दर्ज करें",
+    byPlanetBtn: "ग्रह चुनें",
+    byPlanetBtnDesc: "एक विशिष्ट ग्रह यंत्र का चयन करें",
 
     // Yantra Goal Step 1
     yantraStep1Title: "चरण 1: आपका विवरण",
